@@ -17,9 +17,6 @@ class Circuit
     #[ORM\Column(length: 50)]
     private ?string $idApi = null;
 
-    #[ORM\Column(type: Types::DATE_MUTABLE)]
-    private ?\DateTimeInterface $dateCreation = null;
-
     #[ORM\Column(length: 3)]
     private ?string $nbVirages = null;
 
@@ -51,6 +48,9 @@ class Circuit
     #[ORM\JoinColumn(nullable: false)]
     private ?Pays $pays = null;
 
+    #[ORM\Column(type: Types::DATE_MUTABLE)]
+    private ?\DateTimeInterface $dateCreation = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -64,18 +64,6 @@ class Circuit
     public function setIdApi(string $idApi): self
     {
         $this->idApi = $idApi;
-
-        return $this;
-    }
-
-    public function getDateCreation(): ?\DateTimeInterface
-    {
-        return $this->dateCreation;
-    }
-
-    public function setDateCreation(\DateTimeInterface $dateCreation): self
-    {
-        $this->dateCreation = $dateCreation;
 
         return $this;
     }
@@ -196,6 +184,18 @@ class Circuit
     public function setPays(?Pays $pays): self
     {
         $this->pays = $pays;
+
+        return $this;
+    }
+
+    public function getDateCreation(): ?\DateTimeInterface
+    {
+        return $this->dateCreation;
+    }
+
+    public function setDateCreation(\DateTimeInterface $dateCreation): self
+    {
+        $this->dateCreation = $dateCreation;
 
         return $this;
     }

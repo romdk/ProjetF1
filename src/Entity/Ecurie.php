@@ -44,9 +44,6 @@ class Ecurie
     #[ORM\Column(length: 4)]
     private ?string $puissanceVoiture = null;
 
-    #[ORM\Column(length: 20)]
-    private ?string $dimensionsVoiture = null;
-
     #[ORM\Column(length: 50)]
     private ?string $moteurVoiture = null;
 
@@ -55,6 +52,9 @@ class Ecurie
 
     #[ORM\Column(length: 255)]
     private ?string $miniatureVoiture = null;
+
+    #[ORM\Column(length: 10)]
+    private ?string $poidsVoiture = null;
 
     public function getId(): ?int
     {
@@ -181,18 +181,6 @@ class Ecurie
         return $this;
     }
 
-    public function getDimensionsVoiture(): ?string
-    {
-        return $this->dimensionsVoiture;
-    }
-
-    public function setDimensionsVoiture(string $dimensionsVoiture): self
-    {
-        $this->dimensionsVoiture = $dimensionsVoiture;
-
-        return $this;
-    }
-
     public function getMoteurVoiture(): ?string
     {
         return $this->moteurVoiture;
@@ -225,6 +213,18 @@ class Ecurie
     public function setMiniatureVoiture(string $miniatureVoiture): self
     {
         $this->miniatureVoiture = $miniatureVoiture;
+
+        return $this;
+    }
+
+    public function getPoidsVoiture(): ?string
+    {
+        return $this->poidsVoiture;
+    }
+
+    public function setPoidsVoiture(string $poidsVoiture): self
+    {
+        $this->poidsVoiture = $poidsVoiture;
 
         return $this;
     }
