@@ -1,0 +1,10 @@
+redbull: #0d1a2a
+mercedes: #019c96
+ferrari: #fa0c00
+mclaren: #ff8800
+alpine: #0856ab
+alfa romeo: #9f2234
+aston martin: #00594f
+alpha tauri: #080e1a
+williams: #0e1c67
+haas: #ec1b3b
