@@ -110,6 +110,49 @@ nav h1{
     margin-top: 4px;
 }
 
+#user {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    height: 0;
+    top: 65px;
+    right: 30px;
+    background-color: rgba(0, 0, 0, 0);
+    backdrop-filter: blur(3px);
+    color: #f1f1f100;
+    text-transform: uppercase;
+    border-radius: 5px;
+    overflow: hidden;
+    transition: .3s;
+    transition-delay: 0.20s;
+}
+
+#user span{
+    padding: 10px 25px 10px 20px;
+    transition: .3s;
+}
+
+.fa-user:hover{
+    cursor: pointer;
+}
+
+.fa-user:hover + #user {
+    height: 90px;
+    background-color: rgba(24, 24, 24, 0.564);
+    color: #8d8d8d;
+}
+
+#user:hover{
+    height: 90px;
+    background-color: rgba(24, 24, 24, 0.564);
+    color: #8d8d8d;
+    cursor: pointer;
+}
+
+#user span:hover{
+    color: #f1f1f1;
+}
+
 #container{
     position: relative;
     height: 100vh;
@@ -181,6 +224,7 @@ section{
     top: 0;
     z-index: 1000;
     mix-blend-mode:multiply;
+    overflow: hidden;
 }
 
 #svg img{
