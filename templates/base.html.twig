@@ -7,13 +7,26 @@
         {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
         {% block stylesheets %}
             {{ encore_entry_link_tags('app') }}
-        {% endblock %}
-
-        {% block javascripts %}
-            {{ encore_entry_script_tags('app') }}
+            <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
         {% endblock %}
     </head>
+    <nav>
+        <h1>F1ndout.</h1>
+        <span id="menuBtn">MENU <i id="arrow" class="fa-solid fa-chevron-down"></i></span>
+        
+        <div id="menu">
+            <span class="active">Home</span>
+            <span>Saisons</span>
+            <span>Ecuries</span>
+            <span>Circuits</span>
+        </div>
+        <i class="fa-regular fa-user"></i>
+    </nav>
     <body>
         {% block body %}{% endblock %}
     </body>
+    {% block javascripts %}
+        <script src="{{ asset('javascript/script.js') }}"></script>
+    {% endblock %}
 </html>
