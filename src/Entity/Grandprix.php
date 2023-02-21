@@ -15,14 +15,17 @@ class Grandprix
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 50)]
-    private ?string $idApi = null;
-
     #[ORM\Column(length: 255)]
     private ?string $affiche = null;
 
     #[ORM\OneToMany(mappedBy: 'grandprix', targetEntity: Emplacement::class, orphanRemoval: true)]
     private Collection $emplacements;
+
+    #[ORM\Column(length: 4)]
+    private ?string $season = null;
+
+    #[ORM\Column(length: 2)]
+    private ?string $round = null;
 
     public function __construct()
     {
@@ -32,18 +35,6 @@ class Grandprix
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getIdApi(): ?string
-    {
-        return $this->idApi;
-    }
-
-    public function setIdApi(string $idApi): self
-    {
-        $this->idApi = $idApi;
-
-        return $this;
     }
 
     public function getAffiche(): ?string
@@ -84,6 +75,30 @@ class Grandprix
                 $emplacement->setGrandprix(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getSeason(): ?string
+    {
+        return $this->season;
+    }
+
+    public function setSeason(string $season): self
+    {
+        $this->season = $season;
+
+        return $this;
+    }
+
+    public function getRound(): ?string
+    {
+        return $this->round;
+    }
+
+    public function setRound(string $round): self
+    {
+        $this->round = $round;
 
         return $this;
     }
