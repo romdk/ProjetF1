@@ -18,6 +18,11 @@ framework:
     php_errors:
         log: true
 
+    http_client:
+        scoped_clients:
+            bga:
+                base_uri: http://ergast.com/api/f1
+
 when@test:
     framework:
         test: true
