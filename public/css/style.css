@@ -156,12 +156,15 @@ nav h1{
 #container{
     position: relative;
     height: 100vh;
+    width: 100vw;
     overflow-y: scroll;
+    overflow-x: hidden;
     scroll-snap-type: y mandatory;
 }
 
 section{
     height: 100vh;
+    width: 100vw;
     scroll-snap-align:start;
 }
 
@@ -253,11 +256,6 @@ section{
     animation: titleIn 2.8s, arrow 2s reverse infinite;
 }
 
-#grandprix{
-    height: 150vh;
-    background-color: rgb(7, 7, 24);
-}
-
 @keyframes navIn {
     0% {
         opacity: 0;
@@ -319,13 +317,15 @@ section{
 
 #grandprix{
     display: flex;
-    /* justify-content: center; */
-    align-items: center;
-    flex-direction: column;
+    justify-content: center;
+    /* align-items: center; */
+    /* flex-direction: column; */
     height: 100vh;
+    width: 100vw;
     color: #f1f1f1;
     flex-wrap: wrap;
     padding-top: 100px;
+    background-color: rgb(15, 12, 25);
 }
 
 #grandprix > p:first-child{
@@ -353,4 +353,77 @@ section{
 
 .countdown div p:last-child{
     text-align: center;
+}
+
+#accordeonGp{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    width: 100vw;
+    height: 450px;
+    margin: 20px;
+    overflow-x: scroll;
+    overflow-y: hidden;
+}
+
+#accordeonGp::-webkit-scrollbar{
+    display: none;
+}
+
+#accordeonGp .cardGp{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: red;
+    min-width: 150px;
+    height: 450px;
+    transition: .5s;
+    overflow: hidden;
+}
+
+#accordeonGp .cardGp:hover{
+    min-width: 350px;
+    cursor: pointer;
+}
+
+#accordeonGp .cardGp:hover .nomGp {
+    display: block;
+}
+
+#accordeonGp .cardGp:hover .dateGp {
+    /* display: block; */
+    color: #f1f1f1;
+    background-color: rgba(0, 0, 0, 0.642);
+    
+}
+
+#accordeonGp .nomGp {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-size: 3rem;
+    font-weight:900;
+    line-height: 40px;
+    width: 340px;
+    text-transform:uppercase ;
+    display: none;
+}
+
+#accordeon img{
+    filter: brightness(0.1);
+}
+
+#accordeonGp .dateGp {
+    position: absolute;
+    bottom: 220px;
+    width: 350px;
+    text-align: center;
+    /* display: none; */
+    font-size: 2rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    transition: .5s;
+    color: #f1f1f100;
+    background-color: rgba(0, 0, 0, 0);
 }
