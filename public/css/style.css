@@ -339,11 +339,15 @@ section{
     display: flex;
     z-index: 1002;
     gap: 20px;
+    height: fit-content;
+    margin-top: -140px;
 }
 
 .countdown div{
     flex-basis: 100px;
 }
+
+
 
 .countdown div p:first-child{
     font-size: 60px;
@@ -360,14 +364,24 @@ section{
     flex-direction: row;
     gap: 10px;
     width: 100vw;
-    height: 450px;
-    margin: 20px;
+    height: fit-content;
+    margin: 20px 100px;
     overflow-x: scroll;
-    overflow-y: hidden;
+    margin-top: -50px;
 }
 
 #accordeonGp::-webkit-scrollbar{
-    display: none;
+    height: 5px;
+}
+
+#accordeonGp::-webkit-scrollbar-track{
+    background-color: #ffffff7d;
+    border-radius: 10px;
+}
+
+#accordeonGp::-webkit-scrollbar-thumb{
+    background-color: #ffffff;
+    border-radius: 10px;
 }
 
 #accordeonGp .cardGp{
@@ -375,11 +389,12 @@ section{
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: red;
     min-width: 150px;
-    height: 450px;
+    background-color: rgba(255, 0, 0, 0);
+    height: 470px;
     transition: .5s;
     overflow: hidden;
+    overflow-y: visible;
 }
 
 #accordeonGp .cardGp:hover{
@@ -395,7 +410,7 @@ section{
     /* display: block; */
     color: #f1f1f1;
     background-color: rgba(0, 0, 0, 0.642);
-    
+    backdrop-filter: blur(5px);    
 }
 
 #accordeonGp .nomGp {
