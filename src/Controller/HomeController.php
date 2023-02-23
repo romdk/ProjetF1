@@ -23,4 +23,9 @@ class HomeController extends AbstractController
         $year = $request->request->get('year');
         return new Response($bga->getGrandsprix($year));  
     }
+
+    #[Route('/lastResults', name: 'app_lastResults', methods: ['POST'])]
+    public function displayLastResults(BGAHttpClient $bga, Request $request) {
+        return new Response($bga->getLastRaceResults());
+    }
 }

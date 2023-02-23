@@ -32,7 +32,12 @@ class BGAHttpClient extends AbstractController
     }
 
     public function getGrandsprix($year){
-        $response = $this->httpClient->request('GET',"/api/f1/$year", ['verify_peer' => false,]);
+        $response = $this->httpClient->request('GET',"/api/f1/$year.json", ['verify_peer' => false,]);
+        return $response->getContent();
+    }
+
+    public function getLastRaceResults(){
+        $response = $this->httpClient->request('GET',"/api/f1/current/last/results.json", ['verify_peer'=>false,]);
         return $response->getContent();
     }
 
