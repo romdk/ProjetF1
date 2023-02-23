@@ -41,6 +41,16 @@ class BGAHttpClient extends AbstractController
         return $response->getContent();
     }
 
+    public function getDriverStandings($year){
+        $response = $this->httpClient->request('GET',"/api/f1/$year/driverStandings.json", ['verify_peer'=>false,]);
+        return $response->getContent();
+    } 
+
+    public function getConstructorStandings($year){
+        $response = $this->httpClient->request('GET',"/api/f1/$year/constructorStandings.json", ['verify_peer'=>false,]);
+        return $response->getContent();
+    } 
+
 
 
 
