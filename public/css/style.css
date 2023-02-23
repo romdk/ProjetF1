@@ -14,532 +14,566 @@ body::-webkit-scrollbar{
     display: none;
 }
 
-nav{
-    display: flex;
-    justify-content: space-between;
-    position: fixed;
-    z-index: 1001;
-    width: 100%;
-    height: 300px;
-    background: rgb(0,0,0);
-    background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 25%, rgba(0,0,0,0) 100%);
-    color: white;
-    padding: 20px 50px;
-}
-
-nav > * {
-    animation: navIn 1.6s;
-}
-
-nav h1{
-    font-family: 'Righteous', cursive;
-    font-size: 1.8rem;
-    font-weight: 200;
-    height: fit-content;
-}
-#menuBtn{
-    position: absolute;
-    right: 100px;
-    top: 27px;
-}
-
-
-
-.fa-chevron-down{
-    margin-left: 5px;
-    transition: .3s ease-in-out;
-    transition-delay: 0.15s;
-}
-
-#menu{
-    height: 0px;
-    display: flex;
-    position: absolute;
-    flex-direction: column;
-    top: 65px;
-    right: 30px;
-    background-color: rgba(0, 0, 0, 0);
-    backdrop-filter: blur(3px);
-    color: #f1f1f100;
-    text-transform: uppercase;
-    border-radius: 5px;
-    overflow: hidden;
-    transition: .3s;
-    transition-delay: 0.20s;
-}
-
-#menuBtn:hover{
-    cursor: pointer;
-}
-
-#menuBtn:hover + #menu {
-    height: 180px;
-    background-color: rgba(24, 24, 24, 0.564);
-    color: #f1f1f1;
-}
-
-#menu:hover {
-    height: 180px;
-    background-color: rgba(24, 24, 24, 0.564);
-    color: #f1f1f1;
-    cursor: pointer;
-}
-
-#menu span{
-    padding: 10px 50px 10px 20px;
-}
-
-#menu span:not(.active){
-    padding: 10px 50px 10px 20px;
-    color: #8d8d8d;
-    transition: .3s;
-}
-
-.active{
-    background-color: rgb(0, 140, 255);
-}
-
-#menu span:hover{
-    color: #f1f1f1;
-}
-
-
-.fa-user{
-    font-size: 1.2rem;
-    padding: 5px;
-    margin-top: 4px;
-}
-
-#user {
-    display: flex;
-    flex-direction: column;
-    position: absolute;
-    height: 0;
-    top: 65px;
-    right: 30px;
-    background-color: rgba(0, 0, 0, 0);
-    backdrop-filter: blur(3px);
-    color: #f1f1f100;
-    text-transform: uppercase;
-    border-radius: 5px;
-    overflow: hidden;
-    transition: .3s;
-    transition-delay: 0.20s;
-}
-
-#user span{
-    padding: 10px 25px 10px 20px;
-    transition: .3s;
-}
-
-.fa-user:hover{
-    cursor: pointer;
-}
-
-.fa-user:hover + #user {
-    height: 90px;
-    background-color: rgba(24, 24, 24, 0.564);
-    color: #8d8d8d;
-}
-
-#user:hover{
-    height: 90px;
-    background-color: rgba(24, 24, 24, 0.564);
-    color: #8d8d8d;
-    cursor: pointer;
-}
-
-#user span:hover{
-    color: #f1f1f1;
-}
-
-#container{
-    position: relative;
-    height: 100vh;
-    width: 100vw;
-    overflow-y: scroll;
-    overflow-x: hidden;
-    scroll-snap-type: y mandatory;
-}
-
 section{
     height: 100vh;
     width: 100vw;
     scroll-snap-align:start;
 }
 
-#header{
-    width: 100vw;
-    height: 100vh;
-    overflow: hidden;
-}
+/* -----------------------------------------------------NAV------------------------------------------------------ */
 
-#headerTitle{
-    display: flex;
-    flex-direction: column;
-    position: absolute;
-    justify-content: center;
-    padding-left: 80px;
-    z-index: 1001;
-    font-size: 12rem;
-    line-height: 150px;
-    font-weight: 900;
-    color: rgb(255, 255, 255);
-    text-transform: uppercase;
-    height: 100vh;
-    width: 100vw;
-    vertical-align:middle;
-}
-
-#headerTitle span{
-    font-family: 'Righteous', cursive;
-    width: 1100px;
-}
-
-#headerTitle span:nth-child(1){
-    animation: titleIn 1.6s;
-}
-
-#headerTitle span:nth-child(2){
-    animation: titleIn 2s;
-}
-
-#headerTitle span:nth-child(3){
-    animation: titleIn 2.4s;
-}
-
-#headerTitle span:nth-child(4){
-    animation: titleIn 2.8s;
-}
-
-#header video{
-    height: 100vh;
-    transform: scale(110%);
-    overflow: hidden;
-    position: fixed;
-    z-index: -1;
-}
-
-#svg{
-    height: 100vh;
-    width: 100vw;
-    position: absolute;
-    top: 0;
-    z-index: 1000;
-    mix-blend-mode:multiply;
-    overflow: hidden;
-}
-
-#svg img{
-    background-color: rgb(0, 0, 0);
-    position: absolute;
-    left: 0;
-    top: 0;
-    height: 100vh;
-    width: 100vw;
-    transform: scale(170%);
-    animation: rotate 4s linear infinite;
-    
-}
-
-
-#scrollDown{
-    position: absolute;
-    bottom: 20px;
-    font-size: 2rem;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1002;
-    color: white;
-    animation: titleIn 2.8s, arrow 2s reverse infinite;
-}
-
-@keyframes navIn {
-    0% {
-        opacity: 0;
-        transform: translateY(-200px);
+    nav{
+        display: flex;
+        justify-content: space-between;
+        position: fixed;
+        z-index: 9999;
+        width: 100%;
+        height: 100px;
+        background: rgb(0,0,0);
+        background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 50%, rgba(0,0,0,0) 100%);
+        color: white;
+        padding: 20px 50px;
     }
 
-    0% {
-        opacity: 0;
-        transform: translateY(-200px);
+    nav > * {
+        animation: navIn 1.6s;
     }
 
-    100% {
-        opacity: 1;
-        transform: translateY(0px);
+    nav h1{
+        font-family: 'Righteous', cursive;
+        font-size: 1.8rem;
+        font-weight: 200;
+        height: fit-content;
     }
-}
-
-
-@keyframes titleIn {
-    0% {
-        opacity: 0;
-        transform: translateY(200px);
-    }
-    
-    40%{
-        opacity: 0;
-        transform: translateY(200px);
-    }
-    
-    100% {
-        opacity: 1;
-        transform: translateY(0px);
-    }
-}
-
-@keyframes rotate {
-    from {
-        transform: scale(170%);
+    #menuBtn{
+        position: absolute;
+        right: 100px;
+        top: 27px;
     }
 
-    to {
-        transform: scale(270%);
+    .fa-chevron-down{
+        margin-left: 5px;
+        transition: .3s ease-in-out;
+        transition-delay: 0.15s;
     }
-}
 
-@keyframes arrow {
-    0% {
-        transform: translateY(5px);
-        
+    #menu{
+        height: 0px;
+        display: flex;
+        position: absolute;
+        flex-direction: column;
+        top: 65px;
+        right: 30px;
+        background-color: rgba(0, 0, 0, 0);
+        backdrop-filter: blur(3px);
+        color: #f1f1f100;
+        text-transform: uppercase;
+        border-radius: 5px;
+        overflow: hidden;
+        transition: .3s;
+        transition-delay: 0.20s;
     }
-    20%{
-        transform: translateY(-10px);
+
+    #menuBtn:hover{
+        cursor: pointer;
     }
-    100%{
-        transform: translateY(5px);
+
+    #menuBtn:hover + #menu {
+        height: 180px;
+        background-color: rgba(24, 24, 24, 0.564);
+        color: #f1f1f1;
     }
-}
+
+    #menu:hover {
+        height: 180px;
+        background-color: rgba(24, 24, 24, 0.564);
+        color: #f1f1f1;
+        cursor: pointer;
+    }
+
+    #menu a{
+        padding: 10px 50px 10px 20px;
+        text-decoration: none;
+        text-transform: uppercase;
+        color: #f1f1f1;
+    }
+
+    #menu a:not(.active){
+        padding: 10px 50px 10px 20px;
+        color: #8d8d8d;
+        transition: .3s;
+    }
+
+    .active{
+        background-color: rgb(0, 140, 255);
+    }
+
+    #menu a:hover{
+        color: #f1f1f1;
+    }
 
 
-#grandprix{
-    display: flex;
-    justify-content: center;
-    /* align-items: center; */
-    /* flex-direction: column; */
-    height: fit-content;
-    width: 100vw;
-    color: #f1f1f1;
-    flex-wrap: wrap;
-    padding-top: 100px;
+    .fa-user{
+        font-size: 1.2rem;
+        padding: 5px;
+        margin-top: 4px;
+    }
+
+    #user {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        height: 0;
+        top: 65px;
+        right: 30px;
+        background-color: rgba(0, 0, 0, 0);
+        backdrop-filter: blur(3px);
+        color: #f1f1f100;
+        text-transform: uppercase;
+        border-radius: 5px;
+        overflow: hidden;
+        transition: .3s;
+        transition-delay: 0.20s;
+    }
+
+    #user span{
+        padding: 10px 25px 10px 20px;
+        transition: .3s;
+    }
+
+    .fa-user:hover{
+        cursor: pointer;
+    }
+
+    .fa-user:hover + #user {
+        height: 90px;
+        background-color: rgba(24, 24, 24, 0.564);
+        color: #8d8d8d;
+    }
+
+    #user:hover{
+        height: 90px;
+        background-color: rgba(24, 24, 24, 0.564);
+        color: #8d8d8d;
+        cursor: pointer;
+    }
+
+    #user span:hover{
+        color: #f1f1f1;
+    }
+
+    #container{
+        position: relative;
+        height: 100vh;
+        width: 100vw;
+        overflow-y: scroll;
+        overflow-x: hidden;
+        scroll-snap-type: y mandatory;
+    }
+
+/* -----------------------------------------------------HOME------------------------------------------------------ */
+    /* -----------------------------------------------------HEADER------------------------------------------------------ */
+
+        #header{
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        #headerTitle{
+            display: flex;
+            flex-direction: column;
+            position: absolute;
+            justify-content: center;
+            padding-left: 80px;
+            z-index: 1001;
+            font-size: 12rem;
+            line-height: 150px;
+            font-weight: 900;
+            color: rgb(255, 255, 255);
+            text-transform: uppercase;
+            height: 100vh;
+            width: 100vw;
+            vertical-align:middle;
+        }
+
+        #headerTitle span{
+            font-family: 'Righteous', cursive;
+            width: 1100px;
+        }
+
+        #headerTitle span:nth-child(1){
+            animation: titleIn 1.6s;
+        }
+
+        #headerTitle span:nth-child(2){
+            animation: titleIn 2s;
+        }
+
+        #headerTitle span:nth-child(3){
+            animation: titleIn 2.4s;
+        }
+
+        #headerTitle span:nth-child(4){
+            animation: titleIn 2.8s;
+        }
+
+        #header video{
+            height: 100vh;
+            transform: scale(110%);
+            overflow: hidden;
+            position: fixed;
+            z-index: -1;
+        }
+
+        #svg{
+            height: 100vh;
+            width: 100vw;
+            position: absolute;
+            top: 0;
+            z-index: 1000;
+            mix-blend-mode:multiply;
+            overflow: hidden;
+        }
+
+        #svg img{
+            background-color: rgb(0, 0, 0);
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100vh;
+            width: 100vw;
+            transform: scale(170%);
+            animation: rotate 4s linear infinite;
+            
+        }
+
+
+        #scrollDown{
+            position: absolute;
+            bottom: 20px;
+            font-size: 2rem;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1002;
+            color: white;
+            animation: titleIn 2.8s, arrow 2s reverse infinite;
+        }
+
+        @keyframes navIn {
+            0% {
+                opacity: 0;
+                transform: translateY(-200px);
+            }
+
+            0% {
+                opacity: 0;
+                transform: translateY(-200px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0px);
+            }
+        }
+
+
+        @keyframes titleIn {
+            0% {
+                opacity: 0;
+                transform: translateY(200px);
+            }
+            
+            40%{
+                opacity: 0;
+                transform: translateY(200px);
+            }
+            
+            100% {
+                opacity: 1;
+                transform: translateY(0px);
+            }
+        }
+
+        @keyframes rotate {
+            from {
+                transform: scale(170%);
+            }
+
+            to {
+                transform: scale(270%);
+            }
+        }
+
+        @keyframes arrow {
+            0% {
+                transform: translateY(5px);
+                
+            }
+            20%{
+                transform: translateY(-10px);
+            }
+            100%{
+                transform: translateY(5px);
+            }
+        }
+    /* -----------------------------------------------------NEXT GP------------------------------------------------------ */
+
+        #grandprix{
+            display: flex;
+            justify-content: center;
+            /* align-items: center; */
+            /* flex-direction: column; */
+            height: fit-content;
+            width: 100vw;
+            color: #f1f1f1;
+            flex-wrap: wrap;
+            padding-top: 100px;
+            background-color: rgb(15, 12, 25);
+        }
+
+        #grandprix > p:first-child{
+            width: 100%;
+            text-align: center;
+            z-index: 1002;
+            height: fit-content;
+        }
+
+        .countdown{
+            display: flex;
+            z-index: 1002;
+            gap: 20px;
+            height: fit-content;
+        }
+
+        .countdown div{
+            flex-basis: 100px;
+        }
+
+
+
+        .countdown div p:first-child{
+            font-size: 60px;
+            margin-bottom: -20px;
+            text-align: center;
+        }
+
+        .countdown div p:last-child{
+            text-align: center;
+        }
+
+    /* -----------------------------------------------------ACCORDEON------------------------------------------------------ */
+        #accordeonGp{
+            display: flex;
+            flex-direction: row;
+            gap: 10px;
+            width: 100vw;
+            height: fit-content;
+            margin: 20px 100px;
+            overflow-x: scroll;
+        }
+
+        #accordeonGp::-webkit-scrollbar{
+            height: 5px;
+        }
+
+        #accordeonGp::-webkit-scrollbar-track{
+            background-color: #ffffff7d;
+            border-radius: 10px;
+        }
+
+        #accordeonGp::-webkit-scrollbar-thumb{
+            background-color: #ffffff;
+            border-radius: 10px;
+        }
+
+        #accordeonGp .cardGp{
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-width: 150px;
+            background-color: rgba(255, 0, 0, 0);
+            height: 470px;
+            transition: .5s;
+            overflow: hidden;
+            overflow-y: visible;
+        }
+
+        #accordeonGp .cardGp:hover{
+            min-width: 350px;
+            cursor: pointer;
+        }
+
+        #accordeonGp .cardGp:hover .nomGp {
+            display: block;
+        }
+
+        #accordeonGp .cardGp:hover .dateGp {
+            /* display: block; */
+            color: #f1f1f1;
+            background-color: rgba(0, 0, 0, 0.642);
+            backdrop-filter: blur(5px);    
+        }
+
+        #accordeonGp .nomGp {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            font-size: 3rem;
+            font-weight:900;
+            line-height: 40px;
+            width: 340px;
+            text-transform:uppercase ;
+            display: none;
+        }
+
+        #accordeon img{
+            filter: brightness(0.1);
+        }
+
+        #accordeonGp .dateGp {
+            position: absolute;
+            bottom: 220px;
+            width: 350px;
+            text-align: center;
+            /* display: none; */
+            font-size: 2rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            transition: .5s;
+            color: #f1f1f100;
+            background-color: rgba(0, 0, 0, 0);
+        }
+
+    /* -----------------------------------------------------LAST RACE------------------------------------------------------ */
+
+        #lastRaceResults{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            padding: 100px;
+        }
+
+        #lastRaceResultsHeader{
+            width: 100%;
+            overflow: hidden;
+            border-radius: 5px;
+        }
+
+        #lastRaceResultsUl{
+            width: 100%;
+            height: 500px;
+            overflow-y: scroll;
+            background-color: rgb(15, 12, 25);
+            padding-right: 10px;
+        }
+
+
+        #lastRaceResultsUl::-webkit-scrollbar{
+            width: 5px;
+        }
+
+        #lastRaceResultsUl::-webkit-scrollbar-track{
+            background-color: #ffffff7d;
+            border-radius: 10px;
+        }
+
+        #lastRaceResultsUl::-webkit-scrollbar-thumb{
+            background-color: #ffffff;
+            border-radius: 10px;
+        }
+
+        #lastRaceResults li{
+            display: flex;
+            align-items: center;
+            background-color: #f1f1f1;
+            color: black;
+            margin-top: 5px;
+            padding: 10px;
+            border-radius: 5px;
+            position: relative;
+        }
+
+        #lastRaceResults li:nth-child(1){
+            margin-top: 0px;
+        }
+
+        #lastRaceResults li span:nth-child(1){
+            margin-left: 10px;
+            font-weight: 700;
+            position: absolute;
+            left: 20px;
+        }
+
+        #lastRaceResults li div{
+            position: absolute;
+            margin-left: 10px;
+            width: 5px;
+            height: 15px;
+            border-radius: 1px;
+            left: 45px;
+        }
+
+        #lastRaceResults li span:nth-child(3){
+            margin-left: 60px;
+        }
+
+        #lastRaceResults li span:nth-child(4){
+            margin-left: 5px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        #lastRaceResults li span:nth-child(5){
+            margin-left: 15px;
+            font-weight: 300;
+            color: #818181;
+            font-size: .8rem;
+        }
+
+        #lastRaceResults li span:nth-child(6){
+            position: absolute;
+            color: #dc0606;
+            right: 15px;
+        }
+
+        #lastRaceResultsHeader{
+            position: relative;
+            height: 170px;
+            margin-bottom: 10px;
+        }
+
+        #lastRaceResultsHeader img{
+            max-width: 1464px;
+        }
+
+        #lastRaceResultsHeader span{
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            padding: 20px 10px;
+            width: 100%;
+            height: 100%;
+            line-height: 70px;
+            font-size: 5rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            background-color: rgba(0, 0, 0, 0.258);
+        }
+/* -----------------------------------------------------SAISONS------------------------------------------------------ */
+#saison{
     background-color: rgb(15, 12, 25);
-}
-
-#grandprix > p:first-child{
-    width: 100%;
-    text-align: center;
-    z-index: 1002;
-    height: fit-content;
-}
-
-.countdown{
-    display: flex;
-    z-index: 1002;
-    gap: 20px;
-    height: fit-content;
-}
-
-.countdown div{
-    flex-basis: 100px;
-}
-
-
-
-.countdown div p:first-child{
-    font-size: 60px;
-    margin-bottom: -20px;
-    text-align: center;
-}
-
-.countdown div p:last-child{
-    text-align: center;
-}
-
-#accordeonGp{
-    display: flex;
-    flex-direction: row;
-    gap: 10px;
-    width: 100vw;
-    height: fit-content;
-    margin: 20px 100px;
-    overflow-x: scroll;
-}
-
-#accordeonGp::-webkit-scrollbar{
-    height: 5px;
-}
-
-#accordeonGp::-webkit-scrollbar-track{
-    background-color: #ffffff7d;
-    border-radius: 10px;
-}
-
-#accordeonGp::-webkit-scrollbar-thumb{
-    background-color: #ffffff;
-    border-radius: 10px;
-}
-
-#accordeonGp .cardGp{
-    position: relative;
+    padding-top: 200px;
     display: flex;
     justify-content: center;
-    align-items: center;
-    min-width: 150px;
-    background-color: rgba(255, 0, 0, 0);
-    height: 470px;
-    transition: .5s;
-    overflow: hidden;
-    overflow-y: visible;
 }
 
-#accordeonGp .cardGp:hover{
-    min-width: 350px;
-    cursor: pointer;
-}
-
-#accordeonGp .cardGp:hover .nomGp {
-    display: block;
-}
-
-#accordeonGp .cardGp:hover .dateGp {
-    /* display: block; */
-    color: #f1f1f1;
-    background-color: rgba(0, 0, 0, 0.642);
-    backdrop-filter: blur(5px);    
-}
-
-#accordeonGp .nomGp {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    font-size: 3rem;
-    font-weight:900;
-    line-height: 40px;
-    width: 340px;
-    text-transform:uppercase ;
-    display: none;
-}
-
-#accordeon img{
-    filter: brightness(0.1);
-}
-
-#accordeonGp .dateGp {
-    position: absolute;
-    bottom: 220px;
-    width: 350px;
-    text-align: center;
-    /* display: none; */
-    font-size: 2rem;
-    font-weight: 900;
-    text-transform: uppercase;
-    transition: .5s;
-    color: #f1f1f100;
-    background-color: rgba(0, 0, 0, 0);
-}
-
-#lastRaceResults{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    padding: 100px;
-}
-
-#lastRaceResultsHeader{
-    width: 100%;
-    overflow: hidden;
-    border-radius: 5px;
-}
-
-#lastRaceResultsUl{
-    width: 100%;
-    height: 500px;
-    overflow-y: scroll;
-    background-color: rgb(15, 12, 25);
-    padding-right: 10px;
-}
-
-
-#lastRaceResultsUl::-webkit-scrollbar{
-    width: 5px;
-}
-
-#lastRaceResultsUl::-webkit-scrollbar-track{
-    background-color: #ffffff7d;
-    border-radius: 10px;
-}
-
-#lastRaceResultsUl::-webkit-scrollbar-thumb{
-    background-color: #ffffff;
-    border-radius: 10px;
-}
-
-#lastRaceResults li{
-    display: flex;
-    align-items: center;
-    background-color: #f1f1f1;
-    color: black;
-    margin-top: 5px;
-    padding: 10px;
-    border-radius: 5px;
-    position: relative;
-}
-
-#lastRaceResults li:nth-child(1){
-    margin-top: 0px;
-}
-
-#lastRaceResults li span:nth-child(1){
-    margin-left: 10px;
-    font-weight: 700;
-}
-
-#lastRaceResults li div{
-    margin-left: 10px;
-    width: 5px;
-    height: 15px;
-}
-
-#lastRaceResults li span:nth-child(3){
-    margin-left: 10px;
-}
-
-#lastRaceResults li span:nth-child(4){
-    margin-left: 5px;
-    font-weight: 700;
-    text-transform: uppercase;
-}
-
-#lastRaceResults li span:nth-child(5){
-    margin-left: 15px;
-    font-weight: 300;
-    color: #818181;
-}
-
-#lastRaceResults li span:nth-child(6){
-    position: absolute;
-    color: #dc0606;
-    right: 15px;
-}
-
-#lastRaceResultsHeader{
-    position: relative;
-    height: 170px;
-    margin-bottom: 10px;
-}
-
-#lastRaceResultsHeader span{
-    position: absolute;
-    top: 20px;
-    left: 20px;
-    width: 600px;
-    line-height: 70px;
-    font-size: 5rem;
-    font-weight: 900;
-    text-transform: uppercase;
+#saison select{
+    height: 30px;
+    padding: 5px;
 }
