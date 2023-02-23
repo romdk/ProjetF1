@@ -35,9 +35,6 @@ class Ecurie
     #[ORM\Column(length: 255)]
     private ?string $logo = null;
 
-    #[ORM\Column(length: 7)]
-    private ?string $couleur = null;
-
     #[ORM\Column(length: 50)]
     private ?string $nomVoiture = null;
 
@@ -141,18 +138,6 @@ class Ecurie
     public function setLogo(string $logo): self
     {
         $this->logo = $logo;
-
-        return $this;
-    }
-
-    public function getCouleur(): ?string
-    {
-        return $this->couleur;
-    }
-
-    public function setCouleur(string $couleur): self
-    {
-        $this->couleur = $couleur;
 
         return $this;
     }

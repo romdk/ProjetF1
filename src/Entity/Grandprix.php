@@ -15,9 +15,6 @@ class Grandprix
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $affiche = null;
-
     #[ORM\OneToMany(mappedBy: 'grandprix', targetEntity: Emplacement::class, orphanRemoval: true)]
     private Collection $emplacements;
 
@@ -35,18 +32,6 @@ class Grandprix
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getAffiche(): ?string
-    {
-        return $this->affiche;
-    }
-
-    public function setAffiche(string $affiche): self
-    {
-        $this->affiche = $affiche;
-
-        return $this;
     }
 
     /**
