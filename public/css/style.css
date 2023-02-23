@@ -320,7 +320,7 @@ section{
     justify-content: center;
     /* align-items: center; */
     /* flex-direction: column; */
-    height: 100vh;
+    height: fit-content;
     width: 100vw;
     color: #f1f1f1;
     flex-wrap: wrap;
@@ -340,7 +340,6 @@ section{
     z-index: 1002;
     gap: 20px;
     height: fit-content;
-    margin-top: -140px;
 }
 
 .countdown div{
@@ -367,7 +366,6 @@ section{
     height: fit-content;
     margin: 20px 100px;
     overflow-x: scroll;
-    margin-top: -50px;
 }
 
 #accordeonGp::-webkit-scrollbar{
@@ -441,4 +439,107 @@ section{
     transition: .5s;
     color: #f1f1f100;
     background-color: rgba(0, 0, 0, 0);
+}
+
+#lastRaceResults{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 100px;
+}
+
+#lastRaceResultsHeader{
+    width: 100%;
+    overflow: hidden;
+    border-radius: 5px;
+}
+
+#lastRaceResultsUl{
+    width: 100%;
+    height: 500px;
+    overflow-y: scroll;
+    background-color: rgb(15, 12, 25);
+    padding-right: 10px;
+}
+
+
+#lastRaceResultsUl::-webkit-scrollbar{
+    width: 5px;
+}
+
+#lastRaceResultsUl::-webkit-scrollbar-track{
+    background-color: #ffffff7d;
+    border-radius: 10px;
+}
+
+#lastRaceResultsUl::-webkit-scrollbar-thumb{
+    background-color: #ffffff;
+    border-radius: 10px;
+}
+
+#lastRaceResults li{
+    display: flex;
+    align-items: center;
+    background-color: #f1f1f1;
+    color: black;
+    margin-top: 5px;
+    padding: 10px;
+    border-radius: 5px;
+    position: relative;
+}
+
+#lastRaceResults li:nth-child(1){
+    margin-top: 0px;
+}
+
+#lastRaceResults li span:nth-child(1){
+    margin-left: 10px;
+    font-weight: 700;
+}
+
+#lastRaceResults li div{
+    margin-left: 10px;
+    width: 5px;
+    height: 15px;
+}
+
+#lastRaceResults li span:nth-child(3){
+    margin-left: 10px;
+}
+
+#lastRaceResults li span:nth-child(4){
+    margin-left: 5px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+#lastRaceResults li span:nth-child(5){
+    margin-left: 15px;
+    font-weight: 300;
+    color: #818181;
+}
+
+#lastRaceResults li span:nth-child(6){
+    position: absolute;
+    color: #dc0606;
+    right: 15px;
+}
+
+#lastRaceResultsHeader{
+    position: relative;
+    height: 170px;
+    margin-bottom: 10px;
+}
+
+#lastRaceResultsHeader span{
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    width: 600px;
+    line-height: 70px;
+    font-size: 5rem;
+    font-weight: 900;
+    text-transform: uppercase;
 }
