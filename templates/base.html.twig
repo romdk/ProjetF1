@@ -16,10 +16,11 @@
         <span id="menuBtn">MENU <i id="arrow" class="fa-solid fa-chevron-down"></i></span>
         
         <div id="menu">
-            <span class="active">Home</span>
-            <span>Saisons</span>
-            <span>Ecuries</span>
-            <span>Circuits</span>
+            {% set page = app.request.get('_route') %}
+            <a class="{% if ('home' in page) %} active{% endif %}" href="{{ path('app_home') }}"><span>Home</span></a>            
+            <a class="{% if ('saison' in page) %} active{% endif %}" href="{{ path('app_saison') }}"><span>Saisons</span></a>
+            <a class="{% if ('ecuries' in page) %} active{% endif %}" href="{{ path('app_ecuries') }}"><span>Ecuries</span></a>
+            <a class="{% if ('circuits' in page) %} active{% endif %}" href="{{ path('app_circuits') }}"><span>Circuits</span></a>
         </div>
         <i class="fa-regular fa-user"></i>
         <div id="user">
@@ -31,7 +32,5 @@
         {% block body %}{% endblock %}
     </body>
     {% block javascripts %}
-        <script src="{{ asset('javascript/script.js') }}"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.0/moment-with-locales.min.js"></script>
     {% endblock %}
 </html>
