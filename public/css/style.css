@@ -650,12 +650,35 @@ section{
     background-color: rgba(0, 0, 0, 0.336);
 }
 
+#saison #standingsSelector{
+    margin-top: 20px;
+    display: flex;
+    gap: 20px;
+}
+
+#saison #standingsSelector button{
+    background-color: rgba(0, 0, 0, 0);
+    border: none;
+    font-size: 1.2rem;
+    color:#8d8d8d;
+    text-transform: uppercase;
+}
+
+#saison #standingsSelector button:nth-child(1){
+    color:#f1f1f1;
+}
+
+#saison #standingsSelector .active{
+    color: #f1f1f1;
+}
+
 .classement{
-    width: 100%;
+    width: 90%;
     height: 500px;
-    overflow-y: scroll;
+    overflow-y: auto;
     background-color: rgb(15, 12, 25);
     padding-right: 10px;
+    margin-top: 20px;
 }
 
 
@@ -725,5 +748,9 @@ section{
     position: absolute;
     color: #dc0606;
     right: 15px;
+}
+
+#driverStandingsUl{
+    height: 700px;
 }
 
