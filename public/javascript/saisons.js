@@ -6,16 +6,16 @@
     const classements = document.getElementById('classements')
 
     var couleursEcuries = {
-        red_bull : '#0d1a2a',
-        ferrari : '#fa0c00',
-        mercedes : '#019c96',
-        mclaren : '#ff8800',
-        alpine : '#0856ab',
+        red_bull : '#3671c6',
+        ferrari : '#f91536',
+        mercedes : '#6cd3bf',
+        mclaren : '#f58020',
+        alpine : '#2293d1',
         aston_martin : '#00594f',
         alphatauri : '#080e1a',
-        alfa : '#9f2234',
+        alfa : '#c92d4b',
         williams : '#0e1c67',
-        haas : '#ec1b3b'
+        haas : '#eeeeee'
     }
 
     // afficher dans le selecteur les dernieres années jusqu'a 2000
