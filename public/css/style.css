@@ -572,6 +572,8 @@ section{
     display: flex;
     flex-direction: column;
     align-items: center;
+    height: fit-content;
+    min-height: 100vh;
 }
 
 #saison select{
@@ -596,6 +598,14 @@ section{
 
 #saison select option:hover{
     background-color: rgb(15, 101, 214);
+}
+
+#calendrier{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 50px;
 }
 
 #saison .listeGp{
@@ -662,18 +672,26 @@ section{
     font-size: 1.2rem;
     color:#8d8d8d;
     text-transform: uppercase;
+    transition: .3s;
 }
 
-#saison #standingsSelector button:nth-child(1){
-    color:#f1f1f1;
-}
-
-#saison #standingsSelector .active{
+#saison #standingsSelector button:hover{
+    cursor: pointer;
     color: #f1f1f1;
 }
 
+#classements{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    /* margin-top: 50px; */
+    margin-bottom: 100px;
+}
+
 .classement{
-    width: 90%;
+    width: 94%;
     height: 500px;
     overflow-y: auto;
     background-color: rgb(15, 12, 25);
