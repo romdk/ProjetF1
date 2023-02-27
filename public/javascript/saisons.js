@@ -14,12 +14,27 @@
         aston_martin : '#00594f',
         alphatauri : '#080e1a',
         alfa : '#c92d4b',
-        williams : '#0e1c67',
-        haas : '#eeeeee'
+        williams : '#101593',
+        haas : '#b4b4b4',
+        racing_point: 'ff82c3',
+        renault : '#f1e132',
+        toro_rosso : '#080e1a',
+        sauber : '#c92d4b',
+        force_india : '#ff82c3',
+        manor : '#ed1b24',
+        lotus_f1 : '#bf9000',
+        caterham : '#20b94c',
+        marussia : '#ed1b24',
+        hrt : '#b4b4b4',
+        lotus_racing : '#145e29',
+        virgin : '#434343',
+        brawn : '#bdde4b',
+        toyota : '#cc0000',
+        bmw_sauber : '#6fa8dc'
     }
 
-    // afficher dans le selecteur les dernieres années jusqu'a 2000
-    for(i = currentYear; i != 2000 -1; i--){
+    // afficher dans le selecteur les 10 dernières années
+    for(i = currentYear; i != currentYear -11; i--){
         let option = document.createElement('option')
         option.innerText = "Saison " + i
         option.value = i
