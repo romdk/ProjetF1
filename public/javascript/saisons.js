@@ -174,6 +174,11 @@
                     ecurie.innerHTML = result.Constructors[0].name
                 }
 
+                const points = document.createElement("span")
+                driverStandingsLi.appendChild(points)
+                points.innerHTML = result.points + " PTS"
+                points.classList.add("points")                
+
                 const arrow = document.createElement("span")
                 driverStandingsLi.appendChild(arrow)
                 arrow.innerHTML = '<i class="fa-solid fa-chevron-right"></i>'            
@@ -218,6 +223,11 @@
                 const ecurie = document.createElement("span")
                 constructorStandingsLi.appendChild(ecurie)
                 ecurie.innerHTML = result.Constructor.name
+
+                const points = document.createElement("span")
+                constructorStandingsLi.appendChild(points)
+                points.innerHTML = result.points + " PTS"
+                points.classList.add("points")       
 
                 const arrow = document.createElement("span")
                 constructorStandingsLi.appendChild(arrow)
