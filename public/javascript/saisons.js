@@ -86,13 +86,18 @@
                 rep.MRData.RaceTable.Races.forEach(race => {
                     const cardGp = document.createElement('li')
                     listeGp.appendChild(cardGp)
+                    console.log(race);
+
+                    const lien = document.createElement('a')
+                    cardGp.appendChild(lien)
+                    lien.href = '/grandprixDetail/'+race.season+'_'+race.round
 
                     const imgGp = document.createElement('img')
-                    cardGp.appendChild(imgGp)
+                    lien.appendChild(imgGp)
                     imgGp.src = "../assets/grandprix/" + race.season + "_" + race.round + ".png"
 
                     const dateGp = document.createElement('span')
-                    cardGp.appendChild(dateGp)
+                    lien.appendChild(dateGp)
                     moment.locale('fr')
                     dateGp.innerHTML = moment(race.date).format('D MMMM')
                 })
