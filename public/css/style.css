@@ -567,13 +567,23 @@ section{
         }
 /* -----------------------------------------------------SAISONS------------------------------------------------------ */
 #saison{
+    position: relative;
     background-color: rgb(15, 12, 25);
     padding-top: 100px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: fit-content;
-    min-height: 100vh;
+    /* height: fit-content; */
+    /* min-height: 100vh; */
+    height: 100vh;
+    width: 100vw;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    scroll-snap-type: y mandatory;
+}
+
+#saison::-webkit-scrollbar{
+    display: none;
 }
 
 #saison select{
@@ -602,10 +612,12 @@ section{
 
 #calendrier{
     width: 100%;
+    height: 100vh;
     display: flex;
     justify-content: center;
-    align-items: center;
-    margin-bottom: 50px;
+    /* margin-bottom: 50px; */
+    padding-top: 80px;
+
 }
 
 #saison .listeGp{
@@ -682,12 +694,13 @@ section{
 
 #classements{
     width: 100%;
+    height: 100vh;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     flex-direction: column;
-    /* margin-top: 50px; */
-    margin-bottom: 100px;
+    padding-top: 80px;
+    /* margin-bottom: 100px; */
 }
 
 .classement{

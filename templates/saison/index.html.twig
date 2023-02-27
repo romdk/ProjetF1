@@ -3,11 +3,11 @@
 {% block title %}Saison{% endblock %}
 
 {% block body %}
-<section id="saison">
+<div id="saison">
     <select name="saisonSelect" id="saisonSelect"></select>
-    <div id="calendrier"></div>
-    <div id="classements"></div>
-</section>
+    <section><div id="calendrier"></div></section>
+    <section><div id="classements"></div></section>    
+</div>
 {% endblock %}
 {% block javascripts %}
         <script src="{{ asset('javascript/saisons.js') }}"></script>
