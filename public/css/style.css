@@ -587,6 +587,8 @@ section{
 }
 
 #saison select{
+    position: absolute;
+    top: 200px;
     height: fit-content;
     width: fit-content;
     padding: 5px 10px;
@@ -624,7 +626,7 @@ section{
     width: 94%;
     height: 770px;
     overflow-y: scroll;
-    margin-top: 50px;
+    margin-top: 100px;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -673,7 +675,8 @@ section{
 }
 
 #saison #standingsSelector{
-    margin-top: 20px;
+
+    margin-top: 100px;
     display: flex;
     gap: 20px;
 }
@@ -775,7 +778,17 @@ section{
     font-size: .8rem;
 }
 
-.classement li span:nth-child(6){
+.classement .points {
+    position: absolute;
+    right: 30px;
+    background-color: #dcdcdc;
+    border-radius: 20px;
+    padding: 2px 10px;
+    font-weight: 700;
+    font-size: .8rem;
+}
+
+.classement li span:last-child{
     position: absolute;
     color: #dc0606;
     right: 15px;
