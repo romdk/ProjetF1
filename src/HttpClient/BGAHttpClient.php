@@ -51,6 +51,11 @@ class BGAHttpClient extends AbstractController
         return $response->getContent();
     } 
 
+    public function getDetailsGrandprix($year, $round){
+        $response = $this->httpClient->request('GET',"/api/f1/$year/$round.json", ['verify_peer'=>false,]);
+        return $response->getContent(); 
+    }
+
 
 
 
