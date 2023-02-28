@@ -798,3 +798,53 @@ section{
     height: 700px;
 }
 
+/* -----------------------------------------------------DETAILS GRANDPRIX------------------------------------------------------ */
+#detailsGp{
+    background-color: steelblue;
+    padding: 50px;
+    padding-top: 150px;
+
+    display: grid;
+    grid-template-columns: 1fr 0.5fr;
+    grid-template-rows: 1fr 1fr;
+    grid-column-gap: 10px;
+    grid-row-gap: 10px;
+
+    justify-content: center;
+    
+}
+
+#infosGp{
+    position: relative;
+    background-color: rgba(0, 0, 0, 0.534);
+    overflow: hidden;
+}
+
+#header{
+    position: absolute;
+    height: 100%;
+}
+
+#meteo{
+    background-color: rgba(0, 0, 0, 0.534);
+}
+
+#circuit{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.534);
+    padding: 10px;
+}
+
+#circuit img{
+    height: 550px;
+}
+
+#programme{
+    
+    background-color: rgba(0, 0, 0, 0.534);
+    padding: 50px;
+}
+
+

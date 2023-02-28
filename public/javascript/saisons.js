@@ -90,7 +90,8 @@
 
                     const lien = document.createElement('a')
                     cardGp.appendChild(lien)
-                    lien.href = '/grandprixDetail/'+race.season+'_'+race.round
+                    // let routeGp = Routing.generate('detail_grandprix',  /* 'id': race.season + '_' + race.round */)
+                    lien.href = '/grandprix/'+race.season+'_'+race.round
 
                     const imgGp = document.createElement('img')
                     lien.appendChild(imgGp)

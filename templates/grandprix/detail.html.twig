@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Grandprix{% endblock %}
+
+{% block body %}
+<section id="detailsGp">
+    <div id="infosGp">
+        <img id="header" src="../assets/grandprix/{{route_param['id']}}_header.png" alt="">
+        <div>
+            <span id="nomGp"></span>
+            <span id="nomCircuit"></span>
+            <img id="drapeau" src="" alt="">
+            <span id="pays"></span>
+        </div>
+    </div>
+    <div id="meteo"></div>
+    <div id="circuit">
+        <img id="trackLayout" src="" alt="">
+    </div>
+    <div id="programme">
+        <span>Programme du weekend</span>
+        <div id="vendredi">Vendredi</div>
+        <div id="samedi">Samedi</div>
+        <div id="dimanche">Dimanche</div>
+    </div>
+    {# <button>Reserver une place</button> #}
+</section>
+
+{% endblock %}
+{% block javascripts %}
+<script src="{{ asset('javascript/grandprix.js') }}"></script>
+{% endblock %}
