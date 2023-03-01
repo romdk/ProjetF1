@@ -331,7 +331,7 @@ section{
             color: #f1f1f1;
             flex-wrap: wrap;
             padding-top: 100px;
-            background-color: rgb(15, 12, 25);
+            background-color: #030303;
         }
 
         #grandprix > p:first-child{
@@ -568,7 +568,7 @@ section{
 /* -----------------------------------------------------SAISONS------------------------------------------------------ */
 #saison{
     position: relative;
-    background-color: rgb(15, 12, 25);
+    background-color: #030303;
     padding-top: 100px;
     display: flex;
     flex-direction: column;
@@ -800,7 +800,7 @@ section{
 
 /* -----------------------------------------------------DETAILS GRANDPRIX------------------------------------------------------ */
 #detailsGp{
-    background-color: steelblue;
+    background-color: rgb(9, 9, 28);
     padding: 50px;
     padding-top: 150px;
 
@@ -816,24 +816,102 @@ section{
 
 #infosGp{
     position: relative;
-    background-color: rgba(0, 0, 0, 0.534);
+    background-color: rgba(0, 0, 0, 0.4);
     overflow: hidden;
 }
 
-#header{
+#headerGp{
     position: absolute;
     height: 100%;
 }
 
+#infosGp div{
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 10px;
+    color: #f1f1f1;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+#imgFilter{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #03030381;
+}
+
+#infosGp div span{
+    height: fit-content;
+}
+
+#infosGp div span:first-child{
+    line-height: 50px;
+    font-size: 4rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    width: 100%;
+}
+
+#infosGp div span:nth-child(2){
+    line-height: 30px;
+    font-size: 2rem;
+    text-transform: uppercase;
+    width: 100%;
+}
+
+#infosGp div span:nth-child(4){
+    line-height: 20px;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+}
+
+#infosGp div img{
+    height: 20px;
+    margin-right: 10px;
+}
+
 #meteo{
-    background-color: rgba(0, 0, 0, 0.534);
+    display: flex;
+    flex-wrap: wrap;
+    background-color: rgba(0, 0, 0, 0.4);
+    color: #f1f1f1;
+}
+
+#meteo > div:first-child{
+    width: 100%;
+    height: 60%;
+    background-color: #f1f1f1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#meteo > div:nth-child(2){
+    width: 70%;
+    height: 40%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#meteo > div:nth-child(3){
+    width: 30%;
+    height: 40%;
+    background-color: rgb(0, 114, 244);
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 #circuit{
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: rgba(0, 0, 0, 0.534);
+    background-color: rgba(0, 0, 0, 0.4);
     padding: 10px;
 }
 
@@ -842,9 +920,32 @@ section{
 }
 
 #programme{
-    
-    background-color: rgba(0, 0, 0, 0.534);
+    background-color: rgba(0, 0, 0, 0.4);
     padding: 50px;
+    padding-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    color: #f1f1f1;
+
+}
+
+#programme > span:first-child{
+    width: 100%;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 1.3rem;
+}
+
+#vendredi, #samedi, #dimanche{
+    display: flex;
+    flex-direction: column;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+#vendredi span, #samedi span, #dimanche span{
+    font-weight: 300;
 }
 
 

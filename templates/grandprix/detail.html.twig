@@ -5,7 +5,8 @@
 {% block body %}
 <section id="detailsGp">
     <div id="infosGp">
-        <img id="header" src="../assets/grandprix/{{route_param['id']}}_header.png" alt="">
+        <img id="headerGp" src="../assets/grandprix/{{route_param['id']}}_header.png" alt="">
+        <div id="imgFilter"></div>
         <div>
             <span id="nomGp"></span>
             <span id="nomCircuit"></span>
@@ -13,7 +14,18 @@
             <span id="pays"></span>
         </div>
     </div>
-    <div id="meteo"></div>
+    <div id="meteo">
+        <div>
+            <img id="iconMeteo" src="" alt="">
+        </div>
+        <div>
+            <span id="temperature"></span>
+            <span id="descrMeteo"></span>
+        </div>
+        <div>   
+            <span id="date"></span>
+        </div>
+    </div>
     <div id="circuit">
         <img id="trackLayout" src="" alt="">
     </div>
@@ -29,4 +41,5 @@
 {% endblock %}
 {% block javascripts %}
 <script src="{{ asset('javascript/grandprix.js') }}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.0/moment-with-locales.min.js"></script>
 {% endblock %}

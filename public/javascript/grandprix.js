@@ -49,45 +49,82 @@ fetch(url , {
 
         const fp1 = document.createElement('span')
         vendredi.appendChild(fp1)
-        fp1.innerHTML = timeFp1 + "ESSAIS 1"
+        fp1.innerHTML = timeFp1.slice(0,5).replace(":", "H") + " ESSAIS 1"
         
         const qualifying = document.createElement('span')
         vendredi.appendChild(qualifying)
-        qualifying.innerHTML = timeQualifying + "QUALIFICATIONS"
+        qualifying.innerHTML = timeQualifying.slice(0,5).replace(":", "H") + " QUALIFICATIONS"
         
         const fp2 = document.createElement('span')
         samedi.appendChild(fp2)
-        fp2.innerHTML = timeFp2 + "ESSAIS 2"
+        fp2.innerHTML = timeFp2.slice(0,5).replace(":", "H") + " ESSAIS 2"
         
         const sprint = document.createElement('span')
         samedi.appendChild(sprint)
-        sprint.innerHTML = timeSprint + "COURSE SPRINT"
+        sprint.innerHTML = timeSprint.slice(0,5).replace(":", "H") + " COURSE SPRINT"
         
         const race = document.createElement('span')
         dimanche.appendChild(race)
-        race.innerHTML = timeRace + "GRAND PRIX"  
+        race.innerHTML = timeRace.slice(0,5).replace(":", "H") + " GRAND PRIX"  
 
     } else {
         let timeFp3 = dataGp.ThirdPractice.time
 
         const fp1 = document.createElement('span')
         vendredi.appendChild(fp1)
-        fp1.innerHTML = timeFp1 + "ESSAIS 1"
+        fp1.innerHTML = timeFp1.slice(0,5).replace(":", "H") + " ESSAIS 1"
 
         const fp2 = document.createElement('span')
         vendredi.appendChild(fp2)
-        fp2.innerHTML = timeFp2 + "ESSAIS 2"
+        fp2.innerHTML = timeFp2.slice(0,5).replace(":", "H") + " ESSAIS 2"
 
         const fp3 = document.createElement('span')
         samedi.appendChild(fp3)
-        fp3.innerHTML = timeFp3 + "ESSAIS 3"
+        fp3.innerHTML = timeFp3.slice(0,5).replace(":", "H") + " ESSAIS 3"
 
         const qualifying = document.createElement('span')
         samedi.appendChild(qualifying)
-        qualifying.innerHTML = timeQualifying + "QUALIFICATIONS"
+        qualifying.innerHTML = timeQualifying.slice(0,5).replace(":", "H") + " QUALIFICATIONS"
 
         const race = document.createElement('span')
         dimanche.appendChild(race)
-        race.innerHTML = timeRace + "GRAND PRIX"
+        race.innerHTML = timeRace.slice(0,5).replace(":", "H") + " GRAND PRIX"
     }
+   
+    // récupere les coordonées du circuit depuis l'api
+    let latitude = dataGp.Circuit.Location.lat
+    let longitude = dataGp.Circuit.Location.long
+
+    // récupere la date du weekend depuis l'api
+    let dateDebut = dataGp.FirstPractice.date
+    let dateGp = dataGp.date
+
+    // récupere depuis l'api les prévisions météos des 16 prochains jours au coordonées indiqués
+    fetch(`https://weatherbit-v1-mashape.p.rapidapi.com/forecast/daily?lat=${latitude}&lon=${longitude}&units=metric&lang=fr`,{
+        method: 'GET',
+            headers: {
+                'X-RapidAPI-Key': '17faaf072bmshe1602147f720cacp1fa337jsn79f9cb1aecc2',
+		        'X-RapidAPI-Host': 'weatherbit-v1-mashape.p.rapidapi.com'
+            }
+    })
+    .then(async (response) => {
+        const  iconMeteo = document.getElementById('iconMeteo')
+        const temperature = document.getElementById('temperature')
+        const descrMeteo = document.getElementById('descrMeteo')
+        const date = document.getElementById('date')
+
+        
+        const rep = await response.json()
+        // vérifie pour chaque prévision si la date correspond
+        for (let i = 0; i < rep.data.length; i++) {
+            const day = rep.data[i];
+            if (day.datetime == dateGp){
+                iconMeteo.src = day.weather.icon
+                temperature.innerHTML = day.temp + '°'
+                descrMeteo.innerHTML = day.weather.description
+                moment.locale('fr')
+                date.innerHTML = moment(dateDebut).format('D MMMM') + ' - ' + moment(day.datetime).format('D MMMM')
+            }
+        }
+    })
 })
