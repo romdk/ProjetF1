@@ -42,13 +42,20 @@
                     const cardGp = document.createElement("div")
                     cardGp.classList.add("cardGp")
                     accordeon.appendChild(cardGp)
+
+                    const lien = document.createElement('a')
+                    cardGp.appendChild(lien)
+                    // let routeGp = Routing.generate('detail_grandprix',  /* 'id': race.season + '_' + race.round */)
+                    lien.href = '/grandprix/'+race.season+'_'+race.round
+
                     const imgGp = document.createElement("img")
                     imgGp.classList.add("imgGp")
-                    cardGp.appendChild(imgGp)
+                    lien.appendChild(imgGp)
                     imgGp.src = "../assets/grandprix/" + race.season + "_" + race.round + ".png"
+
                     const dateGp = document.createElement("p")
                     dateGp.classList.add("dateGp")
-                    cardGp.appendChild(dateGp)
+                    lien.appendChild(dateGp)
                     moment.locale('fr')
                     dateGp.innerHTML = moment(race.date).format('D MMMM')
                 });
