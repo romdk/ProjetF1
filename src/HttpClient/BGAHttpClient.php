@@ -56,6 +56,11 @@ class BGAHttpClient extends AbstractController
         return $response->getContent(); 
     }
 
+    public function getWeather($latitude, $longitude){
+        $response = $this->httpClient->request('GET',"https://weatherbit-v1-mashape.p.rapidapi.com/forecast/daily?lat=$latitude&lon=$longitude&units=metric&lang=fr", ['verify_peer'=>false,]);
+        return $response->getContent(); 
+    }
+
 
 
 
