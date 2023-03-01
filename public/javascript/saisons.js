@@ -16,7 +16,7 @@
         alfa : '#c92d4b',
         williams : '#101593',
         haas : '#b4b4b4',
-        racing_point: 'ff82c3',
+        racing_point: '#ff82c3',
         renault : '#f1e132',
         toro_rosso : '#080e1a',
         sauber : '#c92d4b',
