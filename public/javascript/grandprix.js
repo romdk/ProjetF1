@@ -97,34 +97,83 @@ fetch(url , {
 
     // récupere la date du weekend depuis l'api
     let dateDebut = dataGp.FirstPractice.date
-    let dateGp = dataGp.date
+    let dateFin = dataGp.date
 
-    // récupere depuis l'api les prévisions météos des 16 prochains jours au coordonées indiqués
-    fetch(`https://weatherbit-v1-mashape.p.rapidapi.com/forecast/daily?lat=${latitude}&lon=${longitude}&units=metric&lang=fr`,{
-        method: 'GET',
+    // récupere depuis l'api les prévisions météos du weekend au coordonées indiqués
+    const url = '/meteoGrandprix'
+    fetch(url , {
+        method: 'POST',
             headers: {
-                'X-RapidAPI-Key': '17faaf072bmshe1602147f720cacp1fa337jsn79f9cb1aecc2',
-		        'X-RapidAPI-Host': 'weatherbit-v1-mashape.p.rapidapi.com'
-            }
+                'Content-Type': 'application/x-www-form-urlencoded',
+                'Accept': '*/*'
+            },
+            body: new URLSearchParams({ 
+                'latitude' : latitude,
+                'longitude' : longitude,
+                'dateDebut' : dateDebut,
+                'dateFin' : dateFin
+            })
     })
     .then(async (response) => {
+        const rep = await response.json()
         const  iconMeteo = document.getElementById('iconMeteo')
         const temperature = document.getElementById('temperature')
         const descrMeteo = document.getElementById('descrMeteo')
         const date = document.getElementById('date')
+        
+        let day = 0
+        const dayTemps = rep.daily.temperature_2m_max[day]
+        const dayDate = rep.daily.time[day]
+        const dayWeather = rep.daily.weathercode[day]
+        console.log(rep.daily);
+
+        let descriptionsMeteo = {
+            0 : 'Ciel dégagé',
+            1 : 'Principalement dégagé',
+            2 : 'Partiellement nuageux',
+            3 : 'Couvert',
+            45 : 'Brouillard',
+            48 : 'Brouillard givré',
+            51 : 'Légère bruine',
+            53 : 'Bruine modérée',
+            55 : 'Bruine dense',
+            56 : 'Légère bruine verglaçante',
+            57 : 'Bruine verglaçante',
+            61 : 'Légère pluie',
+            63 : 'Pluie',
+            65 : 'Forte pluie',
+            66 : 'Légère pluie Verglaçante',
+            67 : 'Pluie verglaçante',
+            71 : 'Légères chutes de neige',
+            73 : 'Chutes de neige',
+            75 : 'Importantes chutes de neige',
+            77 : 'Légères chutes de neige',
+            80 : 'Légères averses de pluie',
+            81 : 'Averses de pluie',
+            82 : 'Fortes averses de pluie',
+            85 : 'Tempête de neige',
+            86 : 'Forte tempête de neige',
+            95 : 'Orages',
+            96 : 'Orages et légère grêle',
+            99 : 'Orages et grêle'
+        }
+
+        temperature.innerHTML = dayTemps + '°'
+        descrMeteo.innerHTML = descriptionsMeteo[dayWeather]
+        moment.locale('fr')
+        date.innerHTML = moment(dayDate).format('D MMMM')
 
         
-        const rep = await response.json()
         // vérifie pour chaque prévision si la date correspond
-        for (let i = 0; i < rep.data.length; i++) {
-            const day = rep.data[i];
-            if (day.datetime == dateGp){
-                iconMeteo.src = day.weather.icon
-                temperature.innerHTML = day.temp + '°'
-                descrMeteo.innerHTML = day.weather.description
-                moment.locale('fr')
-                date.innerHTML = moment(dateDebut).format('D MMMM') + ' - ' + moment(day.datetime).format('D MMMM')
-            }
-        }
+        // for (let i = 0; i < rep.data.length; i++) {
+        //     const day = rep.data[i];
+        //     if (day.datetime == dateGp){
+        //         iconMeteo.src = day.weather.icon
+        //         temperature.innerHTML = day.temp + '°'
+        //         descrMeteo.innerHTML = day.weather.description
+        //         moment.locale('fr')
+        //         date.innerHTML = moment(dateDebut).format('D MMMM') + ' - ' + moment(day.datetime).format('D MMMM')
+        //     }
+        // }
     })
 })

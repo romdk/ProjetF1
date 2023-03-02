@@ -5,7 +5,7 @@
     const calendrier = document.getElementById('calendrier')
     const classements = document.getElementById('classements')
 
-    var couleursEcuries = {
+    let couleursEcuries = {
         red_bull : '#3671c6',
         ferrari : '#f91536',
         mercedes : '#6cd3bf',
