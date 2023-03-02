@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use App\HttpClient\BGAHttpClient;
+use App\HttpClient\F1HttpClient;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -19,13 +19,13 @@ class HomeController extends AbstractController
     }
 
     #[Route('/grandsprix', name: 'app_grandsprix', methods: ['POST'])]
-    public function displayGrandsprix(BGAHttpClient $bga, Request $request) {
+    public function displayGrandsprix(F1HttpClient $f1, Request $request) {
         $year = $request->request->get('year');
-        return new Response($bga->getGrandsprix($year));  
+        return new Response($f1->getGrandsprix($year));  
     }
 
     #[Route('/lastResults', name: 'app_lastResults', methods: ['POST'])]
-    public function displayLastResults(BGAHttpClient $bga, Request $request) {
-        return new Response($bga->getLastRaceResults());
+    public function displayLastResults(F1HttpClient $f1, Request $request) {
+        return new Response($f1->getLastRaceResults());
     }
 }

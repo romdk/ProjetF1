@@ -20,8 +20,10 @@ framework:
 
     http_client:
         scoped_clients:
-            bga:
+            f1:
                 base_uri: http://ergast.com/api/f1
+            weather:
+                base_uri: https://api.open-meteo.com
 
 when@test:
     framework:

@@ -2,7 +2,8 @@
 
 namespace App\Controller;
 
-use App\HttpClient\BGAHttpClient;
+use App\HttpClient\F1HttpClient;
+use App\HttpClient\WeatherHttpClient;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -21,9 +22,18 @@ class GrandprixController extends AbstractController
     }
 
     #[Route('/detailsGrandprix', name: 'details_grandprix', methods: ['POST'])]
-    public function displayGrandprixDetails(BGAHttpClient $bga, Request $request) {
+    public function displayGrandprixDetails(F1HttpClient $f1, Request $request) {
         $year = $request->request->get('year');
         $round = $request->request->get('round');
-        return new Response($bga->getDetailsGrandprix($year, $round));
+        return new Response($f1->getDetailsGrandprix($year, $round));
+    }
+
+    #[Route('/meteoGrandprix', name: 'meteo_grandprix', methods: ['POST'])]
+    public function displayGrandprixMeteo(WeatherHttpClient $weather, Request $request) {
+        $latitude = $request->request->get('latitude');
+        $longitude = $request->request->get('longitude');
+        $dateDebut = $request->request->get('dateDebut');
+        $dateFin = $request->request->get('dateFin');
+        return new Response($weather->getWeather($latitude, $longitude, $dateDebut, $dateFin));
     }
 }
