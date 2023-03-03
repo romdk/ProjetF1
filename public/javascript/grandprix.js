@@ -169,27 +169,27 @@ function loadPage() {
                     99 : { description: 'Orages et grêle', icon:'<i class="fa-solid fa-cloud-bolt"></i>'}
                 }
 
-                rep.daily.weathercode.forEach(day => {
+                rep.daily.weathercode.forEach(data => {
                     const dayIcon = document.createElement('span')
                     iconMeteo.appendChild(dayIcon)
-                    dayIcon.innerHTML = descriptionsMeteo[day].icon 
+                    dayIcon.innerHTML = descriptionsMeteo[data].icon 
 
                     const dayDescr = document.createElement('span')
                     descrMeteo.appendChild(dayDescr)
-                    dayDescr.innerHTML = descriptionsMeteo[day].description
+                    dayDescr.innerHTML = descriptionsMeteo[data].description
                 })
 
-                rep.daily.temperature_2m_max.forEach(day => {
+                rep.daily.temperature_2m_max.forEach(data => {
                     const dayTemperature = document.createElement('span')
                     temperature.appendChild(dayTemperature)
-                    dayTemperature.innerHTML = Math.round(day) + '°C'      
+                    dayTemperature.innerHTML = Math.round(data) + '°C'      
                 })
 
-                rep.daily.time.forEach(day => {
+                rep.daily.time.forEach(data => {
                     const day = document.createElement('span')
                     date.appendChild(day)
                     moment.locale('fr')
-                    day.innerHTML = moment(day).format('D MMMM')
+                    day.innerHTML = moment(data).format('D MMMM')
                 })
 
 
