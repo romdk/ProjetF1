@@ -13,17 +13,25 @@
                 })
             })
             .then(async (response) => {
-                const rep = await response.json()
+                const rep = await response.json()                
                 
-                let n = 0
-                let nextGp = rep.MRData.RaceTable.Races[n]
-                document.getElementById("nextGp").innerHTML = nextGp.raceName + ' :'
-                let nextGpDate = nextGp.date +' '+ nextGp.time
-                
-                let countDownDate = new Date(nextGpDate).getTime()
+                // on crée une fonction qui se répète toutes les secondes
                 let x = setInterval(function(){
-                    let now = new Date().getTime()        
-                    let timeRemaining = countDownDate - now        
+                    let now = new Date().getTime()   
+                    let nextGpDate = ''
+
+                    // on créer une boucle sur chaque course de la saison
+                    rep.MRData.RaceTable.Races.every(race => {
+                        //si la date de la course est posterieur à la date actuelle on définit cette date comme date du prochain GP puis on stop la boucle 
+                        if (new Date(race.date + ' ' + race.time).getTime() >= now){
+                            document.getElementById("nextGp").innerHTML = race.raceName + ' :'
+                            nextGpDate = new Date(race.date + ' '+race.time).getTime()
+                            return false
+                        }
+                        return true
+                    })
+
+                    let timeRemaining = nextGpDate - now 
                     
                     let jours = Math.floor(timeRemaining / (1000 * 60 * 60 * 24))
                     let heures = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
@@ -36,6 +44,7 @@
                     document.getElementById("secondes").innerHTML = ("0" + secondes).slice(-2)
                     
                 },1000)
+
                 // ------------------------------------------------ACCORDEON --------------------------------
                 const accordeon = document.getElementById("accordeonGp")
                 rep.MRData.RaceTable.Races.forEach(race => {
@@ -45,7 +54,6 @@
 
                     const lien = document.createElement('a')
                     cardGp.appendChild(lien)
-                    // let routeGp = Routing.generate('detail_grandprix',  /* 'id': race.season + '_' + race.round */)
                     lien.href = '/grandprix/'+race.season+'_'+race.round
 
                     const imgGp = document.createElement("img")
