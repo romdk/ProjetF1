@@ -159,12 +159,7 @@ function loadPage() {
 
                     const couleur = document.createElement("div")                        
                     driverStandingsLi.appendChild(couleur)
-                    // !!API pas a jour pour 2023!!
-                    if (year == currentYear){
-                        couleur.style.backgroundColor ="black"
-                    }else{
-                        couleur.style.backgroundColor = couleursEcuries[result.Constructors[0].constructorId]
-                    }
+                    couleur.style.backgroundColor = couleursEcuries[result.Constructors[0].constructorId]
 
                     const prenom = document.createElement("span")
                     driverStandingsLi.appendChild(prenom)
@@ -176,12 +171,7 @@ function loadPage() {
 
                     const ecurie = document.createElement("span")
                     driverStandingsLi.appendChild(ecurie)
-                    // !!API pas a jour pour 2023!!
-                    if (year == currentYear){
-                        ecurie.innerHTML = 'undefined'
-                    } else {
-                        ecurie.innerHTML = result.Constructors[0].name
-                    }
+                    ecurie.innerHTML = result.Constructors[0].name
 
                     const points = document.createElement("span")
                     driverStandingsLi.appendChild(points)
