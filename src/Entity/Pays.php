@@ -24,13 +24,9 @@ class Pays
     #[ORM\OneToMany(mappedBy: 'pays', targetEntity: Pilote::class)]
     private Collection $pilotes;
 
-    #[ORM\OneToMany(mappedBy: 'pays', targetEntity: Circuit::class)]
-    private Collection $circuits;
-
     public function __construct()
     {
         $this->pilotes = new ArrayCollection();
-        $this->circuits = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -46,18 +42,6 @@ class Pays
     public function setNom(string $nom): self
     {
         $this->nom = $nom;
-
-        return $this;
-    }
-
-    public function getDrapeau(): ?string
-    {
-        return $this->drapeau;
-    }
-
-    public function setDrapeau(string $drapeau): self
-    {
-        $this->drapeau = $drapeau;
 
         return $this;
     }
@@ -86,36 +70,6 @@ class Pays
             // set the owning side to null (unless already changed)
             if ($pilote->getPays() === $this) {
                 $pilote->setPays(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, Circuit>
-     */
-    public function getCircuits(): Collection
-    {
-        return $this->circuits;
-    }
-
-    public function addCircuit(Circuit $circuit): self
-    {
-        if (!$this->circuits->contains($circuit)) {
-            $this->circuits->add($circuit);
-            $circuit->setPays($this);
-        }
-
-        return $this;
-    }
-
-    public function removeCircuit(Circuit $circuit): self
-    {
-        if ($this->circuits->removeElement($circuit)) {
-            // set the owning side to null (unless already changed)
-            if ($circuit->getPays() === $this) {
-                $circuit->setPays(null);
             }
         }
 

@@ -21,12 +21,12 @@ class Emplacement
     #[ORM\Column]
     private ?int $prix = null;
 
+    #[ORM\OneToMany(mappedBy: 'emplacement', targetEntity: Reservation::class)]
+    private Collection $reservations;
+
     #[ORM\ManyToOne(inversedBy: 'emplacements')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?Grandprix $grandprix = null;
-
-    #[ORM\OneToMany(mappedBy: 'emplacement', targetEntity: Reservation::class, orphanRemoval: true)]
-    private Collection $reservations;
+    private ?Circuit $circuit = null;
 
     public function __construct()
     {
@@ -62,18 +62,6 @@ class Emplacement
         return $this;
     }
 
-    public function getGrandprix(): ?Grandprix
-    {
-        return $this->grandprix;
-    }
-
-    public function setGrandprix(?Grandprix $grandprix): self
-    {
-        $this->grandprix = $grandprix;
-
-        return $this;
-    }
-
     /**
      * @return Collection<int, Reservation>
      */
@@ -100,6 +88,18 @@ class Emplacement
                 $reservation->setEmplacement(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getCircuit(): ?Circuit
+    {
+        return $this->circuit;
+    }
+
+    public function setCircuit(?Circuit $circuit): self
+    {
+        $this->circuit = $circuit;
 
         return $this;
     }

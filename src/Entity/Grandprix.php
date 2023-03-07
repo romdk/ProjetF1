@@ -15,53 +15,23 @@ class Grandprix
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\OneToMany(mappedBy: 'grandprix', targetEntity: Emplacement::class, orphanRemoval: true)]
-    private Collection $emplacements;
-
     #[ORM\Column(length: 4)]
     private ?string $season = null;
 
     #[ORM\Column(length: 2)]
     private ?string $round = null;
 
+    #[ORM\OneToMany(mappedBy: 'grandprix', targetEntity: Reservation::class)]
+    private Collection $reservations;
+
     public function __construct()
     {
-        $this->emplacements = new ArrayCollection();
+        $this->reservations = new ArrayCollection();
     }
 
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    /**
-     * @return Collection<int, Emplacement>
-     */
-    public function getEmplacements(): Collection
-    {
-        return $this->emplacements;
-    }
-
-    public function addEmplacement(Emplacement $emplacement): self
-    {
-        if (!$this->emplacements->contains($emplacement)) {
-            $this->emplacements->add($emplacement);
-            $emplacement->setGrandprix($this);
-        }
-
-        return $this;
-    }
-
-    public function removeEmplacement(Emplacement $emplacement): self
-    {
-        if ($this->emplacements->removeElement($emplacement)) {
-            // set the owning side to null (unless already changed)
-            if ($emplacement->getGrandprix() === $this) {
-                $emplacement->setGrandprix(null);
-            }
-        }
-
-        return $this;
     }
 
     public function getSeason(): ?string
@@ -84,6 +54,36 @@ class Grandprix
     public function setRound(string $round): self
     {
         $this->round = $round;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Reservation>
+     */
+    public function getReservations(): Collection
+    {
+        return $this->reservations;
+    }
+
+    public function addReservation(Reservation $reservation): self
+    {
+        if (!$this->reservations->contains($reservation)) {
+            $this->reservations->add($reservation);
+            $reservation->setGrandprix($this);
+        }
+
+        return $this;
+    }
+
+    public function removeReservation(Reservation $reservation): self
+    {
+        if ($this->reservations->removeElement($reservation)) {
+            // set the owning side to null (unless already changed)
+            if ($reservation->getGrandprix() === $this) {
+                $reservation->setGrandprix(null);
+            }
+        }
 
         return $this;
     }

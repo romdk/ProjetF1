@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\CircuitRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -32,24 +34,16 @@ class Circuit
     #[ORM\Column(type: Types::TEXT)]
     private ?string $description = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $image = null;
-
-    #[ORM\Column(length: 255)]
-    private ?string $header = null;
-
-    #[ORM\Column(length: 255)]
-    private ?string $layout = null;
-
-    #[ORM\Column(length: 255)]
-    private ?string $map = null;
-
-    #[ORM\ManyToOne(inversedBy: 'circuits')]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?Pays $pays = null;
-
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $dateCreation = null;
+
+    #[ORM\OneToMany(mappedBy: 'circuit', targetEntity: Emplacement::class, orphanRemoval: true)]
+    private Collection $emplacements;
+
+    public function __construct()
+    {
+        $this->emplacements = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -128,66 +122,6 @@ class Circuit
         return $this;
     }
 
-    public function getImage(): ?string
-    {
-        return $this->image;
-    }
-
-    public function setImage(string $image): self
-    {
-        $this->image = $image;
-
-        return $this;
-    }
-
-    public function getHeader(): ?string
-    {
-        return $this->header;
-    }
-
-    public function setHeader(string $header): self
-    {
-        $this->header = $header;
-
-        return $this;
-    }
-
-    public function getLayout(): ?string
-    {
-        return $this->layout;
-    }
-
-    public function setLayout(string $layout): self
-    {
-        $this->layout = $layout;
-
-        return $this;
-    }
-
-    public function getMap(): ?string
-    {
-        return $this->map;
-    }
-
-    public function setMap(string $map): self
-    {
-        $this->map = $map;
-
-        return $this;
-    }
-
-    public function getPays(): ?Pays
-    {
-        return $this->pays;
-    }
-
-    public function setPays(?Pays $pays): self
-    {
-        $this->pays = $pays;
-
-        return $this;
-    }
-
     public function getDateCreation(): ?\DateTimeInterface
     {
         return $this->dateCreation;
@@ -196,6 +130,36 @@ class Circuit
     public function setDateCreation(\DateTimeInterface $dateCreation): self
     {
         $this->dateCreation = $dateCreation;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Emplacement>
+     */
+    public function getEmplacements(): Collection
+    {
+        return $this->emplacements;
+    }
+
+    public function addEmplacement(Emplacement $emplacement): self
+    {
+        if (!$this->emplacements->contains($emplacement)) {
+            $this->emplacements->add($emplacement);
+            $emplacement->setCircuit($this);
+        }
+
+        return $this;
+    }
+
+    public function removeEmplacement(Emplacement $emplacement): self
+    {
+        if ($this->emplacements->removeElement($emplacement)) {
+            // set the owning side to null (unless already changed)
+            if ($emplacement->getCircuit() === $this) {
+                $emplacement->setCircuit(null);
+            }
+        }
 
         return $this;
     }

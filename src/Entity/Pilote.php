@@ -23,18 +23,6 @@ class Pilote
     #[ORM\Column(type: Types::TEXT)]
     private ?string $description = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $portrait1 = null;
-
-    #[ORM\Column(length: 255)]
-    private ?string $portrait2 = null;
-
-    #[ORM\Column(length: 255)]
-    private ?string $logo = null;
-
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $imgCasque = null;
-
     #[ORM\ManyToOne(inversedBy: 'pilotes')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Pays $pays = null;
@@ -76,54 +64,6 @@ class Pilote
     public function setDescription(string $description): self
     {
         $this->description = $description;
-
-        return $this;
-    }
-
-    public function getPortrait1(): ?string
-    {
-        return $this->portrait1;
-    }
-
-    public function setPortrait1(string $portrait1): self
-    {
-        $this->portrait1 = $portrait1;
-
-        return $this;
-    }
-
-    public function getPortrait2(): ?string
-    {
-        return $this->portrait2;
-    }
-
-    public function setPortrait2(string $portrait2): self
-    {
-        $this->portrait2 = $portrait2;
-
-        return $this;
-    }
-
-    public function getLogo(): ?string
-    {
-        return $this->logo;
-    }
-
-    public function setLogo(string $logo): self
-    {
-        $this->logo = $logo;
-
-        return $this;
-    }
-
-    public function getImgCasque(): ?string
-    {
-        return $this->imgCasque;
-    }
-
-    public function setImgCasque(?string $imgCasque): self
-    {
-        $this->imgCasque = $imgCasque;
 
         return $this;
     }

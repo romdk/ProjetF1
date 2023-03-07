@@ -29,12 +29,6 @@ class Ecurie
     #[ORM\Column(type: Types::TEXT)]
     private ?string $description = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $image = null;
-
-    #[ORM\Column(length: 255)]
-    private ?string $logo = null;
-
     #[ORM\Column(length: 50)]
     private ?string $nomVoiture = null;
 
@@ -43,12 +37,6 @@ class Ecurie
 
     #[ORM\Column(length: 50)]
     private ?string $moteurVoiture = null;
-
-    #[ORM\Column(length: 255)]
-    private ?string $imageVoiture = null;
-
-    #[ORM\Column(length: 255)]
-    private ?string $miniatureVoiture = null;
 
     #[ORM\Column(length: 10)]
     private ?string $poidsVoiture = null;
@@ -118,30 +106,6 @@ class Ecurie
         return $this;
     }
 
-    public function getImage(): ?string
-    {
-        return $this->image;
-    }
-
-    public function setImage(string $image): self
-    {
-        $this->image = $image;
-
-        return $this;
-    }
-
-    public function getLogo(): ?string
-    {
-        return $this->logo;
-    }
-
-    public function setLogo(string $logo): self
-    {
-        $this->logo = $logo;
-
-        return $this;
-    }
-
     public function getNomVoiture(): ?string
     {
         return $this->nomVoiture;
@@ -174,30 +138,6 @@ class Ecurie
     public function setMoteurVoiture(string $moteurVoiture): self
     {
         $this->moteurVoiture = $moteurVoiture;
-
-        return $this;
-    }
-
-    public function getImageVoiture(): ?string
-    {
-        return $this->imageVoiture;
-    }
-
-    public function setImageVoiture(string $imageVoiture): self
-    {
-        $this->imageVoiture = $imageVoiture;
-
-        return $this;
-    }
-
-    public function getMiniatureVoiture(): ?string
-    {
-        return $this->miniatureVoiture;
-    }
-
-    public function setMiniatureVoiture(string $miniatureVoiture): self
-    {
-        $this->miniatureVoiture = $miniatureVoiture;
 
         return $this;
     }

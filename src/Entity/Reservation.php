@@ -18,11 +18,15 @@ class Reservation
 
     #[ORM\ManyToOne(inversedBy: 'reservations')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?Emplacement $emplacement = null;
+    private ?User $user = null;
 
     #[ORM\ManyToOne(inversedBy: 'reservations')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?User $user = null;
+    private ?Grandprix $grandprix = null;
+
+    #[ORM\ManyToOne(inversedBy: 'reservations')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Emplacement $emplacement = null;
 
     public function getId(): ?int
     {
@@ -41,18 +45,6 @@ class Reservation
         return $this;
     }
 
-    public function getEmplacement(): ?Emplacement
-    {
-        return $this->emplacement;
-    }
-
-    public function setEmplacement(?Emplacement $emplacement): self
-    {
-        $this->emplacement = $emplacement;
-
-        return $this;
-    }
-
     public function getUser(): ?User
     {
         return $this->user;
@@ -61,6 +53,30 @@ class Reservation
     public function setUser(?User $user): self
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    public function getGrandprix(): ?Grandprix
+    {
+        return $this->grandprix;
+    }
+
+    public function setGrandprix(?Grandprix $grandprix): self
+    {
+        $this->grandprix = $grandprix;
+
+        return $this;
+    }
+
+    public function getEmplacement(): ?Emplacement
+    {
+        return $this->emplacement;
+    }
+
+    public function setEmplacement(?Emplacement $emplacement): self
+    {
+        $this->emplacement = $emplacement;
 
         return $this;
     }
