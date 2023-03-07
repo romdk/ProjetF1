@@ -37,7 +37,9 @@ function loadPage() {
         const pays = document.getElementById('pays')
         pays.innerHTML = dataGp.Circuit.Location.country
 
-        const trackLayout = document.getElementById('trackLayout')
+        const circuit = document.getElementById('circuit')
+        const trackLayout = document.createElement('img')
+        circuit.appendChild(trackLayout)
         trackLayout.src = "../assets/circuits/" + dataGp.Circuit.circuitId + "_layout.png"
 
         let timeFp1 = dataGp.FirstPractice.time
