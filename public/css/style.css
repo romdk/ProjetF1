@@ -358,14 +358,12 @@ section{
 
         #grandprix{
             display: flex;
-            justify-content: center;
-            /* align-items: center; */
-            /* flex-direction: column; */
-            height: fit-content;
+            justify-content: flex-start;
+            align-items: center;
+            flex-direction: column;
             width: 100vw;
             color: #f1f1f1;
-            flex-wrap: wrap;
-            padding-top: 100px;
+            padding: 100px 50px;
             background-color: #030303;
         }
 
@@ -404,7 +402,7 @@ section{
             display: flex;
             flex-direction: row;
             gap: 10px;
-            width: 100vw;
+            width: 100%;
             height: fit-content;
             margin: 20px 100px;
             overflow-x: scroll;
@@ -485,6 +483,9 @@ section{
 
     /* -----------------------------------------------------LAST RACE------------------------------------------------------ */
 
+        #lastRace{
+            background-color: #030303;
+        }
         #lastRaceResults{
             display: flex;
             flex-direction: column;
@@ -502,7 +503,7 @@ section{
 
         #lastRaceResultsUl{
             width: 100%;
-            height: 500px;
+            height: 650px;
             overflow-y: scroll;
             background-color: rgb(15, 12, 25);
             padding-right: 10px;
@@ -599,6 +600,7 @@ section{
             font-weight: 900;
             text-transform: uppercase;
             background-color: rgba(0, 0, 0, 0.258);
+            color: #f1f1f1;
         }
 /* -----------------------------------------------------SAISONS------------------------------------------------------ */
 #saison{
@@ -834,7 +836,7 @@ section{
 }
 
 /* -----------------------------------------------------DETAILS GRANDPRIX------------------------------------------------------ */
-  
+
 #detailsGp{
     background-color: rgb(9, 9, 28);
     padding: 50px;
@@ -1034,7 +1036,8 @@ section{
     flex-direction: column;
     gap: 20px;
     color: #f1f1f1;
-
+    position: relative;
+    
 }
 
 #programme > span:first-child{
@@ -1053,6 +1056,83 @@ section{
 
 #vendredi span, #samedi span, #dimanche span{
     font-weight: 300;
+}
+
+#programme a{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 10px;
+    background-color: rgb(31, 129, 214);
+    color: white;
+    text-transform: uppercase;
+    font-size: 1.2rem;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+}
+/* -----------------------------------------------------RESERVATION------------------------------------------------------ */
+#reservation{
+    background-color: #030303;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 100px 50px 50px 50px;
+}
+
+#session{
+    width: 100%;
+    height: 30%;
+    background-color: #474747;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+#session > div:first-child{
+    background-color: rgba(255, 255, 0, 0.217);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+}
+#session .session_option{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #0303035d;
+    flex-direction: column;
+    height: 100%;
+    width: 250px;
+}
+
+#session .session_option div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+#session .session_option .radio:checked ~ .option_inner {
+    background-color: #008cff;
+}
+
+#map{
+    height: 70%;
+    width: 70%;
+    background-color: red;
+}
+
+#map img{
+    width: 100%;
+}
+
+#emplacement{
+    height: 70%;
+    width: 30%;  
+    background-color: peru;
 }
 
 
