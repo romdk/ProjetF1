@@ -18,9 +18,6 @@ class Pays
     #[ORM\Column(length: 50)]
     private ?string $nom = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $drapeau = null;
-
     #[ORM\OneToMany(mappedBy: 'pays', targetEntity: Pilote::class)]
     private Collection $pilotes;
 
