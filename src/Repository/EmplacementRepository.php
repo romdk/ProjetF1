@@ -39,6 +39,16 @@ class EmplacementRepository extends ServiceEntityRepository
         }
     }
 
+    public function getEmplacementsByCircuit($circuit){
+
+        return $this->createQueryBuilder('e')
+        ->innerJoin('e.circuit', 'c')
+        ->where('c.idApi = :id')
+        ->setParameter('id', $circuit)
+        ->getQuery()
+        ->getResult();
+    }
+
 //    /**
 //     * @return Emplacement[] Returns an array of Emplacement objects
 //     */

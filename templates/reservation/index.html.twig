@@ -8,50 +8,63 @@
         <div>
             <span>SELECTIONNEZ UNE SESSION</span>
         </div>
-        <label class="session_option">
-            <input type="radio" class="radio">
-            <div>
-                <span>VENDREDI - DIMANCHE</span>
-                <span>3 jours</span>
-                <span>à partir de </span>
-            </div>
-        </label>
-        <label class="session_option">
-            <input type="radio" class="radio">
-            <div>
-                <span>SAMEDI - DIMANCHE</span>
-                <span>2 jours</span>
-                <span>à partir de </span>
-            </div>
-        </label>
-        <label class="session_option">
-            <input type="radio" class="radio">
-            <div>
-                <span>DIMANCHE</span>
-                <span>1 jour</span>
-                <span>à partir de </span>
-            </div>
-        </label>
-        <label class="session_option">
-            <input type="radio" class="radio">
-            <div class="option_inner">
-                <span>SAMEDI</span>
-                <span>1 jour</span>
-                <span>à partir de </span>
-            </div>
-        </label>
-        <label class="session_option">
-            <input type="radio" class="radio">
-            <div>
-                <span>VENDREDI</span>
-                <span>1 jour</span>
-                <span>à partir de </span>
-            </div>
-        </label>
-
+        {# <form action="{{ path('creer_reservation', {'id': route_param}) }}" method="post"> #}
+            <label class="session_option">
+                <input type="radio" name="session" class="radio">
+                <div class="option_inner">
+                    <span>VENDREDI - DIMANCHE</span>
+                    <span>3 jours</span>
+                </div>
+            </label>
+            <label class="session_option">
+                <input type="radio" name="session" class="radio">
+                <div class="option_inner">
+                    <span>SAMEDI - DIMANCHE</span>
+                    <span>2 jours</span>
+                </div>
+            </label>
+            <label class="session_option">
+                <input type="radio" name="session" class="radio">
+                <div class="option_inner">
+                    <span>DIMANCHE</span>
+                    <span>1 jour</span>
+                </div>
+            </label>
+            <label class="session_option">
+                <input type="radio" name="session" class="radio">
+                <div class="option_inner">
+                    <span>SAMEDI</span>
+                    <span>1 jour</span>
+                </div>
+            </label>
+            <label class="session_option">
+                <input type="radio" name="session" class="radio">
+                <div class="option_inner">
+                    <span>VENDREDI</span>
+                    <span>1 jour</span>
+                </div>
+            </label>
     </div>
-    <div id="map"></div>
-    <div id="emplacement"></div>
+        <div id="map">
+            <img src="{{asset('assets/circuits/' ~ circuit ~ '_map.png')}}" alt="">
+        </div>
+        <div id="emplacement">
+            <span>SELECTIONNEZ UN EMPLACEMENT</span>
+            <div id="emplacementSelect">
+                {% for emplacement in emplacements %}
+                <label class="emplacement_option">
+                    <input type="radio" name="emplacement" class="radio">
+                    <div class="option_inner">
+                        <span>{{emplacement.nom}}</span>
+                        <span>{{emplacement.prix}}€</span>    
+                    </div>
+                </label>
+                {% endfor %}
+            </div>
+            <span class="nbPersonnes">Nombre de personnes: <input name="nbPersonnes" type="number" min="1"></span>
+            <input type="submit" name"submitReservation" class="btnReserver" value="VALIDER LA RESERVATION">
+        </div>
+        {# </form> #}
 </section>
 {% endblock %}
 {% block javascripts %}

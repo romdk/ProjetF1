@@ -28,6 +28,9 @@ class Reservation
     #[ORM\JoinColumn(nullable: false)]
     private ?Emplacement $emplacement = null;
 
+    #[ORM\Column(length: 50)]
+    private ?string $session = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -77,6 +80,18 @@ class Reservation
     public function setEmplacement(?Emplacement $emplacement): self
     {
         $this->emplacement = $emplacement;
+
+        return $this;
+    }
+
+    public function getSession(): ?string
+    {
+        return $this->session;
+    }
+
+    public function setSession(string $session): self
+    {
+        $this->session = $session;
 
         return $this;
     }
