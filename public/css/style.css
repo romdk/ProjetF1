@@ -10,8 +10,22 @@
 body::-webkit-scrollbar{
     display: none;
 }
-#container::-webkit-scrollbar{
+/* #container::-webkit-scrollbar{
     display: none;
+} */
+
+#container::-webkit-scrollbar{
+    width: 5px;
+}
+
+#container::-webkit-scrollbar-track{
+    background-color: #1e1e1e;
+    border-radius: 10px;
+}
+
+#container::-webkit-scrollbar-thumb{
+    background-color: #ffffff;
+    border-radius: 10px;
 }
 
 section{
@@ -60,14 +74,17 @@ section{
     nav{
         display: flex;
         justify-content: space-between;
+        align-items: center;
         position: fixed;
         z-index: 9999;
         width: 100%;
-        height: 100px;
-        background: rgb(0,0,0);
-        background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 50%, rgba(0,0,0,0) 100%);
+        height: 64px;
+        /* background: rgb(0,0,0); */
+        /* background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 50%, rgba(0,0,0,0) 100%); */
+        background-color: rgba(0, 0, 0, 0.589);
+        backdrop-filter: blur(72px);
         color: white;
-        padding: 20px 50px;
+        padding: 0px 50px;
     }
 
     nav > * {
@@ -83,7 +100,7 @@ section{
     #menuBtn{
         position: absolute;
         right: 100px;
-        top: 27px;
+        /* top: 27px; */
     }
 
     .fa-chevron-down{
@@ -171,9 +188,11 @@ section{
         transition-delay: 0.20s;
     }
 
-    #user span{
+    #user a{
         padding: 10px 25px 10px 20px;
         transition: .3s;
+        text-decoration: none;
+        color: #8d8d8d;
     }
 
     .fa-user:hover{
@@ -193,7 +212,7 @@ section{
         cursor: pointer;
     }
 
-    #user span:hover{
+    #user a:hover{
         color: #f1f1f1;
     }
 
@@ -205,6 +224,78 @@ section{
         overflow-x: hidden;
         scroll-snap-type: y mandatory;
     }
+
+    /* ----------------------------------LOGIN-------------------------------- */
+
+#loginMain, #registerMain{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: linear-gradient(
+        45deg,
+        hsl(200deg 37% 8%) 0%,
+        hsl(229, 24%, 13%) 50%,
+        hsl(240, 15%, 18%) 100%
+    );
+}
+
+.login, .register{
+    background-color: #f1f1f1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 400px;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0px 10px 17px 0px rgba(0,0,0,0.1);
+}
+
+
+
+.email{
+    width: 90%;
+    background-color: #c6c6c6;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    margin-top: 20px;
+    padding: 10px;
+}
+
+.password{
+    width: 90%;
+    background-color: #c6c6c6;
+    border-radius: 5px;
+    border: none;   
+    outline: none;
+    margin-top: 20px;
+    padding: 10px;
+}
+
+.login a{
+    margin-top: 10px;
+    text-decoration: none;    
+}
+
+.btnConnexion{
+    width: 100px;
+    background-color: #008cff;
+    border-radius: 5px;
+    height: 30px;
+    border: none;
+    outline: none;
+    margin-top: 20px;
+    color: #f1f1f1;
+    transition: .3s;
+}
+
+.btnConnexion:hover{
+    cursor: pointer;
+    background-color: #004f8f;
+}
 
 /* -----------------------------------------------------HOME------------------------------------------------------ */
     /* -----------------------------------------------------HEADER------------------------------------------------------ */
@@ -259,13 +350,14 @@ section{
             overflow: hidden;
             position: fixed;
             z-index: -1;
+            filter: blur(5px);
         }
 
         #svg{
             height: 100vh;
             width: 100vw;
             position: absolute;
-            top: 0;
+            top: 64px;
             z-index: 1000;
             mix-blend-mode:multiply;
             overflow: hidden;
@@ -295,6 +387,7 @@ section{
             z-index: 1002;
             color: white;
             animation: titleIn 2.8s, arrow 2s reverse infinite;
+            text-decoration: none;
         }
 
         @keyframes navIn {
@@ -485,6 +578,8 @@ section{
 
         #lastRace{
             background-color: #030303;
+            min-height: 100vh;
+            height: fit-content;
         }
         #lastRaceResults{
             display: flex;
@@ -493,6 +588,7 @@ section{
             align-items: center;
             width: 100%;
             padding: 100px;
+            padding-bottom: 20px;
         }
 
         #lastRaceResultsHeader{
@@ -503,7 +599,7 @@ section{
 
         #lastRaceResultsUl{
             width: 100%;
-            height: 650px;
+            height: 625px;
             overflow-y: scroll;
             background-color: rgb(15, 12, 25);
             padding-right: 10px;
@@ -601,6 +697,71 @@ section{
             text-transform: uppercase;
             background-color: rgba(0, 0, 0, 0.258);
             color: #f1f1f1;
+        }
+
+        #messages{
+            height: fit-content;
+            margin: 0px 100px;
+            /* background-color: #cf0c0c; */
+            display: flex;
+            flex-direction: column;
+            align-items: start;
+            padding-bottom: 200px;
+        }
+
+        #addMessage{
+            width: 100%;
+            background-color: #f1f1f1;
+            border-radius: 5px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        #addMessage form{
+            width: 100%;
+        }
+
+        .messageBox{
+            width: 100%;
+            height: 150px;
+            background-color: #d6d6d6;
+            color: #000000;
+            padding: 10px ;
+            border-radius: 5px;
+            border: none;
+            outline: none;
+            line-height:150px;
+
+        }
+
+        .ajouter{
+            margin-top: 10px;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .btnAjouter{
+            padding: 5px 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: rgb(2, 157, 72);
+            color: #f1f1f1;
+        }
+
+        #listeMessages{
+            width: 100%;
+        }
+
+        #listeMessages li{
+            background-color: #f1f1f1;
+            width: 100%;
+            margin-top: 10px;
+            border-radius: 5px;
+            padding: 20px;
         }
 /* -----------------------------------------------------SAISONS------------------------------------------------------ */
 #saison{
