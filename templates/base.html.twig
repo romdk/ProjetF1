@@ -17,15 +17,20 @@
         
         <div id="menu">
             {% set page = app.request.get('_route') %}
-            <a class="{% if ('home' in page) %} active{% endif %}" href="{{ path('app_home') }}"><span>Home</span></a>            
+            <a class="{% if ('home' in page) %} active{% endif %}" href="{{ path('app_home') }}"><span>Accueil</span></a>            
             <a class="{% if ('saison' in page) %} active{% endif %}" href="{{ path('app_saison') }}"><span>Saisons</span></a>
             <a class="{% if ('ecuries' in page) %} active{% endif %}" href="{{ path('app_ecuries') }}"><span>Ecuries</span></a>
             <a class="{% if ('circuits' in page) %} active{% endif %}" href="{{ path('app_circuits') }}"><span>Circuits</span></a>
         </div>
         <i class="fa-regular fa-user"></i>
         <div id="user">
-            <span>Connexion</span>
-            <span>Inscription</span>
+            {% if app.user %}
+            <a href="#">Page perso</a>
+            <a href="{{ path('app_logout') }}">Deconnexion</a>
+            {% else %}
+            <a href="{{ path('app_login')}}">Connexion</a>
+            <a href="{{ path('app_register')}}">Inscription</a>
+            {% endif %}
         </div>
     </nav>
     <body>
