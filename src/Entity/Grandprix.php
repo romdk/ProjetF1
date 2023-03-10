@@ -16,17 +16,21 @@ class Grandprix
     private ?int $id = null;
 
     #[ORM\Column(length: 4)]
-    private ?string $season = null;
+    private ?int $season = null;
 
     #[ORM\Column(length: 2)]
-    private ?string $round = null;
+    private ?int $round = null;
 
     #[ORM\OneToMany(mappedBy: 'grandprix', targetEntity: Reservation::class)]
     private Collection $reservations;
 
+    #[ORM\OneToMany(mappedBy: 'grandprix', targetEntity: Post::class)]
+    private Collection $posts;
+
     public function __construct()
     {
         $this->reservations = new ArrayCollection();
+        $this->posts = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -82,6 +86,36 @@ class Grandprix
             // set the owning side to null (unless already changed)
             if ($reservation->getGrandprix() === $this) {
                 $reservation->setGrandprix(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Post>
+     */
+    public function getPosts(): Collection
+    {
+        return $this->posts;
+    }
+
+    public function addPost(Post $post): self
+    {
+        if (!$this->posts->contains($post)) {
+            $this->posts->add($post);
+            $post->setGrandprix($this);
+        }
+
+        return $this;
+    }
+
+    public function removePost(Post $post): self
+    {
+        if ($this->posts->removeElement($post)) {
+            // set the owning side to null (unless already changed)
+            if ($post->getGrandprix() === $this) {
+                $post->setGrandprix(null);
             }
         }
 
