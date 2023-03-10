@@ -46,7 +46,6 @@ class GrandprixController extends AbstractController
         $id = $request->attributes->get('_route_params');
         $round = substr($id['id'],5,7);
         $year = substr($id['id'],0,4);
-        // dd($round);
         $grandprix = $f1->getDetailsGrandprix($year, $round);
         $circuit = json_decode($grandprix,true)["MRData"]["RaceTable"]["Races"]["0"]["Circuit"]["circuitId"];
         $emplacements = $er->getEmplacementsByCircuit($circuit);
