@@ -5,9 +5,10 @@
 {% block body %}
 <div hidden id="chargement"></div>
 <div hidden id="container">
+
     <section id="header">
         <video muted autoplay loop>
-            <source src="{{ asset('assets/videos/f1intro2.mp4') }}" type="video/mp4" />
+            <source src="{{ asset('assets/videos/f1intro2.mp4') }}" type="video/mp4"/>
         </video>
         <div id="svg">
             <div id="headerTitle" class=".hidden">
@@ -18,7 +19,7 @@
             </div>
             <img src="{{ asset('assets/svg/nnnoise.svg')}}" alt="">
         </div>
-        <div id="scrollDown"><i class="fa-solid fa-chevron-down"></i></div>
+        <a href="#grandprix" id="scrollDown"><i class="fa-solid fa-chevron-down"></i></a>
     </section>
     <section id="grandprix">
         <p id="nextGp"></p>
@@ -46,6 +47,26 @@
         <div id="lastRaceResults">
             <div id="lastRaceResultsHeader"></div>
             <ul id="lastRaceResultsUl"></ul>
+        </div>
+        <div id="messages">
+            <div id="addMessage">
+                {{ form_start(formAddPost) }}
+                    <div class="addMessage">
+                        {{ form_row(formAddPost.message) }}
+                    </div>
+                    <div class="ajouter">
+                        {{ form_row(formAddPost.ajouter) }}
+                    </div>
+                {{ form_end(formAddPost) }}
+            </div>
+            <ul id="listeMessages">
+                {% for message in messages %}
+                    <li><span>{{ message.user.pseudonyme }}</span>
+                        <span>{{ message.dateCreation|date("d/m/Y H:i:s") }}</span>
+                        <span>{{ message.message }}</span>
+                    </li>
+                {% endfor %}
+            </ul>
         </div>
     </section>
 </div>
