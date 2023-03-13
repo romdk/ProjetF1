@@ -14,7 +14,7 @@ class Post
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(type: Types::TEXT)]
+    #[ORM\Column(length: 255)]
     private ?string $message = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
