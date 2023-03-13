@@ -49,19 +49,22 @@
             <ul id="lastRaceResultsUl"></ul>
         </div>
         <div id="messages">
-            <div id="addMessage">
-                {{ form_start(formAddPost) }}
+            {% if app.user %}
+                <div id="addMessage">
+                    {{ form_start(formAddPost) }}
                     <div class="addMessage">
                         {{ form_row(formAddPost.message) }}
                     </div>
                     <div class="ajouter">
                         {{ form_row(formAddPost.ajouter) }}
                     </div>
-                {{ form_end(formAddPost) }}
-            </div>
+                    {{ form_end(formAddPost) }}
+                </div>
+            {% endif %}
             <ul id="listeMessages">
                 {% for message in messages %}
-                    <li><span>{{ message.user.pseudonyme }}</span>
+                    <li><div id="userImg"><img src="{{ asset('assets/user/' ~ message.user.image) }}" alt=""></div>
+                        <span>{{ message.user.pseudonyme }}</span>
                         <span>{{ message.dateCreation|date("d/m/Y H:i:s") }}</span>
                         <span>{{ message.message }}</span>
                     </li>
