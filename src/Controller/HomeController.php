@@ -24,18 +24,19 @@ class HomeController extends AbstractController
         $lastGrandprix = $f1->getLastRaceResults();
         $season = json_decode($lastGrandprix,true)["MRData"]["RaceTable"]['season'];
         $round = json_decode($lastGrandprix,true)["MRData"]["RaceTable"]['round'];
-        // $round = '2';
         $grandprix = $doctrine->getRepository(Grandprix::class)->findOneBy(['season' => $season, 'round' => $round],[]);
         $messages = $grandprix->getPosts();
-        // dump($grandprix);die;
 
         if($form->isSubmitted() && $form->isValid()) {  
             $post = $form->getData();
             $entityManager = $doctrine->getManager();
+            $post->setDateCreation(new \DateTime());
+            $post->setUser($this->getUser());
+            $post->setGrandprix($grandprix);
             $entityManager->persist($post);
             $entityManager->flush();
 
-            return $this->redirectToRoute('detail_categorie', ['id' => $id]);
+            return $this->redirectToRoute('app_home',);
         }
         return $this->render('home/index.html.twig', [
             'controller_name' => 'HomeController',
