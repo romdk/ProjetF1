@@ -4,6 +4,8 @@ const container = document.getElementById("container")
 function loadPage() {
     chargement.removeAttribute('hidden')
 
+    // document.querySelector('video').playbackRate = 10;   
+
     // ------------------------------------------------HOME--------------------------------
         // ------------------------------------------------COUNTDOWN--------------------------------
             const currentYear = new Date().getFullYear()
