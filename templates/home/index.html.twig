@@ -45,11 +45,13 @@
     </section>
     <section id="lastRace">
         <div id="lastRaceResults">
+            <h3>Résultats du dernier Grandprix</h3>
             <div id="lastRaceResultsHeader"></div>
             <ul id="lastRaceResultsUl"></ul>
         </div>
     </section>
     <section id="commentaires">
+        <h3>Réagissez au dernier Grandprix</h3>
         <div id="messages">
             <ul id="listeMessages" class="listePosts">                   
                 {% for post in posts %}
@@ -59,8 +61,10 @@
                                 <div class="infosPost">
                                     <span class="pseudo">{{ post.user.pseudonyme }}</span>
                                     <span class="datePost">{{ post.dateCreation|date("d/m/Y H:i:s") }}</span>
-                                    <span class="likePost"><i class="fa-solid fa-heart"></i></span>
-                                    <span data-reply data-id="{{ post.id }}" class="replyPost"><i class="fa-solid fa-reply"></i></span>
+                                    {% if app.user %}                                        
+                                        <span class="likePost"><i class="fa-solid fa-heart"></i></span>
+                                        <span data-reply data-id="{{ post.id }}" class="replyPost"><i class="fa-solid fa-reply"></i></span>
+                                    {% endif %}
                                 </div>
                                 <span class="message">{{ post.message }}</span>
                             </div>
@@ -74,7 +78,9 @@
                                             <div class="infosPost">
                                                 <span class="pseudo">{{ reponse.user.pseudonyme }}</span>
                                                 <span class="datePost">{{ reponse.dateCreation|date("d/m/Y H:i:s") }}</span>
-                                                <span class="likePost"><i class="fa-solid fa-heart"></i></span>
+                                                {% if app.user %}                                                    
+                                                    <span class="likePost"><i class="fa-solid fa-heart"></i></span>
+                                                {% endif %}
                                             </div>
                                             <span class="message">{{ reponse.message }}</span>
                                         </div>
