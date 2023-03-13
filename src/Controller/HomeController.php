@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Post;
 use App\Form\PostType;
 use App\Entity\Grandprix;
+use App\Form\ReponseType;
 use App\HttpClient\F1HttpClient;
 use App\Repository\PostRepository;
 use Doctrine\Persistence\ManagerRegistry;
@@ -18,17 +19,25 @@ class HomeController extends AbstractController
     #[Route('/home', name: 'app_home')]
     public function index(ManagerRegistry $doctrine, Post $post = null, Request $request, Grandprix $grandprix = null, F1HttpClient $f1): Response
     {
-        $form = $this->createForm(PostType::class, $post);
-        $form->handleRequest($request);
+        $postForm = $this->createForm(PostType::class, $post);
+        $postForm->handleRequest($request);
+
+        $reponseForm = $this->createForm(ReponseType::class, $post);
+        $reponseForm->handleRequest($request);
+        
 
         $lastGrandprix = $f1->getLastRaceResults();
         $season = json_decode($lastGrandprix,true)["MRData"]["RaceTable"]['season'];
         $round = json_decode($lastGrandprix,true)["MRData"]["RaceTable"]['round'];
         $grandprix = $doctrine->getRepository(Grandprix::class)->findOneBy(['season' => $season, 'round' => $round],[]);
-        $messages = $grandprix->getPosts();
+        $posts = $grandprix->getPosts();
 
-        if($form->isSubmitted() && $form->isValid()) {  
-            $post = $form->getData();
+        foreach ($posts as $post) {
+            $reponses = $post->getReponses();
+        };
+
+        if($postForm->isSubmitted() && $postForm->isValid()) {  
+            $post = $postForm->getData();
             $entityManager = $doctrine->getManager();
             $post->setDateCreation(new \DateTime());
             $post->setUser($this->getUser());
@@ -38,10 +47,31 @@ class HomeController extends AbstractController
 
             return $this->redirectToRoute('app_home',);
         }
+
+        if($reponseForm->isSubmitted() && $reponseForm->isValid()) {
+            // récupere l'id du post depuis le formulaire
+            $postId = $reponseForm->get("postId")->getData();
+
+            // on retrouve le post correspondant grâce à l'id 
+            $post = $doctrine->getRepository(Post::class)->find($postId);
+            
+            $reponse = $reponseForm->getData();
+            $entityManager = $doctrine->getManager();
+            $reponse->setDateCreation(new \DateTime());
+            $reponse->setUser($this->getUser());
+            $reponse->setPost($post);
+            $entityManager->persist($reponse);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('app_home',);
+        }
+
         return $this->render('home/index.html.twig', [
             'controller_name' => 'HomeController',
-            'formAddPost' => $form->createView(),
-            'messages' => $messages,
+            'formAddPost' => $postForm->createView(),
+            'posts' => $posts,
+            'formAddReponse' => $reponseForm->createView(),
+            'reponses' => $reponses,
             'gp' => $grandprix
         ]);
     }

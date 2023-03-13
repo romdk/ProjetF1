@@ -350,7 +350,7 @@ section{
             overflow: hidden;
             position: fixed;
             z-index: -1;
-            filter: blur(5px);
+            filter: blur(12px);
         }
 
         #svg{
@@ -579,7 +579,6 @@ section{
         #lastRace{
             background-color: #030303;
             min-height: 100vh;
-            height: fit-content;
         }
         #lastRaceResults{
             display: flex;
@@ -699,14 +698,25 @@ section{
             color: #f1f1f1;
         }
 
+ /* -----------------------------------------------------LAST RACE------------------------------------------------------ */
+
+        #commentaires{
+            background-color: #030303;
+            height: 100vh;
+            padding-top: 100px;
+            padding-bottom: 50px;
+        }
+    
         #messages{
-            height: fit-content;
+            height: 100%;
+            overflow: auto;
             margin: 0px 100px;
-            /* background-color: #cf0c0c; */
+            background-color: #dee1e3;
             display: flex;
             flex-direction: column;
             align-items: start;
-            padding-bottom: 200px;
+            padding: 20px;
+            border-radius: 3px;
         }
 
         #addMessage{
@@ -717,23 +727,63 @@ section{
             justify-content: center;
             align-items: center;
             padding: 20px;
+            margin-top: 10px;
+            box-shadow: 0 1px 1px rgb(0 0 0 / 15%);
         }
 
         #addMessage form{
+            width: 100%;
+        }
+        #addReponse{
+            display: none;
+            position: fixed;
+            top: 0px;
+            left: 0px;
+            width: 100%;
+            height: 100%;
+            background-color: #00000081;
+            backdrop-filter: blur(12px);
+            justify-content: center;
+            align-items: center;
+        }
+
+        
+        #formReponse{
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 30%;
+            padding: 20px;
+            padding-top: 30px;
+            background-color: #f1f1f1;
+            border-radius: 5px;
+        }
+
+        #btnFermer{
+            position: absolute;
+            right: 10px;
+            top: 5px;
+            color: rgb(184, 18, 18);
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
+
+        #addReponse form{
             width: 100%;
         }
 
         .messageBox{
             width: 100%;
             height: 150px;
-            background-color: #d6d6d6;
+            background-color: #dddddd;
             color: #000000;
             padding: 10px ;
             border-radius: 5px;
             border: none;
             outline: none;
-            line-height:150px;
-
+            resize: none;
         }
 
         .ajouter{
@@ -750,6 +800,7 @@ section{
             border-radius: 5px;
             background-color: rgb(2, 157, 72);
             color: #f1f1f1;
+            cursor: pointer;
         }
 
         #listeMessages{
@@ -757,12 +808,127 @@ section{
         }
 
         #listeMessages li{
-            background-color: #f1f1f1;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
             width: 100%;
-            margin-top: 10px;
-            border-radius: 5px;
-            padding: 20px;
+            margin-bottom: 10px;
+            gap: 10px;
         }
+
+        #listeMessages .post{
+            width: 100%;
+            display: flex;
+            gap: 10px;
+        }
+
+        #listeMessages .userImg{
+            height: 60px;
+            width: 60px;
+            border: solid white 2px;
+            border-radius: 3px;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: rgb(255, 255, 255);
+            box-shadow: 0 1px 1px rgb(0 0 0 / 15%);
+        }
+
+        #listeMessages .userImg img{
+            width: 60px;
+            height: 60px;
+            object-fit: cover;
+        }
+
+        #listeMessages .postCard{
+            background-color: #f1f1f1;
+            border-radius: 3px;
+            height: fit-content;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 1px 1px rgb(0 0 0 / 15%);
+        }
+
+        #listeMessages .infosPost{
+            position: relative;
+            display: flex;
+            flex-wrap: wrap;
+            border-bottom: solid 1px #9f9f9f;
+            height: 37px;
+            width: 100%;
+            padding: 10px;
+            gap: 10px;
+        }
+
+        #listeMessages .pseudo{
+            color: #29587e;
+            font-weight: 600;
+        }
+
+        #listeMessages .datePost{
+            color: #8d8d8d;
+            font-size: .8rem;
+            font-weight: 400;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #listeMessages .likePost{
+            position: absolute;
+            right: 10px;
+        }
+
+        #listeMessages .replyPost{
+            position: absolute;
+            right: 35px;
+        }
+
+        #listeMessages .likePost i, #listeMessages .replyPost i{
+            color: #A6A6A6;
+            transition: .3s;
+            cursor: pointer;
+        }
+
+        #listeMessages .likePost i:hover{
+            color: #ea0052
+        }
+
+        #listeMessages .replyPost i:hover{
+            color: #29587e
+        }
+
+        #listeMessages .message{
+            min-height:60px ;
+            padding: 10px;
+        }
+
+        #listeReponses {
+            width: 100%;
+            margin-left: 70px;
+        }
+
+        #listeMessages .userImgReponse{
+            height: 50px;
+            width: 50px;
+            border: solid white 2px;
+            border-radius: 3px;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: rgb(255, 255, 255);
+            box-shadow: 0 1px 1px rgb(0 0 0 / 15%);
+        }
+
+        #listeMessages .userImgReponse img{
+            width: 50px;
+            height: 50px;
+            object-fit: cover;
+        }
+
 /* -----------------------------------------------------SAISONS------------------------------------------------------ */
 #saison{
     position: relative;
