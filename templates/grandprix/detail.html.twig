@@ -6,7 +6,7 @@
 <div hidden id="chargement"></div>
 <section id="detailsGp">
     <div id="infosGp">
-        <img id="headerGp" src="../assets/grandprix/{{route_param['id']}}_header.png" alt="">
+        <img id="headerGp" src="../assets/grandprix/{{id}}_header.png" alt="">
         <div id="imgFilter"></div>
         <div>
             <span id="nomGp"></span>
@@ -42,7 +42,7 @@
         <div id="vendredi">Vendredi</div>
         <div id="samedi">Samedi</div>
         <div id="dimanche">Dimanche</div>
-        <a href="{{ path('app_reservation', {'id':route_param['id'] }) }}">Reserver une place</a>
+        <a href="{{ path('app_reservation', {'id': id }) }}">Reserver une place</a>
     </div>
 </section>
 
