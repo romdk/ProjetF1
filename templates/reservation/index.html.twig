@@ -4,47 +4,47 @@
 
 {% block body %}
 <section id="reservation">
-    <div id="session">
-        <div>
-            <span>SELECTIONNEZ UNE SESSION</span>
+    <form action="{{ path('creer_reservation', {'id': route_param}) }}" method="post">
+        <div id="session">
+            <div>
+                <span>SELECTIONNEZ UNE SESSION</span>
+            </div>
+                <label class="session_option">
+                    <input type="radio" name="session" class="radio" value="Vendredi - Dimanche">
+                    <div class="option_inner">
+                        <span>VENDREDI - DIMANCHE</span>
+                        <span>3 jours</span>
+                    </div>
+                </label>
+                <label class="session_option">
+                    <input type="radio" name="session" class="radio" value="Samedi - Dimanche">
+                    <div class="option_inner">
+                        <span>SAMEDI - DIMANCHE</span>
+                        <span>2 jours</span>
+                    </div>
+                </label>
+                <label class="session_option">
+                    <input type="radio" name="session" class="radio" value="Dimanche">
+                    <div class="option_inner">
+                        <span>DIMANCHE</span>
+                        <span>1 jour</span>
+                    </div>
+                </label>
+                <label class="session_option">
+                    <input type="radio" name="session" class="radio" value="Samedi">
+                    <div class="option_inner">
+                        <span>SAMEDI</span>
+                        <span>1 jour</span>
+                    </div>
+                </label>
+                <label class="session_option">
+                    <input type="radio" name="session" class="radio" value="Vendredi">
+                    <div class="option_inner">
+                        <span>VENDREDI</span>
+                        <span>1 jour</span>
+                    </div>
+                </label>
         </div>
-        {# <form action="{{ path('creer_reservation', {'id': route_param}) }}" method="post"> #}
-            <label class="session_option">
-                <input type="radio" name="session" class="radio">
-                <div class="option_inner">
-                    <span>VENDREDI - DIMANCHE</span>
-                    <span>3 jours</span>
-                </div>
-            </label>
-            <label class="session_option">
-                <input type="radio" name="session" class="radio">
-                <div class="option_inner">
-                    <span>SAMEDI - DIMANCHE</span>
-                    <span>2 jours</span>
-                </div>
-            </label>
-            <label class="session_option">
-                <input type="radio" name="session" class="radio">
-                <div class="option_inner">
-                    <span>DIMANCHE</span>
-                    <span>1 jour</span>
-                </div>
-            </label>
-            <label class="session_option">
-                <input type="radio" name="session" class="radio">
-                <div class="option_inner">
-                    <span>SAMEDI</span>
-                    <span>1 jour</span>
-                </div>
-            </label>
-            <label class="session_option">
-                <input type="radio" name="session" class="radio">
-                <div class="option_inner">
-                    <span>VENDREDI</span>
-                    <span>1 jour</span>
-                </div>
-            </label>
-    </div>
         <div id="map">
             <img src="{{asset('assets/circuits/' ~ circuit ~ '_map.png')}}" alt="">
         </div>
@@ -53,7 +53,7 @@
             <div id="emplacementSelect">
                 {% for emplacement in emplacements %}
                 <label class="emplacement_option">
-                    <input type="radio" name="emplacement" class="radio">
+                    <input type="radio" name="emplacement" class="radio" value="{{ emplacement.id }}">
                     <div class="option_inner">
                         <span>{{emplacement.nom}}</span>
                         <span>{{emplacement.prix}}€</span>    
@@ -61,10 +61,10 @@
                 </label>
                 {% endfor %}
             </div>
-            <span class="nbPersonnes">Nombre de personnes: <input name="nbPersonnes" type="number" min="1"></span>
-            <input type="submit" name"submitReservation" class="btnReserver" value="VALIDER LA RESERVATION">
+            <span class="nbPersonnes">Nombre de personnes: <input name="nbPersonnes" type="number" value="1" min="1"></span>
+            <input name"submitReservation" type="submit" class="btnReserver" value="VALIDER LA RESERVATION">
         </div>
-        {# </form> #}
+    </form>
 </section>
 {% endblock %}
 {% block javascripts %}
