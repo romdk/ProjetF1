@@ -16,11 +16,10 @@ class GrandprixController extends AbstractController
 {
 
     #[Route('/grandprix/{id}', name: 'app_grandprix')]
-    public function detail(Request $request): Response
+    public function detail(Request $request, $id): Response
     {
-        $id = $request->attributes->get('_route_params');
         return $this->render('grandprix/detail.html.twig', [
-            'route_param' => $id
+            'id' => $id
         ]);
     }
 
@@ -41,11 +40,10 @@ class GrandprixController extends AbstractController
     }
 
     #[Route('/grandprix/{id}/reservation', name: 'app_reservation')]
-    public function reservation(Request $request, F1HttpClient $f1, EmplacementRepository $er): Response
+    public function reservation(Request $request, F1HttpClient $f1, EmplacementRepository $er, $id): Response
     {
-        $id = $request->attributes->get('_route_params');
-        $round = substr($id['id'],5,7);
-        $year = substr($id['id'],0,4);
+        $round = substr($id,5,7);
+        $year = substr($id,0,4);
         $grandprix = $f1->getDetailsGrandprix($year, $round);
         $circuit = json_decode($grandprix,true)["MRData"]["RaceTable"]["Races"]["0"]["Circuit"]["circuitId"];
         $emplacements = $er->getEmplacementsByCircuit($circuit);
@@ -57,34 +55,4 @@ class GrandprixController extends AbstractController
             'circuit' => $circuit,
         ]);
     }
-
-    // #[Route('/grandprix/{id}/reservation', name: 'creer_reservation')]
-    // public function ajouterProgramme(ManagerRegistry $doctrine)
-    // { 
-    //     if($this->getUser()){
-            
-    //         if(isset($_POST['submitReservation'])){
-    //             $user = $this->getUser();
-    //             $grandprix = $request->attributes->get('_route_params');
-    //             $session =filter_input(INPUT_POST,"session",FILTER_SANITIZE_SPECIAL_CHARS);
-    //             $emplacement =filter_input(INPUT_POST,"emplacement",FILTER_SANITIZE_SPECIAL_CHARS);
-    //             $nbPersonnes =filter_input(INPUT_POST,"nbPersonnes",FILTER_VALIDATE_INT);
-    //             dd($nbPersonnes);
-    //             if($nbpersonnes > 0){
-    //                 $entityManager = $doctrine->getManager();
-    //                 $reservation = new Reservation();
-    //                 $reservation->setUser($user);
-    //                 $reservation->setGrandprix($grandprix);
-    //                 $reservation->setSession($session);
-    //                 $reservation->setEmplacement($emplacement);
-    //                 $reservation->setNbPersonnes($nbPersonnes);
-    //                 $entityManager->persist($reservation);
-    //                 $entityManager->flush();
-    //                 return $this->redirectToRoute('app_reservation', ['id' => $request->attributes->get('_route_params')]);
-    //             }
-    //         }
-    //     } else {
-    //         return $this->redirectToRoute('app_login');
-    //         }
-    // }
 }
