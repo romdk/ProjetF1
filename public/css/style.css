@@ -225,7 +225,46 @@ section{
         scroll-snap-type: y mandatory;
     }
 
-    /* ----------------------------------LOGIN-------------------------------- */
+    /* ----------------------------------LOGIN/REGISTER-------------------------------- */
+
+.register form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.register form div{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.register form div:nth-child(4){
+    display: flex;
+    gap: 5px;
+    margin-top: 10px;
+}
+
+.btnInscription{
+    width: 100px;
+    background-color: #008cff;
+    border-radius: 5px;
+    height: 30px;
+    border: none;
+    outline: none;
+    margin-top: 20px;
+    color: #f1f1f1;
+    transition: .3s;
+}
+
+.btnInscription:hover{
+    cursor: pointer;
+    background-color: #004f8f;
+}
+
 
 #loginMain, #registerMain{
     width: 100vw;
