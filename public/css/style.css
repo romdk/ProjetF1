@@ -934,10 +934,18 @@ h3{
             gap: 10px;
         }
 
-        #listeMessages .likePost i, #listeMessages .replyPost i, #listeMessages .delete i{
+        #listeMessages .likePost:not(.liked), #listeMessages .replyPost, #listeMessages .delete{
             color: #A6A6A6;
             transition: .3s;
             cursor: pointer;
+        }
+
+        #listeMessages .likePost{
+            text-decoration: none;
+        }
+
+        .liked {
+            color: #ea0052;
         }
 
         #listeMessages .likePost i:hover{

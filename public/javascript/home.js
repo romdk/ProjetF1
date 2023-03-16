@@ -143,19 +143,6 @@ function loadPage() {
 }
 loadPage()
 
-// event listener sur les boutons répondre
-document.querySelectorAll('[data-reply]').forEach(element => {
-    // défini dans le formulaire l'id du post sur lequel on clique et affiche le formulaire de réponse
-    element.addEventListener('click', function(){
-        document.querySelector('#reponse_postId').value = this.dataset.id
-        document.getElementById('addReponse').style.display = "flex"
-    })
-})
-
-document.getElementById('btnFermer').addEventListener('click', ()=>{
-    document.getElementById('addReponse').style.display = "none"
-})
-
 
 
 

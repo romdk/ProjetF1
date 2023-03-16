@@ -63,7 +63,12 @@
                                     <span class="datePost">{{ post.dateCreation|date("d/m/Y H:i:s") }}</span>
                                     <div class="actions">
                                         {% if app.user %}                                        
-                                            <span class="likePost"><i class="fa-solid fa-heart"></i></span>
+                                        <a data-like href="{{ path('like_post', {'id': post.id}) }}" class="likePost {% if (app.user in post.likes) %} liked{% endif %}">
+                                            {% endif %}
+                                            <span>{{ post.likes|length }}</span>
+                                            <i class="fa-solid fa-heart"></i>
+                                        {% if app.user %}                                        
+                                            </a>
                                             <span data-reply data-id="{{ post.id }}" class="replyPost"><i class="fa-solid fa-reply"></i></span>
                                         {% endif %}
                                         {% if app.user == post.user %}
@@ -84,8 +89,14 @@
                                                 <span class="pseudo">{{ reponse.user.pseudonyme }}</span>
                                                 <span class="datePost">{{ reponse.dateCreation|date("d/m/Y H:i:s") }}</span>
                                                 <div class="actions">
-                                                    {% if app.user %}                                                    
-                                                        <span class="likePost"><i class="fa-solid fa-heart"></i></span>
+                                                    {% if app.user %}                                        
+                                                    <a data-like href="{{ path('like_reponse', {'id': reponse.id}) }}" class="likePost {% if (app.user in reponse.likes) %} liked{% endif %}">
+                                                        {% endif %}
+                                                        <span>{{ reponse.likes|length }}</span>
+                                                        <i class="fa-solid fa-heart"></i>
+                                                    {% if app.user %}                                        
+                                                        </a>
+                                                        <span data-reply data-id="{{ post.id }}" class="replyPost"><i class="fa-solid fa-reply"></i></span>
                                                     {% endif %}
                                                     {% if app.user == reponse.user %}
                                                     <a href="{{ path('delete_reponse', {'id': reponse.id}) }}" class="delete"><i class="fa-regular fa-trash-can"></i></a>
@@ -132,5 +143,6 @@
 {% endblock %}
 {% block javascripts %}
         <script src="{{ asset('javascript/home.js') }}"></script>
+        <script src="{{ asset('javascript/commentaires.js') }}"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.0/moment-with-locales.min.js"></script>
 {% endblock %}

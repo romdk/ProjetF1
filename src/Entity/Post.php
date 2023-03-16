@@ -32,9 +32,15 @@ class Post
     #[ORM\OneToMany(mappedBy: 'post', targetEntity: Reponse::class)]
     private Collection $reponses;
 
+    #[ORM\ManyToMany(targetEntity: User::class)]
+    #[JoinTable('user_post_like')]
+    private Collection $likes;
+
     public function __construct()
     {
         $this->reponses = new ArrayCollection();
+        $this->likes = new ArrayCollection();
+
     }
 
     public function getId(): ?int
@@ -118,5 +124,31 @@ class Post
         }
 
         return $this;
+    }
+
+    public function getLikes(): Collection
+    {
+        return $this->likes;
+    }
+
+    public function addLike(User $like): self
+    {
+        if(!$this->likes->contains($like)) {
+            $this->likes[] = $like;
+        }
+
+        return $this;
+    }
+
+    public function removeLike(User $like): self
+    {
+        $this->likes->removeElement($like);
+         
+        return $this;
+    }
+
+    public function isLikedByUser(User $user): bool
+    {
+        return $this->likes->contains($user);
     }
 }

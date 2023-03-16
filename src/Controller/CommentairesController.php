@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Post;
 use App\Entity\Reponse;
+use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -37,5 +38,41 @@ class CommentairesController extends AbstractController
         }else {
             return $this->redirectToRoute('app_login');
             }
-    }    
+    }
+
+    #[Route('/like/post/{id}', name: 'like_post')]
+    public function likePost(Post $post, EntityManagerInterface $manager): Response
+    {
+        $user = $this->getUser();
+
+        if($post->isLikedByUser($user)) {
+            $post->removeLike($user);
+            $manager->flush();
+
+            return $this->json(['nbLike' => count($post->getLikes()) ]);
+        }
+
+        $post->addLike($user);
+        $manager->flush();
+
+        return $this->json(['nbLike' => count($post->getLikes()) ]);
+    }
+
+    #[Route('/like/reponse/{id}', name: 'like_reponse')]
+    public function likeReponse(Reponse $reponse, EntityManagerInterface $manager): Response
+    {
+        $user = $this->getUser();
+
+        if($reponse->isLikedByUser($user)) {
+            $reponse->removeLike($user);
+            $manager->flush();
+
+            return $this->json(['nbLike' => count($reponse->getLikes()) ]);
+        }
+
+        $reponse->addLike($user);
+        $manager->flush();
+
+        return $this->json(['nbLike' => count($reponse->getLikes()) ]);
+    }
 }
