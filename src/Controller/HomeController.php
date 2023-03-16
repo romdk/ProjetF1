@@ -45,7 +45,7 @@ class HomeController extends AbstractController
             $entityManager->persist($post);
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_home',);
+            return $this->redirect($this->generateUrl('app_home').'#commentaires');
         }
 
         if($reponseForm->isSubmitted() && $reponseForm->isValid()) {
@@ -63,7 +63,7 @@ class HomeController extends AbstractController
             $entityManager->persist($reponse);
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_home',);
+            return $this->redirect($this->generateUrl('app_home').'#commentaires');
         }
 
         return $this->render('home/index.html.twig', [

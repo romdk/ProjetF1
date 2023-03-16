@@ -61,10 +61,15 @@
                                 <div class="infosPost">
                                     <span class="pseudo">{{ post.user.pseudonyme }}</span>
                                     <span class="datePost">{{ post.dateCreation|date("d/m/Y H:i:s") }}</span>
-                                    {% if app.user %}                                        
-                                        <span class="likePost"><i class="fa-solid fa-heart"></i></span>
-                                        <span data-reply data-id="{{ post.id }}" class="replyPost"><i class="fa-solid fa-reply"></i></span>
-                                    {% endif %}
+                                    <div class="actions">
+                                        {% if app.user %}                                        
+                                            <span class="likePost"><i class="fa-solid fa-heart"></i></span>
+                                            <span data-reply data-id="{{ post.id }}" class="replyPost"><i class="fa-solid fa-reply"></i></span>
+                                        {% endif %}
+                                        {% if app.user == post.user %}
+                                            <a href="{{ path('delete_post', {'id': post.id}) }}" class="delete"><i class="fa-regular fa-trash-can"></i></a>
+                                        {% endif %}
+                                    </div>
                                 </div>
                                 <span class="message">{{ post.message }}</span>
                             </div>
@@ -78,9 +83,14 @@
                                             <div class="infosPost">
                                                 <span class="pseudo">{{ reponse.user.pseudonyme }}</span>
                                                 <span class="datePost">{{ reponse.dateCreation|date("d/m/Y H:i:s") }}</span>
-                                                {% if app.user %}                                                    
-                                                    <span class="likePost"><i class="fa-solid fa-heart"></i></span>
-                                                {% endif %}
+                                                <div class="actions">
+                                                    {% if app.user %}                                                    
+                                                        <span class="likePost"><i class="fa-solid fa-heart"></i></span>
+                                                    {% endif %}
+                                                    {% if app.user == reponse.user %}
+                                                    <a href="{{ path('delete_reponse', {'id': reponse.id}) }}" class="delete"><i class="fa-regular fa-trash-can"></i></a>
+                                                    {% endif %}
+                                                </div>
                                             </div>
                                             <span class="message">{{ reponse.message }}</span>
                                         </div>

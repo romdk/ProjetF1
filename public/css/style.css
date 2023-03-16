@@ -901,6 +901,7 @@ h3{
         #listeMessages .infosPost{
             position: relative;
             display: flex;
+            align-items: center;
             flex-wrap: wrap;
             border-bottom: solid 1px #9f9f9f;
             height: 37px;
@@ -912,6 +913,7 @@ h3{
         #listeMessages .pseudo{
             color: #29587e;
             font-weight: 600;
+            line-height: 0px;
         }
 
         #listeMessages .datePost{
@@ -923,17 +925,16 @@ h3{
             align-items: center;
         }
 
-        #listeMessages .likePost{
+        #listeMessages .actions{
             position: absolute;
             right: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
         }
 
-        #listeMessages .replyPost{
-            position: absolute;
-            right: 35px;
-        }
-
-        #listeMessages .likePost i, #listeMessages .replyPost i{
+        #listeMessages .likePost i, #listeMessages .replyPost i, #listeMessages .delete i{
             color: #A6A6A6;
             transition: .3s;
             cursor: pointer;
@@ -942,11 +943,15 @@ h3{
         #listeMessages .likePost i:hover{
             color: #ea0052
         }
-
+        
         #listeMessages .replyPost i:hover{
             color: #29587e
         }
-
+        
+        #listeMessages .delete i:hover{
+            color: #a51717
+        }
+        
         #listeMessages .message{
             min-height:60px ;
             padding: 10px;
