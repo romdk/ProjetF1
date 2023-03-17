@@ -89,7 +89,8 @@ function loadPage() {
                         body: '.json'
                 })
                 .then(async (response) => {
-                    chargement.setAttribute('hidden', '')
+                    // chargement.setAttribute('hidden', '')
+                    chargement.style.transform = 'translateY(-100vh)'
                     container.removeAttribute('hidden')
                     const rep = await response.json()
                     const raceResults = rep.MRData.RaceTable.Races[0].Results

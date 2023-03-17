@@ -119,7 +119,7 @@ function loadPage() {
             standingsSelector.appendChild(driversBtn)
             driversBtn.innerHTML = 'Pilotes'
             driversBtn.id = 'driversBtn'
-            driversBtn.style.color = '#f1f1f1'
+            driversBtn.style.color = '#000000'
             
             let constructorsBtn = document.createElement('button')
             standingsSelector.appendChild(constructorsBtn)
@@ -197,7 +197,8 @@ function loadPage() {
                 })
             })
             .then(async (response) => {
-                chargement.setAttribute('hidden', '')
+                // chargement.setAttribute('hidden', '')
+                chargement.style.transform = 'translateY(-100vh)'
                 const rep = await response.json()
                 const constructorStandings = rep.MRData.StandingsTable.StandingsLists[0].ConstructorStandings
                 const constructorStandingsUl = document.createElement("ul")
@@ -236,7 +237,7 @@ function loadPage() {
             })
             // on affiche le tableau pilotes lorsqu'on clique sur le bouton pilotes
             driversBtn.addEventListener('click', () => {        
-                driversBtn.style.color = "#f1f1f1"
+                driversBtn.style.color = "#000000"
                 constructorsBtn.style.color = "#8d8d8d"
                 driverStandingsUl.style.display = "block"
                 constructorStandingsUl.style.display = "none"
@@ -244,7 +245,7 @@ function loadPage() {
             // on affiche le tableau constructeurs lorsqu'on clique sur le bouton constructeurs
             constructorsBtn.addEventListener('click', () => {
                 driversBtn.style.color = "#8d8d8d"
-                constructorsBtn.style.color = "#f1f1f1"
+                constructorsBtn.style.color = "#000000"
                 driverStandingsUl.style.display = "none"
                 constructorStandingsUl.style.display = "block"
             })

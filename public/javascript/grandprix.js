@@ -123,7 +123,8 @@ function loadPage() {
                 })
         })
         .then(async (response) => {
-            chargement.setAttribute('hidden', '')
+            // chargement.setAttribute('hidden', '')
+            chargement.style.transform = 'translateY(-100vh)'
             // si la météo est indisponible on affiche l'erreur météo
             if (response.status !== 200) {
                 const errMeteo = document.getElementById('errMeteo')
