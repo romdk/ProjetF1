@@ -43,4 +43,9 @@ class F1HttpClient extends AbstractController
         $response = $this->httpClientF1->request('GET',"/api/f1/$year/$round.json", ['verify_peer'=>false,]);
         return $response->getContent(); 
     }
+
+    public function getConstructors($year){
+        $response = $this->httpClientF1->request('GET',"/api/f1/$year/constructors.json", ['verify_peer'=>false,]);
+        return $response->getContent();
+    }
 }
