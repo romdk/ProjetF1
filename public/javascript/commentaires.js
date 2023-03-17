@@ -19,6 +19,18 @@ document.querySelectorAll('[data-like]').forEach(element => {
     })
 })
 
+// on selectionne tous les bouton delete
+document.querySelectorAll('[data-delete]').forEach(element => {
+    // event listener sur chaque bouton
+    element.addEventListener('click', function(event){
+        event.preventDefault();
+        const url = this.href
+        console.log(url);
+        fetch(url)
+        this.parentNode.parentNode.parentNode.parentNode.parentNode.removeChild(this.parentNode.parentNode.parentNode.parentNode)
+    })
+})
+
 // event listener sur les boutons répondre
 document.querySelectorAll('[data-reply]').forEach(element => {
     // défini dans le formulaire l'id du post sur lequel on clique et affiche le formulaire de réponse
