@@ -26,7 +26,7 @@ body::-webkit-scrollbar{
 
 #container::-webkit-scrollbar-thumb{
     /* background-color: #ffffff; */
-    background-color: #677182;
+    background-color: #000000;
     border-radius: 10px;
 }
 
@@ -50,7 +50,7 @@ section{
     /* background-color: #030303; */
     background-color: #c2c8cf;
     z-index: 9999;
-    transition: .6s;
+    transition: 1s;
   }
   
   #chargement::after {
@@ -120,8 +120,8 @@ section{
         flex-direction: column;
         top: 65px;
         right: 30px;
-        background-color: rgba(0, 0, 0, 0);
-        backdrop-filter: blur(3px);
+        background-color: rgba(0, 0, 0, 0.607);
+        backdrop-filter: blur(46px);
         color: #f1f1f100;
         text-transform: uppercase;
         border-radius: 5px;
@@ -135,18 +135,18 @@ section{
     }
 
     #menuBtn:hover + #menu {
-        height: 180px;
-        background-color: rgba(24, 24, 24, 0.564);
+        height: 170px;
+        /* background-color: rgba(0, 0, 0, 0.601); */
         color: #f1f1f1;
     }
-
+    
     #menu:hover {
-        height: 180px;
-        background-color: rgba(24, 24, 24, 0.564);
+        height: 170px;
+        /* background-color: rgba(0, 0, 0, 0.601); */
         color: #f1f1f1;
         cursor: pointer;
     }
-
+    
     #menu a{
         padding: 10px 50px 10px 20px;
         text-decoration: none;
@@ -156,7 +156,7 @@ section{
 
     #menu a:not(.active){
         padding: 10px 50px 10px 20px;
-        color: #8d8d8d;
+        color: #bebebe;
         transition: .3s;
     }
 
@@ -1385,7 +1385,7 @@ h3{
 }
 
 #meteo > div:first-child span:not(.active):hover{
-    background-color: #474747;
+    background-color: #d6dee7;
 }
 
 #meteo > div:nth-child(2){
