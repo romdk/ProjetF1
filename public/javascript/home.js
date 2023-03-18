@@ -105,16 +105,16 @@ function loadPage() {
 
                     // on associe chaque écurie à une couleur
                     var couleursEcuries = {
-                        red_bull : '#0d1a2a',
-                        ferrari : '#fa0c00',
-                        mercedes : '#019c96',
-                        mclaren : '#ff8800',
-                        alpine : '#0856ab',
-                        aston_martin : '#00594f',
-                        alphatauri : '#080e1a',
-                        alfa : '#9f2234',
-                        williams : '#0e1c67',
-                        haas : '#ec1b3b'
+                        red_bull : '#3671c6',
+                        ferrari : '#f91536',
+                        mercedes : '#6cd3bf',
+                        mclaren : '#f58020',
+                        alpine : '#2293d1',
+                        aston_martin : '#358c75',
+                        alphatauri : '#3f4267',
+                        alfa : '#c92d4b',
+                        williams : '#37bedd',
+                        haas : '#bababa'
                     }
 
                     raceResults.forEach(result => {
