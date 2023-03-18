@@ -48,4 +48,45 @@ class F1HttpClient extends AbstractController
         $response = $this->httpClientF1->request('GET',"/api/f1/$year/constructors.json", ['verify_peer'=>false,]);
         return $response->getContent();
     }
+    
+    public function getConstructorTitles($id){
+        $response = $this->httpClientF1->request('GET',"/api/f1/constructors/$id/constructorStandings/1.json?limit=9999", ['verify_peer'=>false,]);
+        return $response->getContent();
+    }
+    
+    public function getConstructorSeasons($id){
+        $response = $this->httpClientF1->request('GET',"/api/f1/constructors/$id/seasons.json?limit=9999", ['verify_peer'=>false,]);
+        return $response->getContent();
+    }
+    
+    public function getConstructorRaces($id){
+        $response = $this->httpClientF1->request('GET',"/api/f1/constructors/$id/races.json?limit=9999", ['verify_peer'=>false,]);
+        return $response->getContent();
+    }
+    
+    public function getConstructorWins($id){
+        $response = $this->httpClientF1->request('GET',"/api/f1/constructors/$id/results/1.json?limit=9999", ['verify_peer'=>false,]);
+        return $response->getContent();
+    }
+    
+    public function getConstructor2nd($id){
+        $response = $this->httpClientF1->request('GET',"/api/f1/constructors/$id/results/2.json?limit=9999", ['verify_peer'=>false,]);
+        return $response->getContent();
+    }
+    
+    public function getConstructor3rd($id){
+        $response = $this->httpClientF1->request('GET',"/api/f1/constructors/$id/results/3.json?limit=9999", ['verify_peer'=>false,]);
+        return $response->getContent();
+    }
+    
+    public function getConstructorPole($id){
+        $response = $this->httpClientF1->request('GET',"/api/f1/constructors/$id/grid/1/results.json?limit=9999", ['verify_peer'=>false,]);
+        return $response->getContent();
+    }
+    
+    public function getConstructorDrivers($id, $year){
+        $response = $this->httpClientF1->request('GET',"/api/f1/$year/constructors/$id/drivers.json", ['verify_peer'=>false,]);
+        return $response->getContent();
+    }
 }
+
