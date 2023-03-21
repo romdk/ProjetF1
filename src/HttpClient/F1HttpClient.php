@@ -88,5 +88,40 @@ class F1HttpClient extends AbstractController
         $response = $this->httpClientF1->request('GET',"/api/f1/$year/constructors/$id/drivers.json", ['verify_peer'=>false,]);
         return $response->getContent();
     }
+
+    public function getDriverInformations($driver){
+        $response = $this->httpClientF1->request('GET',"/api/f1/drivers/$driver.json", ['verify_peer'=>false,]);
+        return $response->getContent();
+    }
+
+    public function getDriverRaces($driver){
+        $response = $this->httpClientF1->request('GET',"/api/f1/drivers/$driver/races.json?limit=9999", ['verify_peer'=>false,]);
+        return $response->getContent();	
+    }
+
+    public function getDriverSeasons($driver){
+        $response = $this->httpClientF1->request('GET',"/api/f1/drivers/$driver/seasons.json?limit=9999", ['verify_peer'=>false,]);
+        return $response->getContent();	
+    }
+
+    public function getDriverSeasonsWhere1st($driver){
+        $response = $this->httpClientF1->request('GET',"/api/f1/drivers/$driver/driverStandings/1/seasons.json?limit=9999", ['verify_peer'=>false,]);
+        return $response->getContent();	
+    }
+
+    public function getDriverRacesWhere1st($driver){
+        $response = $this->httpClientF1->request('GET',"/api/f1/drivers/$driver/results/1.json?limit=9999", ['verify_peer'=>false,]);
+        return $response->getContent();
+    }
+
+    public function getDriverRacesWhere2nd($driver){
+        $response = $this->httpClientF1->request('GET',"/api/f1/drivers/$driver/results/2.json?limit=9999", ['verify_peer'=>false,]);
+        return $response->getContent();
+    }
+
+    public function getDriverRacesWhere3rd($driver){
+        $response = $this->httpClientF1->request('GET',"/api/f1/drivers/$driver/results/3.json?limit=9999", ['verify_peer'=>false,]);
+        return $response->getContent();
+    }
 }
 

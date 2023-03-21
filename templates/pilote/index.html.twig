@@ -3,18 +3,26 @@
 {% block title %}Hello PiloteController!{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
-
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/laragon/www/ProjetF1/src/Controller/PiloteController.php'|file_link(0) }}">src/Controller/PiloteController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/laragon/www/ProjetF1/templates/pilote/index.html.twig'|file_link(0) }}">templates/pilote/index.html.twig</a></code></li>
-    </ul>
-</div>
+<section id="pilote">
+    <div class="container">
+        <div class="portrait">
+            <img src="{{ asset('assets/pilotes/' ~ id ~ '.png') }}" alt="">
+        </div>
+        <div class="informations">
+            <h3>{{ driverInformations.givenName ~ ' ' ~ driverInformations.familyName }}</h3>
+            <span>Date de naissance: {{ driverInformations.dateOfBirth|date("d/m/Y") }}</span>
+            <span>Lieu de naissance: {{ driver.lieuNaissance }}</span>
+            <span>Nationalité: {{ driverInformations.nationality }}</span>
+            <span>Numéro: {{ driverInformations.permanentNumber }}</span>
+            <span>Premier Grandprix: {{ driverSeasons[0].season }}</span>
+            <span>Saisons disputés: {{ driverSeasons|length }}</span>
+            <span>Courses disputés: {{ driverRaces|length }}</span>
+            <span>Podiums: {{ nbPodiums }}</span>
+            <span>Victoires: {{ nbVictoires }}</span>
+            <span>Titres de champion: {{ nbTitres }}</span>
+            <p>{{ driver.description }}</p>
+            <div class="casque"><img src="{{ asset('assets/pilotes/' ~ id ~ '_casque.png') }}" alt=""></div>
+        </div>
+    </div>
+</section>
 {% endblock %}
