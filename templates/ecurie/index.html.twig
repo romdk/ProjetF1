@@ -6,35 +6,40 @@
 <section id="ecurie">
     {% for driver in constructorDrivers %}
     <div class="driverCard">
-        <span class="driverName">{{ driver.givenName ~ ' ' ~ driver.familyName }}</span>
-        {# <span class="driverFlag"><img src="" alt=""></span> #}
-        <span class="driverLogo"><img src="{{ asset('assets/pilotes/' ~ driver.driverId ~ driver.permanentNumber ~ '.png') }}" alt=""></span>
-        <span class="driverPortrait"><img src="{{ asset('assets/pilotes/' ~ driver.driverId ~ '_portrait' ~ '.png') }}" alt=""></span>
+        <div>
+            <span class="driverName">{{ driver.givenName ~ ' ' ~ driver.familyName }}</span>
+            {# <span class="driverFlag"><img src="" alt=""></span> #}
+            <span class="driverLogo"><img src="{{ asset('assets/pilotes/' ~ driver.driverId ~ driver.permanentNumber ~ '.png') }}" alt=""></span>
+            <span class="driverPortrait"><img src="{{ asset('assets/pilotes/' ~ driver.driverId ~ '_portrait' ~ '.png') }}" alt=""></span>
+        </div>
     </div>        
     {% endfor %}
     <div class="infosCard">
-        <div class="constructorLogo"><img src="{{ asset('assets/ecuries/Logo_ecurie_' ~ id ~ '.png') }}" alt=""></div>
-        <div class="constructorData">
-            <span>Date de creation: {{ ecurie.dateCreation|date("Y")}}</span>
-            <span>Localisation: {{ ecurie.localisation }}</span>
-            <span>Directeur: {{ ecurie.directeur }}</span>
-            <span>Titres constructeur: {{ constructorTitles|length }}</span>
-            <span>Saisons disputés: {{ constructorSeasons|length }}</span>
-            <span>Courses disputés: {{ constructorRaces|length }}</span>
-            <span>Victoires: {{ constructorWins|length }}</span>
-            <span>Podiums: {{ constructorPodiums }}</span>
-            <span>Pole positions: {{ constructorPole|length }}</span>
-            <p></p>
+        <div>
+            <div class="constructorLogo"><img src="{{ asset('assets/ecuries/Logo_ecurie_' ~ id ~ '.png') }}" alt=""></div>
+            <div class="constructorData">
+                <span>Date de creation: {{ ecurie.dateCreation|date("Y")}}</span>
+                <span>Localisation: {{ ecurie.localisation }}</span>
+                <span>Directeur: {{ ecurie.directeur }}</span>
+                <span>Titres constructeur: {{ constructorTitles|length }}</span>
+                <span>Saisons disputés: {{ constructorSeasons|length }}</span>
+                <span>Courses disputés: {{ constructorRaces|length }}</span>
+                <span>Victoires: {{ constructorWins|length }}</span>
+                <span>Podiums: {{ constructorPodiums }}</span>
+                <span>Pole positions: {{ constructorPole|length }}</span>
+            </div>
         </div>
     </div>
     <div class="carCard">
-        <img src="" alt="">
-        <aside>
-            <h4>{{ ecurie.nomVoiture }}</h4>
-            <span>Puissance: {{ ecurie.puissanceVoiture }}</span>
-            <span>Poids: {{ ecurie.poidsVoiture }}</span>
-            <span>Fabriquant du moteur: {{ ecurie.moteurVoiture }}</span>
-        </aside>
+        <div>
+            <img src="{{ asset('assets/voitures/' ~ id ~ '_voiture.png') }}" alt="">
+            <aside>
+                <h4>{{ ecurie.nomVoiture }}</h4>
+                <span>Puissance: {{ ecurie.puissanceVoiture }}</span>
+                <span>Poids: {{ ecurie.poidsVoiture }}</span>
+                <span>Fabriquant du moteur: {{ ecurie.moteurVoiture }}</span>
+            </aside>
+        </div>
     </div>
 </section>
 {% endblock %}

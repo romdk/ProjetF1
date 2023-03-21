@@ -1351,11 +1351,13 @@ h3{
 }
 
 #errMeteo .fa-circle-exclamation{
-    color: #a33232;
     position: absolute;
     right: -5px;
     bottom: 0px;
     font-size: 1.5rem;
+    color: #ffa500;
+    background-color: white;
+    border-radius: 50%;
 }
 
 #meteo > div:first-child{
@@ -1725,4 +1727,41 @@ h3{
     width: 450px;
 }
 
+/* -----------------------------------------------------ECURIE------------------------------------------------------ */
+#ecurie{
+    display: flex;
+    flex-wrap: wrap;
+    padding: 100px 30px 30px 30px;
+    /* gap: 5px; */
+}
 
+#ecurie .driverCard{
+    padding: 5px;
+    width: 30%;
+    height: 50%;
+    overflow: hidden;
+}
+
+#ecurie .driverCard div{
+    background-color: red;
+}
+
+#ecurie .infosCard{
+    padding: 5px;
+    width: 40%;
+}
+
+#ecurie .infosCard div{
+    height: 100%;
+    background-color: rgb(119, 0, 255);
+}
+
+#ecurie .carCard{
+    padding: 5px;
+    width: 60%;
+    height: 50%;
+}
+
+#ecurie .carCard div{
+    background-color: rgb(0, 200, 255);
+}
