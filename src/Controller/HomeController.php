@@ -31,6 +31,7 @@ class HomeController extends AbstractController
         $round = json_decode($lastGrandprix,true)["MRData"]["RaceTable"]['round'];
         $grandprix = $doctrine->getRepository(Grandprix::class)->findOneBy(['season' => $season, 'round' => $round],[]);
         $posts = $grandprix->getPosts();
+        $reponses = '';
 
         foreach ($posts as $post) {
             $reponses = $post->getReponses();
