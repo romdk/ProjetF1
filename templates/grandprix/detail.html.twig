@@ -42,7 +42,9 @@
         <div id="vendredi">Vendredi</div>
         <div id="samedi">Samedi</div>
         <div id="dimanche">Dimanche</div>
-        <a href="{{ path('app_reservation', {'id': id }) }}">Reserver une place</a>
+        {% if grandprix.date > currDate|date('Y-m-d') %}
+            <a href="{{ path('app_reservation', {'id': id }) }}">Reserver une place</a>
+        {% endif %}
     </div>
 </section>
 
