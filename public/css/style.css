@@ -1785,6 +1785,7 @@ h3{
 }
 
 #ecurie .infosCard{
+    position: relative;
     grid-row-start: 1;
     grid-column-start: 3;
     grid-row-end: 3;
@@ -1795,6 +1796,30 @@ h3{
     border-radius: 3px;
     box-shadow: 0px 15px 35px -5px rgba(50, 88, 130, 0.32);
     overflow: hidden;
+}
+
+#ecurie .favoris{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+#ecurie .favoris{
+    font-size: 1.4rem;
+    cursor: pointer;
+    transition: .2s;
+}
+
+#ecurie .favoris:not(.fav){
+    color: #71829e;
+}
+
+#ecurie .favoris .fa-solid:hover{
+    color: #eacf00;
+}
+
+#ecurie .fav {
+    color: #eacf00;
 }
 
 #ecurie .constructorLogo{
@@ -1899,6 +1924,30 @@ object-fit: cover;
     box-shadow: 0px 15px 35px -5px rgba(50, 88, 130, 0.32);
     padding: 20px;
     border-radius: 3px;
+}
+
+#pilote .favoris{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+#pilote .favoris{
+    font-size: 1.4rem;
+    cursor: pointer;
+    transition: .2s;
+}
+
+#pilote .favoris:not(.fav){
+    color: #71829e;
+}
+
+#pilote .favoris .fa-solid:hover{
+    color: #eacf00;
+}
+
+#pilote .fav {
+    color: #eacf00;
 }
 
 #pilote .informations h3{
