@@ -22,6 +22,8 @@ framework:
         scoped_clients:
             f1:
                 base_uri: http://ergast.com/api/f1
+            actu:
+                base_uri: http://127.0.0.1:8001/api
             weather:
                 base_uri: https://api.open-meteo.com
 
