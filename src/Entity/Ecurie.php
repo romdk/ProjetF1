@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\EcurieRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -40,6 +42,14 @@ class Ecurie
 
     #[ORM\Column(length: 10)]
     private ?string $poidsVoiture = null;
+
+    #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'ecuries')]
+    private Collection $users;
+
+    public function __construct()
+    {
+        $this->users = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -152,5 +162,37 @@ class Ecurie
         $this->poidsVoiture = $poidsVoiture;
 
         return $this;
+    }
+
+    /**
+     * @return Collection<int, User>
+     */
+    public function getUsers(): Collection
+    {
+        return $this->users;
+    }
+
+    public function addUser(User $user): self
+    {
+        if (!$this->users->contains($user)) {
+            $this->users->add($user);
+            $user->addEcury($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUser(User $user): self
+    {
+        if ($this->users->removeElement($user)) {
+            $user->removeEcury($this);
+        }
+
+        return $this;
+    }
+
+    public function isFavByUser(User $user): bool
+    {
+        return $this->users->contains($user);
     }
 }

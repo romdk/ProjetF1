@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Pilote;
 use App\HttpClient\F1HttpClient;
+use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -52,5 +53,22 @@ class PiloteController extends AbstractController
             'nbVictoires' => $nbVictoires,
             'nbTitres' => $nbTitres        
         ]);
+    }
+
+    #[Route('/fav/pilote/{id}', name: 'fav_pilote')]
+    public function favPilote(Pilote $pilote, EntityManagerInterface $manager): Response
+    {
+        $user = $this->getUser();
+
+        if($pilote->isFavByUser($user)) {
+            $pilote->removeUser($user);
+            $manager->flush();
+            return $this->json(['fav' => count($pilote->getUsers()) ]);
+        }
+
+        $pilote->addUser($user);
+        $manager->flush();
+        return $this->json(['fav' => count($pilote->getUsers()) ]);
+
     }
 }

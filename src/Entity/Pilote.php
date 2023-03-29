@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\PiloteRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -26,6 +28,14 @@ class Pilote
     #[ORM\ManyToOne(inversedBy: 'pilotes')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Pays $pays = null;
+
+    #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'pilotes')]
+    private Collection $users;
+
+    public function __construct()
+    {
+        $this->users = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -78,5 +88,37 @@ class Pilote
         $this->pays = $pays;
 
         return $this;
+    }
+
+    /**
+     * @return Collection<int, User>
+     */
+    public function getUsers(): Collection
+    {
+        return $this->users;
+    }
+
+    public function addUser(User $user): self
+    {
+        if (!$this->users->contains($user)) {
+            $this->users->add($user);
+            $user->addPilote($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUser(User $user): self
+    {
+        if ($this->users->removeElement($user)) {
+            $user->removePilote($this);
+        }
+
+        return $this;
+    }
+
+    public function isFavByUser(User $user): bool
+    {
+        return $this->users->contains($user);
     }
 }

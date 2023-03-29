@@ -9,6 +9,9 @@
             <img src="{{ asset('assets/pilotes/' ~ id ~ '.png') }}" alt="">
         </div>
         <div class="informations">
+            {% if app.user %} 
+                <a data-fav href="{{ path('fav_pilote', {'id': driver.id}) }}" class="favoris {% if (app.user in driver.users) %} fav{% endif %}"><i class="fa-solid fa-star"></i></a>
+            {% endif %}
             <h3>{{ driverInformations.givenName ~ ' ' ~ driverInformations.familyName }}</h3>
             <span>Date de naissance: {{ driverInformations.dateOfBirth|date("d/m/Y") }}</span>
             <span>Lieu de naissance: {{ driver.lieuNaissance }}</span>
@@ -25,4 +28,7 @@
         </div>
     </div>
 </section>
+{% endblock %}
+{% block javascripts %}
+        <script src="{{ asset('javascript/favoris.js') }}"></script>
 {% endblock %}

@@ -13,11 +13,14 @@
     </a>        
     {% endfor %}
     <div class="infosCard">
+        {% if app.user %} 
+            <a data-fav href="{{ path('fav_ecurie', {'id': ecurie.id}) }}" class="favoris {% if (app.user in ecurie.users) %} fav{% endif %}"><i class="fa-solid fa-star"></i></a>
+        {% endif %}
             <div class="constructorLogo"><img src="{{ asset('assets/ecuries/Logo_ecurie_' ~ id ~ '.png') }}" alt=""></div>
             <div class="constructorData">
                 <span>Date de creation: {{ ecurie.dateCreation|date("Y")}}</span>
                 <span>Localisation: {{ ecurie.localisation }}</span>
-                <span>Directeur: {{ ecurie.directeur }}</span>
+                <span>Directeur: {{ ecurie.directeur }}</span>  
                 <span>Titres constructeur: {{ constructorTitles|length }}</span>
                 <span>Saisons disputés: {{ constructorSeasons|length }}</span>
                 <span>Courses disputés: {{ constructorRaces|length }}</span>
@@ -37,4 +40,7 @@
             </aside>
     </div>
 </section>
+{% endblock %}
+{% block javascripts %}
+        <script src="{{ asset('javascript/favoris.js') }}"></script>
 {% endblock %}

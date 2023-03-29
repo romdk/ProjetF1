@@ -59,11 +59,19 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Reponse::class)]
     private Collection $reponses;
 
+    #[ORM\ManyToMany(targetEntity: Ecurie::class, inversedBy: 'users')]
+    private Collection $ecuries;
+
+    #[ORM\ManyToMany(targetEntity: Pilote::class, inversedBy: 'users')]
+    private Collection $pilotes;
+
     public function __construct()
     {
         $this->reservations = new ArrayCollection();
         $this->posts = new ArrayCollection();
         $this->reponses = new ArrayCollection();
+        $this->ecuries = new ArrayCollection();
+        $this->pilotes = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -294,6 +302,54 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
                 $reponse->setUser(null);
             }
         }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Ecurie>
+     */
+    public function getEcuries(): Collection
+    {
+        return $this->ecuries;
+    }
+
+    public function addEcury(Ecurie $ecury): self
+    {
+        if (!$this->ecuries->contains($ecury)) {
+            $this->ecuries->add($ecury);
+        }
+
+        return $this;
+    }
+
+    public function removeEcury(Ecurie $ecury): self
+    {
+        $this->ecuries->removeElement($ecury);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Pilote>
+     */
+    public function getPilotes(): Collection
+    {
+        return $this->pilotes;
+    }
+
+    public function addPilote(Pilote $pilote): self
+    {
+        if (!$this->pilotes->contains($pilote)) {
+            $this->pilotes->add($pilote);
+        }
+
+        return $this;
+    }
+
+    public function removePilote(Pilote $pilote): self
+    {
+        $this->pilotes->removeElement($pilote);
 
         return $this;
     }
