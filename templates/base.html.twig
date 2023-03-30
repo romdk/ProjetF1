@@ -18,6 +18,7 @@
         <div id="menu">
             {% set page = app.request.get('_route') %}
             <a class="{% if ('home' in page) %} active{% endif %}" href="{{ path('app_home') }}"><span>Accueil</span></a>            
+            <a class="{% if ('actu' in page) %} active{% endif %}" href="{{ path('app_actu') }}"><span>Actus</span></a>
             <a class="{% if ('saison' in page) %} active{% endif %}" href="{{ path('app_saison') }}"><span>Saisons</span></a>
             <a class="{% if ('ecuries' in page) %} active{% endif %}" href="{{ path('app_ecuries') }}"><span>Ecuries</span></a>
             <a class="{% if ('circuits' in page) %} active{% endif %}" href="{{ path('app_circuits') }}"><span>Circuits</span></a>
