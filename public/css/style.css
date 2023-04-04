@@ -1958,9 +1958,6 @@ object-fit: cover;
     font-size: 1.8rem;
     font-weight: 700;
     width: 100%;
-    /* background-color:#dfe7ef ;
-    box-shadow: 5px 5px 35px 5px rgba(50, 88, 130, 0.32);
-    border-radius: 5px; */
 }
 
 #pilote .informations p{
@@ -1978,3 +1975,112 @@ object-fit: cover;
 #pilote .casque img{
     height: 185px;
 }
+
+/* -----------------------------------------------------PILOTE------------------------------------------------------ */
+#actu{
+    padding-top: 100px;
+    background-color: #dfe7ef;
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+    /* gap: 30px; */
+}
+
+#actu::-webkit-scrollbar{
+    width: 5px;
+}
+
+#actu::-webkit-scrollbar-track{
+    /* background-color: #1e1e1e; */
+    background-color: #d0d8e6;
+    border-radius: 10px;
+}
+
+#actu::-webkit-scrollbar-thumb{
+    /* background-color: #ffffff; */
+    background-color: #000000;
+    border-radius: 10px;
+}
+
+#actu .select{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+#actu .select span{
+    display: flex;
+    justify-content: center;
+    align-items: center;    
+    padding: 20px;
+    height: 30px;
+    /* background-color: #f5f9ff; */
+    border-radius: 3px;
+    box-shadow: 0.3rem 0.3rem 0.6rem #c8d0e7, -0.2rem -0.2rem 0.5rem #eaeaea;
+    cursor: pointer;
+}
+
+#actu .select span:not(.active){
+    background-color: #f5f9ff;
+    color: #0f0f0f;
+    transition: .3s;
+}
+
+#actu .select span:not(.active):hover{
+    background-color:#e0edff;
+}
+
+#tous, #favoris{
+    display:flex;
+    justify-content: space-between;
+    align-items: auto;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 20px;   
+    /* gap: 20px;    */
+    /* display: grid;
+    grid-template-columns: repeat(5,1fr);
+    grid-auto-rows: minmax(100px,auto);
+    gap: 10px;
+    grid-auto-flow:row dense; */
+}
+
+#favoris{
+    display: none;
+}
+
+
+#articles .article{
+    width: 300px;
+    height: fit-content;
+    padding: 20px;
+    padding-bottom: 5px;
+    display: flex;
+    flex-direction: column;
+    background-color: #f5f9ff;
+    box-shadow: 0px 15px 35px -5px rgba(50, 88, 130, 0.32);
+    border-radius: 5px;
+    color: #0f0f0f;
+}
+
+#articles .article h2{
+    width: 100%;
+    text-align: center;
+}
+
+#articles .article p{
+    margin-top: 10px;
+}
+
+#articles .article .infos{
+    margin-top: 20px;
+    font-size: .8rem;
+    font-weight: 300;
+    color: #71829e;
+    display: flex;
+    justify-content: flex-end;
+    gap: 5px;
+}
+
