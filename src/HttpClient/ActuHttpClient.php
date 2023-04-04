@@ -23,4 +23,14 @@ class ActuHttpClient extends AbstractController
         $response = $this->httpClientActu->request('GET',"/api/articles.json", ['verify_peer' => false,]);
         return $response->getContent();
     }
+
+    public function getArticlesByDriver($driver){
+        $response = $this->httpClientActu->request('GET',"/api/articles?pilote.idApi=$driver", ['verify_peer' => false,]);
+        return $response->getContent();
+    }
+
+    public function getArticlesByConstructor($constructor){
+        $response = $this->httpClientActu->request('GET',"/api/articles?ecurie.idApi=$constructor", ['verify_peer' => false,]);
+        return $response->getContent();
+    }
 }
