@@ -176,11 +176,7 @@ function loadPage() {
                     const points = document.createElement("span")
                     driverStandingsLi.appendChild(points)
                     points.innerHTML = result.points + " PTS"
-                    points.classList.add("points")                
-
-                    const arrow = document.createElement("span")
-                    driverStandingsLi.appendChild(arrow)
-                    arrow.innerHTML = '<i class="fa-solid fa-chevron-right"></i>'            
+                    points.classList.add("points")                           
                 });
             })
 
@@ -229,10 +225,7 @@ function loadPage() {
                     constructorStandingsLi.appendChild(points)
                     points.innerHTML = result.points + " PTS"
                     points.classList.add("points")       
-
-                    const arrow = document.createElement("span")
-                    constructorStandingsLi.appendChild(arrow)
-                    arrow.innerHTML = '<i class="fa-solid fa-chevron-right"></i>'            
+          
                 })
             })
             // on affiche le tableau pilotes lorsqu'on clique sur le bouton pilotes
