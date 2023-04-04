@@ -3,14 +3,41 @@
 {% block title %}Hello ActuController!{% endblock %}
 
 {% block body %}
-    <section id="articles">
-        {% for article in articles %}
-            <div>
-                <h2>{{ article.title }}</h2>
-                <span>Publié le {{ article.createdAt | date("d/m/Y") }}</span>
-                <p>{{ article.content }}</p>
-                <span>Source: {{ article.source }}</span>
+    <section id="actu">
+        <div class="select">
+            <span id="btnTous" class="active">Tous</span>
+            <span id="btnFavoris">Favoris</span>
+        </div>
+            <div id="articles">
+            <div id="tous">
+                {% for article in articles %}
+                    <div class="article">
+                        <h2>{{ article.title }}</h2>
+                        <p>{{ article.content }}</p>
+                        <div class="infos">
+                            <span>{{ article.source }}</span>
+                            <span>{{ article.createdAt | date("d/m/Y") }}</span>
+                        </div>
+                    </div>
+                {% endfor %}
             </div>
-        {% endfor %}
+            {% if app.user %}
+                <div id="favoris">
+                    {% for article in articlesFav %}
+                        <div class="article">
+                            <h2>{{ article.title }}</h2>
+                            <p>{{ article.content }}</p>
+                            <div class="infos">
+                                <span>{{ article.source }}</span>
+                                <span>{{ article.createdAt | date("d/m/Y") }}</span>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
     </section>
+{% endblock %}
+{% block javascripts %}
+        <script src="{{ asset('javascript/actu.js') }}"></script>
 {% endblock %}
