@@ -730,7 +730,17 @@ h3{
             font-size: .8rem;
         }
 
-        #lastRaceResults li span:nth-child(6){
+        #lastRaceResults li span:nth-child(6) {
+            position: absolute;
+            right: 30px;
+            background-color: #dcdcdc;
+            border-radius: 20px;
+            padding: 2px 10px;
+            font-weight: 700;
+            font-size: .8rem;
+        }
+
+        #lastRaceResults li a{
             position: absolute;
             color: #dc0606;
             right: 15px;
@@ -1226,18 +1236,12 @@ h3{
 
 .classement .points {
     position: absolute;
-    right: 30px;
+    right: 15px;
     background-color: #dcdcdc;
     border-radius: 20px;
     padding: 2px 10px;
     font-weight: 700;
     font-size: .8rem;
-}
-
-.classement li span:last-child{
-    position: absolute;
-    color: #dc0606;
-    right: 15px;
 }
 
 #driverStandingsUl{
