@@ -121,23 +121,35 @@ function loadPage() {
 
                         const lastRaceResultsLi = document.createElement("li")
                         lastRaceResultsUl.appendChild(lastRaceResultsLi)
+
                         const position = document.createElement("span")
                         lastRaceResultsLi.appendChild(position)
                         position.innerHTML = result.position
+
                         const couleur = document.createElement("div")
                         lastRaceResultsLi.appendChild(couleur)
                         couleur.style.backgroundColor = couleursEcuries[result.Constructor.constructorId]
+
                         const prenom = document.createElement("span")
                         lastRaceResultsLi.appendChild(prenom)
                         prenom.innerHTML = result.Driver.givenName
+
                         const nom = document.createElement("span")
                         lastRaceResultsLi.appendChild(nom)
                         nom.innerHTML = result.Driver.familyName
+
                         const ecurie = document.createElement("span")
                         lastRaceResultsLi.appendChild(ecurie)
                         ecurie.innerHTML = result.Constructor.name
-                        const arrow = document.createElement("span")
+
+                        const points = document.createElement("span")
+                        lastRaceResultsLi.appendChild(points)
+                        points.innerHTML = "+" + result.points + " PTS"
+                        points.classList.add("points") 
+
+                        const arrow = document.createElement("a")
                         lastRaceResultsLi.appendChild(arrow)
+                        arrow.href = '/pilote/'+result.Driver.driverId
                         arrow.innerHTML = '<i class="fa-solid fa-chevron-right"></i>'
                     });            
                 })
