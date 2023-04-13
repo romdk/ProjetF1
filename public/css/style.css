@@ -767,7 +767,7 @@ h3{
             font-size: 5rem;
             font-weight: 900;
             text-transform: uppercase;
-            background-color: rgba(0, 0, 0, 0.258);
+            background-color: rgba(0, 0, 0, 0.5);
             color: #f1f1f1;
         }
 
@@ -1577,7 +1577,7 @@ h3{
 #map{
     height: 65%;
     width: 70%;
-    background-color: red;
+    background-color: #ffffff;
     overflow: hidden;
 }
 
@@ -2088,3 +2088,296 @@ object-fit: cover;
     gap: 5px;
 }
 
+/* ------------------------------------------------RESPONSIVE------------------------------------------------------------ */
+@media screen and (max-width: 770px){
+
+    nav{
+        padding: 0px 10px;
+    }
+
+    #menuBtn{
+        right: 50px;
+    }
+
+    #headerTitle{
+        padding-left: 5px;
+        font-size: 6.5rem;
+        line-height: 80px;
+    }
+
+    #grandprix{
+        padding: 100px 10px
+    }
+
+    #lastRaceResults{
+        padding: 70px 10px;
+    }
+
+    #lastRaceResultsHeader span{
+        font-size: 3rem;
+    }
+
+    #lastRaceResultsUl {
+        height: 600px;
+    }
+
+    #lastRaceResults li span:nth-child(1) {
+        left: 0px;
+    }
+
+    #lastRaceResults li div {
+        left: 22px;
+    }
+
+    #lastRaceResults li span:nth-child(3) {
+        margin-left: 37px;
+    }
+
+    #messages {
+        margin: 0px 0px;
+        padding: 20px 10px;
+    }
+
+    #saison .listeGp {
+        height: 700px;
+    }
+
+    #saison .listeGp li {
+        width: 100%;
+    }
+
+    #saison .listeGp img {
+        width: 100%;
+    }
+
+    #saison #standingsSelector {
+        margin-top: 10px;
+    }
+
+    .classement li span:nth-child(1) {
+        left: 0px;
+    }
+
+    .classement li div {
+        left: 22px;
+    }
+
+    .classement li span:nth-child(3) {
+        margin-left: 37px;
+    }
+
+    #detailsGp {
+        padding: 80px 10px;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        overflow-y: auto;
+        height: fit-content;
+    }
+
+    #infosGp {
+        height: 150px;
+    }
+
+    #infosGp div span:first-child {
+        line-height: 38px;
+        font-size: 3rem;
+    }
+
+    #infosGp div span:nth-child(2) {
+        font-size: 1.5rem;
+    }
+
+    #infosGp div span:nth-child(4) {
+        font-size: 1rem;
+    }
+
+    #meteo {
+        padding: 0px 0px;
+    }
+
+    #meteo > div:nth-child(4) {
+        height: auto;
+    }
+
+    #circuit img {
+        width: 120%;
+        height: auto;
+    }
+
+
+    #articles .article {
+        width: 100%;
+    }
+
+    #tous, #favoris {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    #ecuries {
+        height: fit-content;
+        overflow-y: auto;
+    }
+
+    #accordeonConstructors {
+        height: fit-content;
+        overflow-y: auto;
+        flex-direction: column;
+    }
+
+    #accordeonConstructors .constructorCard {
+        width: 100%;
+        height: 600px;
+    }
+
+    #ecurie {
+        grid-template-rows: 1fr 1fr;
+        grid-template-columns: 1fr 1fr;
+        padding: 80px 30px 30px 30px;
+    }
+
+    #ecurie .infosCard {
+        grid-row-start: 1;
+        grid-column-start: 1;
+        grid-row-end: 2;
+        grid-column-end: 3;
+        overflow: auto;
+    }
+
+    #ecurie .driverCard:first-child {
+        grid-row-start: 2;
+        grid-column-start: 1;
+        grid-row-end: 3;
+        grid-column-end: 2;
+    }
+
+    #ecurie .driverCard:nth-child(2) {
+        grid-row-start: 2;
+        grid-column-start: 2;
+        grid-row-end: 3;
+        grid-column-end: 3;
+    }
+
+    #ecurie .driverName {
+        font-size: 1.2rem;
+    }
+
+    #ecurie .driverLogo {
+        width: 60%;
+        height: 20%;
+    }
+
+    #ecurie .driverPortrait {
+        right: -80px;
+    }
+
+    #ecurie .driverPortrait img{
+        height: 250px;
+    }
+
+    #ecurie .carCard {
+        grid-row-start: 3;
+        grid-column-start: 1;
+        grid-row-end: 3;
+        grid-column-end: 3;
+    }
+
+    #ecurie .carCard aside {
+        width: 95%;
+        background-color: #00000075;
+        backdrop-filter: blur(2px);
+    }
+
+    #pilote {
+        padding-top: 80px;
+    }
+
+    #pilote .container {
+        width: 100%;
+        height: 100%;
+        flex-wrap: wrap-reverse;
+        overflow-y: auto;
+    }
+
+    #pilote .portrait {
+        width: 95%;
+        height: 60%;
+    }
+
+    #pilote .informations {
+        width: 95%;
+        height: fit-content;
+        padding: 10px 20px;
+    }
+
+    #pilote .casque {
+        top: 130px;
+        right: 5%;
+        width: 170px;
+        height: 170px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+    }
+
+    #pilote .casque img {
+        height: 150px;
+    }
+
+    #pilote .portrait img {
+        object-fit: contain;
+    }
+
+    #reservation {
+        padding: 100px 10px 50px 10px;
+    }
+
+    #reservation form {
+        height: 100%;
+        width: 100%;
+    }
+
+    #session {
+        width: 100%;
+        overflow-x: auto;
+        gap: 5px;
+    }
+
+    #session .session_option {
+        min-width: 25%;
+    }
+
+    #map img {
+        height: 100%;
+        width: 100%;
+        object-fit: contain;
+    }
+
+    #emplacement {
+        font-size: .8rem;
+    }
+}
+
+@media screen and (max-width: 426px){
+
+    #session .session_option {
+        min-width: 35%;
+        font-size: .7rem;
+    }
+
+    #map {
+        height: 30%;
+        width: 100%;
+    }
+
+    #emplacement {
+        height: 45%;
+        width: 100%;
+    }
+
+    #emplacement .nbPersonnes {
+        height: 50px;
+    }
+}
