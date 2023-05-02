@@ -350,6 +350,39 @@ h3{
     margin-bottom: 5px;
 }
 
+#footer{
+    height: fit-content;
+}
+
+footer{
+    height: 200px;
+    width: 100vw;
+    background-color: #2b2b2b;
+    color: #f1f1f1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+footer .liens{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    gap: 20px;
+}
+
+footer a{
+    color: #f1f1f1;
+}
+
+footer span{
+    width: 100%;
+    text-align: center;
+}
+
 /* -----------------------------------------------------HOME------------------------------------------------------ */
     /* -----------------------------------------------------HEADER------------------------------------------------------ */
 
@@ -780,9 +813,16 @@ h3{
             padding-top: 100px;
             padding-bottom: 50px;
         }
+
+        #commentaires .aucunMessage{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 50px;
+        }
     
         #messages{
-            max-height: 100%;
+            max-height: 70%;
             overflow: auto;
             margin: 0px 100px;
             /* background-color: #dee1e3; */
@@ -793,20 +833,39 @@ h3{
             border-radius: 3px;
         }
 
+        #messages::-webkit-scrollbar{
+            width: 5px;
+        }
+
+        #messages::-webkit-scrollbar-track{
+            /* background-color: #ffffff7d; */
+            background-color: #d0d8e6;
+            border-radius: 10px;
+        }
+
+        #messages::-webkit-scrollbar-thumb{
+            /* background-color: #ffffff; */
+            background-color: #a3b3ce;
+            border-radius: 10px;
+        }
+
         #addMessage{
             width: 100%;
-            background-color: #f1f1f1;
-            border-radius: 5px;
             display: flex;
             justify-content: center;
             align-items: center;
             padding: 20px;
             margin-top: 10px;
-            box-shadow: 0 1px 1px rgb(0 0 0 / 15%);
         }
-
+        
         #addMessage form{
-            width: 100%;
+            width: 50%;
+        }
+        
+        #addMessage .addMessage{
+            background-color: #f1f1f1;
+            box-shadow: 0 1px 1px rgb(0 0 0 / 15%);
+            border-radius: 5px;
         }
         #addReponse{
             display: none;
@@ -2138,6 +2197,18 @@ object-fit: cover;
         padding: 20px 10px;
     }
 
+    #listeReponses {
+        margin-left: 40px;
+    }
+
+    #addMessage form {
+        width: 100%;
+    }
+
+    #formReponse {
+        width: 95%;
+    }
+
     #saison .listeGp {
         height: 700px;
     }
@@ -2358,6 +2429,12 @@ object-fit: cover;
     #emplacement {
         font-size: .8rem;
     }
+
+    footer .liens {
+        FLEX-DIRECTION: column;
+        gap: 0px;
+        font-size: .8rem;
+    }
 }
 
 @media screen and (max-width: 426px){
@@ -2379,5 +2456,11 @@ object-fit: cover;
 
     #emplacement .nbPersonnes {
         height: 50px;
+    }
+
+    footer .liens {
+        FLEX-DIRECTION: column;
+        gap: 0px;
+        font-size: .7rem;
     }
 }
