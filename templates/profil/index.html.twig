@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ProfilController!{% endblock %}
+
+{% block body %}
+<section id="profil">
+    <h2>Mes réservations</h2>
+    <table>
+        <tr>
+            <th>Grandprix</th>
+            <th>Emplacement</th>
+            <th>Session</th>
+            <th>Nombre de places</th>
+        </tr>
+        {% for reservation in reservations %}
+            <tr>
+                <td>{{ grandprix[reservation.id] }}</td>
+                <td>{{ reservation.emplacement.nom }}</td>
+                <td>{{ reservation.session }}</td>
+                <td>{{ reservation.nbPersonnes }}</td>
+            </tr>
+        {% endfor %}
+    </table> 
+</section>
+{% endblock %}
