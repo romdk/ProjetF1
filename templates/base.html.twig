@@ -26,7 +26,7 @@
         <i class="fa-regular fa-user"></i>
         <div id="user">
             {% if app.user %}
-            <a href="{{ path('app_profil')}}">Page perso</a>
+            <a href="{{ path('app_profil', {'id': app.user.id}) }}">Profil</a>
             <a href="{{ path('app_logout') }}">Deconnexion</a>
             {% else %}
             <a href="{{ path('app_login')}}">Connexion</a>

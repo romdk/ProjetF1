@@ -4,9 +4,10 @@
 
 {% block body %}
 <section id="profil">
-    <h2>Mes réservations</h2>
+    <h2>Mes réservations</h2>   
     <table>
         <tr>
+            <th>Date</th>
             <th>Grandprix</th>
             <th>Emplacement</th>
             <th>Session</th>
@@ -14,12 +15,27 @@
         </tr>
         {% for reservation in reservations %}
             <tr>
-                <td>{{ grandprix[reservation.id] }}</td>
+                <td>{{ grandprix[reservation.id]["date"] }}</td>
+                <td>{{ grandprix[reservation.id]["raceName"] }}</td>
                 <td>{{ reservation.emplacement.nom }}</td>
                 <td>{{ reservation.session }}</td>
                 <td>{{ reservation.nbPersonnes }}</td>
             </tr>
         {% endfor %}
     </table> 
+   <div class="form">
+    <h2>Editer le profil</h2>
+    {{ form_start(formEditUser) }}
+    <div class="formRow">
+        {{ form_row(formEditUser.pseudonyme) }}
+    </div>
+    <div class="formRow">
+        {{ form_row(formEditUser.image) }}
+    </div>
+    <div class="btnValider">
+        {{ form_row(formEditUser.valider) }}
+    </div>
+    {{ form_end(formEditUser) }}
+</div> 
 </section>
 {% endblock %}
