@@ -314,18 +314,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->ecuries;
     }
 
-    public function addEcury(Ecurie $ecury): self
+    public function addEcurie(Ecurie $ecurie): self
     {
-        if (!$this->ecuries->contains($ecury)) {
-            $this->ecuries->add($ecury);
+        if (!$this->ecuries->contains($ecurie)) {
+            $this->ecuries->add($ecurie);
         }
 
         return $this;
     }
 
-    public function removeEcury(Ecurie $ecury): self
+    public function removeEcurie(Ecurie $ecurie): self
     {
-        $this->ecuries->removeElement($ecury);
+        $this->ecuries->removeElement($ecurie);
 
         return $this;
     }

@@ -31,6 +31,9 @@ class Reservation
     #[ORM\Column(length: 50)]
     private ?string $session = null;
 
+    #[ORM\Column(length: 50)]
+    private ?string $statut = 'processing';
+
     public function getId(): ?int
     {
         return $this->id;
@@ -92,6 +95,18 @@ class Reservation
     public function setSession(string $session): self
     {
         $this->session = $session;
+
+        return $this;
+    }
+
+    public function getStatut(): ?string
+    {
+        return $this->statut;
+    }
+
+    public function setStatut(string $statut): self
+    {
+        $this->statut = $statut;
 
         return $this;
     }

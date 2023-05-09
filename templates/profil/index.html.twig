@@ -14,13 +14,15 @@
             <th>Nombre de places</th>
         </tr>
         {% for reservation in reservations %}
-            <tr>
-                <td>{{ grandprix[reservation.id]["date"] }}</td>
-                <td>{{ grandprix[reservation.id]["raceName"] }}</td>
-                <td>{{ reservation.emplacement.nom }}</td>
-                <td>{{ reservation.session }}</td>
-                <td>{{ reservation.nbPersonnes }}</td>
-            </tr>
+            {% if reservation.statut == 'success' %}
+                <tr>
+                    <td>{{ grandprix[reservation.id]["date"] }}</td>
+                    <td>{{ grandprix[reservation.id]["raceName"] }}</td>
+                    <td>{{ reservation.emplacement.nom }}</td>
+                    <td>{{ reservation.session }}</td>
+                    <td>{{ reservation.nbPersonnes }}</td>
+                </tr>
+            {% endif %}
         {% endfor %}
     </table> 
    <div class="form">
