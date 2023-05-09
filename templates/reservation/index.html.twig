@@ -11,35 +11,35 @@
                 <span>SELECTIONNEZ UNE SESSION</span>
             </div>
                 <label class="session_option">
-                    <input type="radio" name="session" class="radio" value="Vendredi - Dimanche">
+                    <input type="radio" name="session" class="radio" value="3 VENDREDI - DIMANCHE">
                     <div class="option_inner">
                         <span>VENDREDI - DIMANCHE</span>
                         <span>3 jours</span>
                     </div>
                 </label>
                 <label class="session_option">
-                    <input type="radio" name="session" class="radio" value="Samedi - Dimanche">
+                    <input type="radio" name="session" class="radio" value="2 SAMEDI - DIMANCHE">
                     <div class="option_inner">
                         <span>SAMEDI - DIMANCHE</span>
                         <span>2 jours</span>
                     </div>
                 </label>
                 <label class="session_option">
-                    <input type="radio" name="session" class="radio" value="Dimanche">
+                    <input type="radio" name="session" class="radio" value="1 DIMANCHE">
                     <div class="option_inner">
                         <span>DIMANCHE</span>
                         <span>1 jour</span>
                     </div>
                 </label>
                 <label class="session_option">
-                    <input type="radio" name="session" class="radio" value="Samedi">
+                    <input type="radio" name="session" class="radio" value="1 SAMEDI">
                     <div class="option_inner">
                         <span>SAMEDI</span>
                         <span>1 jour</span>
                     </div>
                 </label>
                 <label class="session_option">
-                    <input type="radio" name="session" class="radio" value="Vendredi">
+                    <input type="radio" name="session" class="radio" value="1 VENDREDI">
                     <div class="option_inner">
                         <span>VENDREDI</span>
                         <span>1 jour</span>
@@ -57,7 +57,7 @@
                     <input type="radio" name="emplacement" class="radio" value="{{ emplacement.id }}">
                     <div class="option_inner">
                         <span>{{emplacement.nom}}</span>
-                        <span>{{emplacement.prix * 2}}€</span>    
+                        <span name="prix" data-prix="{{emplacement.prix}}">--€</span>    
                     </div>
                 </label>
                 {% endfor %}

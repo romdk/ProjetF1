@@ -1,26 +1,12 @@
-// recupere l'année et le round dans l'url
-let year = window.location.href.slice(34,38)
-let round = window.location.href.slice(39,41)
-console.log(year);
-console.log(round);
+let sessionInputs = document.getElementsByName('session')
+let prix = document.getElementsByName('prix')
 
-const url = '/detailsGrandprix'
-    fetch(url , {
-        method: 'POST',
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded',
-                'Accept': '*/*'
-            },
-            body: new URLSearchParams({ 
-                'year' : year,
-                'round' : round
-            })
-    })
-    .then(async (response) => {
-        const rep = await response.json()
-        const map = document.getElementById('map')
-        const img = document.createElement('img')
-        const race = rep.MRData.RaceTable.Races[0]
-        map.appendChild(img)
-        img.src = "../assets/circuits/" + race.Circuit.circuitId + "_map.png"
-    })
+sessionInputs.forEach(sessionRadio => {
+    sessionRadio.addEventListener('click', () => {
+        let sessionValue = sessionRadio.value.slice(0,1);
+
+        prix.forEach(element => {
+            element.innerHTML = element.dataset.prix * sessionValue + '€'
+        });
+    })    
+});
