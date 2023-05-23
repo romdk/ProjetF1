@@ -15,28 +15,28 @@ class CommentairesController extends AbstractController
     #[Route('/post/{id}/delete', name: 'delete_post')]
     public function deletePost(ManagerRegistry $doctrine, Post $post)
     { 
-        if($this->getUser()){
+        if($this->getUser() == $post->getUser()){
             $entityManager = $doctrine->getManager();
             $entityManager->remove($post);
             $entityManager->flush();
 
             return $this->redirect($this->generateUrl('app_home').'#commentaires');        
         }else {
-            return $this->redirectToRoute('app_login');
+            return $this->redirectToRoute('app_home');
             }
     }  
 
     #[Route('/reponse/{id}/delete', name: 'delete_reponse')]
     public function deleteReponse(ManagerRegistry $doctrine, Reponse $reponse)
     { 
-        if($this->getUser()){
+        if($this->getUser() == $reponse->getUser()){
             $entityManager = $doctrine->getManager();
             $entityManager->remove($reponse);
             $entityManager->flush();
 
             return $this->redirect($this->generateUrl('app_home').'#commentaires');        
         }else {
-            return $this->redirectToRoute('app_login');
+            return $this->redirectToRoute('app_home');
             }
     }
 
