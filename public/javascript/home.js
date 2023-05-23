@@ -4,8 +4,6 @@ const container = document.getElementById("container")
 function loadPage() {
     chargement.removeAttribute('hidden')
 
-    // document.querySelector('video').playbackRate = 10;   
-
     // ------------------------------------------------HOME--------------------------------
         // ------------------------------------------------COUNTDOWN--------------------------------
             const currentYear = new Date().getFullYear()
@@ -69,6 +67,11 @@ function loadPage() {
                         imgGp.classList.add("imgGp")
                         lien.appendChild(imgGp)
                         imgGp.src = "../assets/grandprix/" + race.season + "_" + race.round + ".png"
+
+                        let now = new Date().getTime() 
+                        if (new Date(race.date + ' ' + race.time).getTime() < now){
+                            imgGp.style.filter = "grayscale(100%)"
+                        }
 
                         const dateGp = document.createElement("p")
                         dateGp.classList.add("dateGp")
