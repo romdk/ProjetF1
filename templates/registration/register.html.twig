@@ -14,7 +14,8 @@
     {{ form_start(registrationForm) }}
         {{ form_row(registrationForm.pseudonyme) }}
         {{ form_row(registrationForm.email) }}
-        {{ form_row(registrationForm.plainPassword) }}
+        {{ form_row(registrationForm.plainPassword.first) }}
+        {{ form_row(registrationForm.plainPassword.second) }}        
         {{ form_row(registrationForm.agreeTerms) }}
 
         <a href="{{ path('app_login')}}">Déjà inscrit ?</a>
