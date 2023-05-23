@@ -247,7 +247,7 @@ section{
     align-items: center;
 }
 
-.register form div:nth-child(4){
+.register form div:nth-child(5){
     display: flex;
     gap: 5px;
     margin-top: 10px;
@@ -277,12 +277,7 @@ section{
     display: flex;
     justify-content: center;
     align-items: center;
-    background-image: linear-gradient(
-        45deg,
-        hsl(200deg 37% 8%) 0%,
-        hsl(229, 24%, 13%) 50%,
-        hsl(240, 15%, 18%) 100%
-    );
+    background-color: #d6dee7;  
 }
 
 .login, .register{
@@ -317,6 +312,11 @@ section{
     outline: none;
     margin-top: 20px;
     padding: 10px;
+}
+
+.message-erreur{
+    color: red;
+    background-color: #0080ff;
 }
 
 .login a{
@@ -1636,12 +1636,12 @@ footer span{
 #map{
     height: 65%;
     width: 70%;
-    background-color: #ffffff;
+    background-color: #f7f8fc;
     overflow: hidden;
 }
 
 #map img{
-    height: 100%;
+    width: 100%;
 }
 
 #emplacement{
@@ -2169,10 +2169,18 @@ object-fit: cover;
     box-shadow: 0px 15px 35px -5px rgba(50, 88, 130, 0.32);
     border-radius: 5px;
     padding: 20px;
+    border-collapse: collapse;
 }
 
 #profil table th{
     text-align: left;
+}
+
+#profil table tr{
+}
+
+#profil table tr:nth-child(even){
+    background-color: #cbd2dd;
 }
 
 #profil .form{
@@ -2261,10 +2269,6 @@ object-fit: cover;
         width: 100%;
     }
 
-    #saison #standingsSelector {
-        margin-top: 10px;
-    }
-
     .classement li span:nth-child(1) {
         left: 0px;
     }
@@ -2312,7 +2316,7 @@ object-fit: cover;
     }
 
     #circuit img {
-        width: 120%;
+        width: 100%;
         height: auto;
     }
 
@@ -2442,7 +2446,7 @@ object-fit: cover;
     }
 
     #reservation {
-        padding: 100px 10px 50px 10px;
+        padding: 80px 10px 50px 10px;
     }
 
     #reservation form {
@@ -2454,6 +2458,7 @@ object-fit: cover;
         width: 100%;
         overflow-x: auto;
         gap: 5px;
+        height: 20%;
     }
 
     #session .session_option {
@@ -2503,4 +2508,28 @@ object-fit: cover;
         gap: 0px;
         font-size: .7rem;
     }
+
+    #profil .form {
+        width: 95%;
+    }
+
+    #profil table{
+        width: 97%;
+        /* padding: 0px; */
+        padding: 0 10px;
+
+    }
+    
+    #profil table th {
+        text-align: center;
+        font-weight: 500;
+        font-size: .8rem;
+    }
+
+    #profil table tr{
+        font-size: .6rem;
+        text-align: center;
+    }
+
+
 }
