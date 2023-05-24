@@ -73,6 +73,10 @@ section{
     }
   }
 
+  small{
+    font-weight: 300;
+  }
+
 /* -----------------------------------------------------NAV------------------------------------------------------ */
 
     nav{
@@ -230,7 +234,7 @@ section{
         scroll-snap-type: y mandatory;
     }
 
-    /* ----------------------------------LOGIN/REGISTER-------------------------------- */
+    /* ----------------------------------LOGIN/REGISTER/RESET-------------------------------- */
 
 .register form{
     display: flex;
@@ -253,25 +257,8 @@ section{
     margin-top: 10px;
 }
 
-.btnInscription{
-    width: 100px;
-    background-color: #008cff;
-    border-radius: 5px;
-    height: 30px;
-    border: none;
-    outline: none;
-    margin-top: 20px;
-    color: #f1f1f1;
-    transition: .3s;
-}
 
-.btnInscription:hover{
-    cursor: pointer;
-    background-color: #004f8f;
-}
-
-
-#loginMain, #registerMain{
+#loginMain, #registerMain, #requestMain, #checkMailMain, #resetMain{
     width: 100vw;
     height: 100vh;
     display: flex;
@@ -280,7 +267,7 @@ section{
     background-color: #d6dee7;  
 }
 
-.login, .register{
+.login, .register, .request, .reset{
     background-color: #f1f1f1;
     display: flex;
     flex-direction: column;
@@ -292,26 +279,23 @@ section{
     box-shadow: 0px 10px 17px 0px rgba(0,0,0,0.1);
 }
 
-
-
-.email{
-    width: 90%;
-    background-color: #c6c6c6;
-    border-radius: 5px;
-    border: none;
-    outline: none;
-    margin-top: 20px;
-    padding: 10px;
-}
-
-.password{
-    width: 90%;
-    background-color: #c6c6c6;
+.formInput{
+    width: 100%;
+    background-color: #d9e0e4;
     border-radius: 5px;
     border: none;   
     outline: none;
-    margin-top: 20px;
     padding: 10px;
+}
+
+form[name = reset_password_request_form], form[name = change_password_form], #loginMain form .login, #registerMain form{
+    gap: 10px;
+}
+
+form[name = reset_password_request_form] div, form[name = change_password_form] div{
+width: 100%;
+display: flex;
+justify-content: center;
 }
 
 .message-erreur{
@@ -324,7 +308,7 @@ section{
     text-decoration: none;    
 }
 
-.btnConnexion{
+.formBtn{
     width: 100px;
     background-color: #008cff;
     border-radius: 5px;
@@ -336,10 +320,12 @@ section{
     transition: .3s;
 }
 
-.btnConnexion:hover{
+.formBtn:hover{
     cursor: pointer;
     background-color: #004f8f;
 }
+
+
 
 h3{
     color: #f1f1f1;
@@ -381,6 +367,22 @@ footer a{
 footer span{
     width: 100%;
     text-align: center;
+}
+
+.request form, .reset form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;    
+}
+
+.request button, .reset button{
+    background-color: #0080ff;
+    color: #f1f1f1;
+    border: none;
+    border-radius: 3px;
+    padding: 5px 20px;
+    box-shadow: 0px 10px 17px 0px rgba(0,0,0,0.2);
 }
 
 /* -----------------------------------------------------HOME------------------------------------------------------ */
@@ -2174,13 +2176,15 @@ object-fit: cover;
 
 #profil table th{
     text-align: left;
+    padding: 5px;
 }
 
-#profil table tr{
+#profil table td{
+    padding: 5px;
 }
 
 #profil table tr:nth-child(even){
-    background-color: #cbd2dd;
+    background-color: #dce2eb;
 }
 
 #profil .form{
@@ -2189,11 +2193,28 @@ object-fit: cover;
 }
 
 #profil form{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
     width: 100%;
     background-color: #f5f9ff;
     box-shadow: 0px 15px 35px -5px rgba(50, 88, 130, 0.32);
     border-radius: 5px;
     padding: 20px;
+}
+
+#profil form a{
+    text-align: center;
+}
+
+#profil form div:nth-child(3){
+    display: flex;
+    justify-content: space-between;
+}
+
+#profil form div:nth-child(4){
+    display: flex;
+    justify-content: center;
 }
 /* ------------------------------------------------RESPONSIVE------------------------------------------------------------ */
 @media screen and (max-width: 770px){

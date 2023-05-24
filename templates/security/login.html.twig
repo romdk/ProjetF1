@@ -14,8 +14,8 @@
         {% endif %} #}
         <div class="login">
             <h1>Connexion</h1>
-            <input class="email" type="email" placeholder="Saisir votre email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
-            <input class="password" type="password" placeholder="Saisir votre mot de passe" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
+            <input class="formInput" type="email" placeholder="Saisir votre email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
+            <input class="formInput" type="password" placeholder="Saisir votre mot de passe" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
 
             <input type="hidden" name="_csrf_token"
                 value="{{ csrf_token('authenticate') }}"
@@ -31,9 +31,10 @@
                     </label>
                 </div>
             #}
-            <a href="{{ path('app_register')}}">Pas encore inscrit ?</a>
+            <a href="{{ path('app_register')}}">S'inscrire</a>
+            <a href="/reset-password">Mot de passe oublié</a>
 
-            <button class="btnConnexion" type="submit">
+            <button class="formBtn" type="submit">
                 Connexion
             </button>
         </div>

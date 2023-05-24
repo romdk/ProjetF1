@@ -23,11 +23,11 @@ class RegistrationFormType extends AbstractType
         $builder
             ->add('pseudonyme',TextType::class, [
                 'label' => false,
-                'attr' => ['class' => 'email', 'placeholder' => "Saisir un nom d'utilisateur"]
+                'attr' => ['class' => 'formInput', 'placeholder' => "Saisir un nom d'utilisateur"]
             ])
             ->add('email',EmailType::class, [
                 'label' => false,
-                'attr' => ['class' => 'email', 'placeholder' => 'Saisir une adresse mail']
+                'attr' => ['class' => 'formInput', 'placeholder' => 'Saisir une adresse mail']
             ])
             ->add('agreeTerms', CheckboxType::class, [
                 'mapped' => false,
@@ -46,14 +46,14 @@ class RegistrationFormType extends AbstractType
                 'required' => true,
                 'first_options'  => [
                     'label' => false,
-                    'attr' => ['autocomplete' => 'new-password','class' => 'password', 'placeholder' => 'Saisir un mot de passe'],
+                    'attr' => ['autocomplete' => 'new-password','class' => 'formInput', 'placeholder' => 'Saisir un mot de passe'],
                     'constraints' => [  
                         new Regex('/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{12,}$/', 'Le mot de passe doit contenir au minimum 12 caractères, une majuscule, une minuscule, un chiffre, un caractère spécial')
                     ],
                 ],
                 'second_options' => [
                     'label' => false,   
-                    'attr' => ['autocomplete' => 'new-password','class' => 'password', 'placeholder' => 'Répéter le mot de passe'],
+                    'attr' => ['autocomplete' => 'new-password','class' => 'formInput', 'placeholder' => 'Répéter le mot de passe'],
                 ],
             ]);
     }

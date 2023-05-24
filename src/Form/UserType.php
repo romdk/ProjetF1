@@ -20,9 +20,13 @@ class UserType extends AbstractType
             // ->add('roles')
             // ->add('password')
             // ->add('isVerified')
-            ->add('pseudonyme', TextType::class)
+            ->add('pseudonyme',TextType::class, [
+                'label' => "Pseudonyme",
+                'attr' => ['class' => 'formInput', 'placeholder' => "Saisir un nom d'utilisateur"]
+            ])
             ->add('image', FileType::class, [
-                'label' => 'image de profil',
+                'label' => 'Image de profil',
+                'attr' => ['class' => 'formInput', 'placeholder' => "Saisir un nom d'utilisateur"],
                 'mapped' => false,
                 'required' => false,
                 'constraints' => [
@@ -37,7 +41,9 @@ class UserType extends AbstractType
                     ])
                 ],
             ])
-            ->add('valider', SubmitType::class)
+            ->add('valider', SubmitType::class, [
+                'attr' => ['class' => 'formBtn'],
+            ])
         ;
     }
 
