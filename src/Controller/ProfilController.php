@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\User;
 use App\Form\UserType;
 use App\HttpClient\F1HttpClient;
+use App\Repository\UserRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -78,5 +79,15 @@ class ProfilController extends AbstractController
             'grandprix' => $grandprix,
             'formEditUser' => $form->createView()
         ]);
+    }
+
+    #[Route('/profil/{id}/delete', name: 'profil_delete')]
+    public function delete(ManagerRegistry $doctrine){       
+        $entityManager = $doctrine->getManager();
+        $entityManager->remove($this->getUser());
+        $entityManager->flush();
+        $this->container->get('security.token_storage')->setToken(null);
+
+        return $this->redirectToRoute('app_home');
     }
 }   
