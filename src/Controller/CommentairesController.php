@@ -6,16 +6,18 @@ use App\Entity\Post;
 use App\Entity\Reponse;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ManagerRegistry;
+use Symfony\Component\Security\Core\Security;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
+
 class CommentairesController extends AbstractController
 {
     #[Route('/post/{id}/delete', name: 'delete_post')]
-    public function deletePost(ManagerRegistry $doctrine, Post $post)
+    public function deletePost(ManagerRegistry $doctrine, Post $post, Security $security)
     { 
-        if($this->getUser() == $post->getUser()){
+        if($this->getUser() == $post->getUser() || $security->isGranted('ROLE_ADMIN')){
             $post->setStatut(1);
             $entityManager = $doctrine->getManager();
             $entityManager->persist($post);
@@ -28,9 +30,9 @@ class CommentairesController extends AbstractController
     }  
 
     #[Route('/reponse/{id}/delete', name: 'delete_reponse')]
-    public function deleteReponse(ManagerRegistry $doctrine, Reponse $reponse)
+    public function deleteReponse(ManagerRegistry $doctrine, Reponse $reponse, Security $security)
     { 
-        if($this->getUser() == $reponse->getUser()){
+        if($this->getUser() == $reponse->getUser() || $security->isGranted('ROLE_ADMIN')){
             $entityManager = $doctrine->getManager();
             $entityManager->remove($reponse);
             $entityManager->flush();
