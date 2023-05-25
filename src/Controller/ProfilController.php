@@ -82,11 +82,32 @@ class ProfilController extends AbstractController
     }
 
     #[Route('/profil/{id}/delete', name: 'profil_delete')]
-    public function delete(ManagerRegistry $doctrine){       
+    public function delete(ManagerRegistry $doctrine){   
+        $user = $this->getUser(); 
         $entityManager = $doctrine->getManager();
-        $entityManager->remove($this->getUser());
+
+        // Détacher les posts de l'utilisateur
+        foreach ($user->getPosts() as $post) {
+            $post->setUser(null);
+            $entityManager->persist($post);
+        }
+
+        // Détacher les réponses de l'utilisateur
+        foreach ($user->getReponses() as $reponse) {
+            $reponse->setUser(null);
+            $entityManager->persist($reponse);
+        }
+
+        // Détacher les réservations de l'utilisateur
+        foreach ($user->getReservations() as $reservation) {
+            $reservation->setUser(null);
+            $entityManager->persist($reservation);
+        }
+
+        $entityManager->remove($user);
         $entityManager->flush();
         $this->container->get('security.token_storage')->setToken(null);
+
 
         return $this->redirectToRoute('app_home');
     }
