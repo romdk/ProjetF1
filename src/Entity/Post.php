@@ -36,6 +36,9 @@ class Post
     #[JoinTable('user_post_like')]
     private Collection $likes;
 
+    #[ORM\Column]
+    private ?bool $statut = null;
+
     public function __construct()
     {
         $this->reponses = new ArrayCollection();
@@ -150,5 +153,17 @@ class Post
     public function isLikedByUser(User $user): bool
     {
         return $this->likes->contains($user);
+    }
+
+    public function isStatut(): ?bool
+    {
+        return $this->statut;
+    }
+
+    public function setStatut(bool $statut): self
+    {
+        $this->statut = $statut;
+
+        return $this;
     }
 }

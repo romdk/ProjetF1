@@ -16,11 +16,12 @@ class CommentairesController extends AbstractController
     public function deletePost(ManagerRegistry $doctrine, Post $post)
     { 
         if($this->getUser() == $post->getUser()){
+            $post->setStatut(1);
             $entityManager = $doctrine->getManager();
-            $entityManager->remove($post);
+            $entityManager->persist($post);
             $entityManager->flush();
 
-            return $this->redirect($this->generateUrl('app_home').'#commentaires');        
+            return $this->redirectToRoute('app_home');        
         }else {
             return $this->redirectToRoute('app_home');
             }
