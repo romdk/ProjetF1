@@ -35,15 +35,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'boolean')]
     private $isVerified = false;
 
-    #[ORM\Column(length: 50, nullable: true)]
-    private ?string $nom = null;
-
-    #[ORM\Column(length: 50, nullable: true)]
-    private ?string $prenom = null;
-
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $adresse = null;
-
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Reservation::class)]
     private Collection $reservations;
 
@@ -152,42 +143,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setIsVerified(bool $isVerified): self
     {
         $this->isVerified = $isVerified;
-
-        return $this;
-    }
-
-    public function getNom(): ?string
-    {
-        return $this->nom;
-    }
-
-    public function setNom(?string $nom): self
-    {
-        $this->nom = $nom;
-
-        return $this;
-    }
-
-    public function getPrenom(): ?string
-    {
-        return $this->prenom;
-    }
-
-    public function setPrenom(?string $prenom): self
-    {
-        $this->prenom = $prenom;
-
-        return $this;
-    }
-
-    public function getAdresse(): ?string
-    {
-        return $this->adresse;
-    }
-
-    public function setAdresse(?string $adresse): self
-    {
-        $this->adresse = $adresse;
 
         return $this;
     }
