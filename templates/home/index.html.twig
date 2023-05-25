@@ -61,10 +61,24 @@
                 <ul id="listeMessages" class="listePosts">
                     {% for post in posts %}
                         <li><div class="post">
-                                <div class="userImg"><img src="{{ asset('assets/user/' ~ post.user.image) }}" alt=""></div>
+                            {% if post.statut == 1 and post.reponses is not empty() %}
+                                <span class="messageSuppr">Message supprimé</span>
+                            {% elseif post.statut == 1 and post.reponses is empty() %}
+                            {% else %} 
+                                <div class="userImg">
+                                    {% if post.user == null %}
+                                        <img src="{{ asset('assets/user/default.png') }}" alt=""> 
+                                    {% else %}
+                                        <img src="{{ asset('assets/user/' ~ post.user.image) }}" alt=""> 
+                                    {% endif %}
+                                </div>
                                 <div class="postCard">
                                     <div class="infosPost">
-                                        <span class="pseudo">{{ post.user.pseudonyme }}</span>
+                                        {% if post.user == null %}
+                                            <span class="pseudo">Utilisateur supprimé</span>
+                                        {% else %}
+                                            <span class="pseudo">{{ post.user.pseudonyme }}</span>
+                                        {% endif %}
                                         <span class="datePost">{{ post.dateCreation|date("d/m/Y H:i:s") }}</span>
                                         <div class="actions">
                                             {% if app.user %}                                        
@@ -83,15 +97,26 @@
                                     </div>
                                     <span class="message">{{ post.message }}</span>
                                 </div>
+                            {% endif %}
                             </div>
                             <ul id="listeReponses" class="listeReponses">
                                 {% set reponses = post.reponses %}
                                 {% for reponse in reponses %}
                                     <li><div class="post">
-                                            <div class="userImgReponse"><img src="{{ asset('assets/user/' ~ reponse.user.image) }}" alt=""></div>
+                                            <div class="userImgReponse">
+                                                {% if reponse.user == null %}
+                                                    <img src="{{ asset('assets/user/default.png') }}" alt="">
+                                                {% else %}    
+                                                    <img src="{{ asset('assets/user/' ~ reponse.user.image) }}" alt="">
+                                                {% endif %}
+                                            </div>
                                             <div class="postCard">
                                                 <div class="infosPost">
-                                                    <span class="pseudo">{{ reponse.user.pseudonyme }}</span>
+                                                    {% if reponse.user == null %}
+                                                        <span class="pseudo">Utilisateur supprimé</span>
+                                                    {% else %} 
+                                                        <span class="pseudo">{{ reponse.user.pseudonyme }}</span>
+                                                    {% endif %}
                                                     <span class="datePost">{{ reponse.dateCreation|date("d/m/Y H:i:s") }}</span>
                                                     <div class="actions">
                                                         {% if app.user %}                                        
