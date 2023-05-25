@@ -36,7 +36,7 @@ class Post
     #[JoinTable('user_post_like')]
     private Collection $likes;
 
-    #[ORM\Column]
+    #[ORM\Column(nullable: true)]
     private ?bool $statut = null;
 
     public function __construct()
