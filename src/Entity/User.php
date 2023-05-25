@@ -56,6 +56,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\ManyToMany(targetEntity: Pilote::class, inversedBy: 'users')]
     private Collection $pilotes;
 
+    #[ORM\Column(nullable: true)]
+    private ?bool $statut = null;
+
     public function __construct()
     {
         $this->reservations = new ArrayCollection();
@@ -305,6 +308,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function removePilote(Pilote $pilote): self
     {
         $this->pilotes->removeElement($pilote);
+
+        return $this;
+    }
+
+    public function isStatut(): ?bool
+    {
+        return $this->statut;
+    }
+
+    public function setStatut(?bool $statut): self
+    {
+        $this->statut = $statut;
 
         return $this;
     }

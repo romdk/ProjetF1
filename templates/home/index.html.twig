@@ -74,24 +74,29 @@
                                 </div>
                                 <div class="postCard">
                                     <div class="infosPost">
-                                        {% if post.user == null %}
-                                            <span class="pseudo">Utilisateur supprimé</span>
-                                        {% else %}
-                                            <span class="pseudo">{{ post.user.pseudonyme }}</span>
-                                        {% endif %}
-                                        <span class="datePost">{{ post.dateCreation|date("d/m/Y H:i:s") }}</span>
+                                        <div>
+                                            {% if post.user == null %}
+                                                <span class="pseudo">Utilisateur supprimé</span>
+                                            {% else %}
+                                                <span class="pseudo">{{ post.user.pseudonyme }}</span>
+                                            {% endif %}
+                                            <span class="datePost">{{ post.dateCreation|date("d/m/Y H:i:s") }}</span>
+                                        </div>
                                         <div class="actions">
                                             {% if app.user %}                                        
                                             <a data-like href="{{ path('like_post', {'id': post.id}) }}" class="likePost {% if (app.user in post.likes) %} liked{% endif %}">
                                                 {% endif %}
                                                 <span>{{ post.likes|length }}</span>
                                                 <i class="fa-solid fa-heart"></i>
-                                            {% if app.user %}                                        
+                                            {% if app.user and app.user.statut == 0 %}                                        
                                                 </a>
                                                 <span data-reply data-id="{{ post.id }}" class="replyPost"><i class="fa-solid fa-reply"></i></span>
                                             {% endif %}
                                             {% if app.user == post.user or is_granted('ROLE_ADMIN') %}
                                                 <a data-delete href="{{ path('delete_post', {'id': post.id}) }}" class="delete"><i class="fa-regular fa-trash-can"></i></a>
+                                            {% endif %}
+                                            {% if is_granted('ROLE_ADMIN') %}
+                                                <a class="btnBan" href="{{ path('ban_user', {'id': post.user.id})}}">Bannir</a>
                                             {% endif %}
                                         </div>
                                     </div>
@@ -112,24 +117,29 @@
                                             </div>
                                             <div class="postCard">
                                                 <div class="infosPost">
-                                                    {% if reponse.user == null %}
-                                                        <span class="pseudo">Utilisateur supprimé</span>
-                                                    {% else %} 
-                                                        <span class="pseudo">{{ reponse.user.pseudonyme }}</span>
-                                                    {% endif %}
-                                                    <span class="datePost">{{ reponse.dateCreation|date("d/m/Y H:i:s") }}</span>
+                                                    <div>
+                                                        {% if reponse.user == null %}
+                                                            <span class="pseudo">Utilisateur supprimé</span>
+                                                        {% else %} 
+                                                            <span class="pseudo">{{ reponse.user.pseudonyme }}</span>
+                                                        {% endif %}
+                                                        <span class="datePost">{{ reponse.dateCreation|date("d/m/Y H:i:s") }}</span>
+                                                    </div>
                                                     <div class="actions">
                                                         {% if app.user %}                                        
-                                                        <a data-like href="{{ path('like_reponse', {'id': reponse.id}) }}" class="likePost {% if (app.user in reponse.likes) %} liked{% endif %}">
-                                                            {% endif %}
+                                                            <a data-like href="{{ path('like_reponse', {'id': reponse.id}) }}" class="likePost {% if (app.user in reponse.likes) %} liked{% endif %}">
+                                                        {% endif %}
                                                             <span>{{ reponse.likes|length }}</span>
                                                             <i class="fa-solid fa-heart"></i>
-                                                        {% if app.user %}                                            
+                                                        {% if app.user and app.user.statut == 0 %}                                            
                                                             </a>
                                                             <span data-reply data-id="{{ post.id }}" class="replyPost"><i class="fa-solid fa-reply"></i></span>
                                                         {% endif %}
                                                         {% if app.user == reponse.user or is_granted('ROLE_ADMIN') %}
-                                                        <a data-delete href="{{ path('delete_reponse', {'id': reponse.id}) }}" class="delete"><i class="fa-regular fa-trash-can"></i></a>
+                                                            <a data-delete href="{{ path('delete_reponse', {'id': reponse.id}) }}" class="delete"><i class="fa-regular fa-trash-can"></i></a>
+                                                        {% endif %}
+                                                        {% if is_granted('ROLE_ADMIN') %}
+                                                            <a class="btnBan" href="{{ path('ban_user', {'id': post.user.id})}}">Bannir</a>
                                                         {% endif %}
                                                     </div>
                                                 </div>
@@ -144,7 +154,7 @@
                 </ul>
             </div>
             {% endif %}  
-            {% if app.user %}
+            {% if app.user and app.user.statut != 1 %}
                 <div id="addMessage">
                     {{ form_start(formAddPost) }}
                     <div class="addMessage">
@@ -168,6 +178,8 @@
                         {{ form_end(formAddReponse) }}
                     </div>
                 </div>
+            {% elseif app.user.statut == 1 %}
+                <span class="msgBan">Vous avez été banni, vous ne pouvez plus rédiger de commentaires</span>
             {% endif %}
     </section>
     <section id="footer">
