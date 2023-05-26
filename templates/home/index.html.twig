@@ -178,9 +178,9 @@
                         {{ form_end(formAddReponse) }}
                     </div>
                 </div>
-            {% elseif app.user.statut == 1 %}
-                <span class="msgBan">Vous avez été banni, vous ne pouvez plus rédiger de commentaires</span>
-            {% endif %}
+                {% elseif app.user and app.user.statut == 1 %}
+                    <p class="msgBan">Vous avez été banni, vous ne pouvez plus rédiger de commentaires</p>
+                {% endif %}
     </section>
     <section id="footer">
         <footer>
