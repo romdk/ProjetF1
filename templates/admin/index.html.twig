@@ -3,18 +3,63 @@
 {% block title %}Hello AdminController!{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+<main id="adminMain">
+    <div id="utilisateurs">
+        <div id="listeUtilisateurs">
+            <ul>
+                {% for user in users %}
+                <li>
+                    <div class="user" data-user = "{{ user.id }}">
+                        <div class="userImg">  
+                            <img src="{{ asset('assets/user/' ~ user.image) }}" alt="">
+                        </div>
+                            <div class="userData">
+                            <span>{{ user.pseudonyme }}</span>
+                            <span>{{ user.email }}</span>
+                            <span>Inscrit depuis le {{ user.dateInscription|date("d/m/Y") }}</span>
+                        </div>
+                        <span class="bannir">Bannir</span>
+                        <a data-ban href="{{ path('ban_user', {'id': user.id})}}" class="banToggle">
+                            <div class="toggle {% if (user.statut == 1) %} activeToggle{% endif %}">
+                                {% if user.statut == 1 %}
+                                    <div class="text">ON</div>
+                                {% else %}
+                                    <div class="text">OFF</div>
+                                {% endif %}
+                            </div>
+                        </a>
+                    </div>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div id="listeMessages">
+            <ul>
+                {% set selectedUser = 3 %}
+                {% for post in posts %}
+                    {% if post.user.id == selectedUser and post.statut == 0  %}    
+                        <li>
+                            <span>{{ post.dateCreation|date("d/m/Y H:i:s") }}</span>
+                            <span>{{ post.message }}</span>
+                            <a data-delete href="{{ path('delete_post', {'id': post.id}) }}" class="delete"><i class="fa-regular fa-trash-can"></i></a>
+                        </li>
+                    {% endif %}
+                {% endfor %}
+                {% for reponse in reponses %}
+                    {% if reponse.user.id == selectedUser %}
+                        <li>
+                            <span>{{ reponse.dateCreation|date("d/m/Y H:i:s") }}</span>
+                            <span>{{ reponse.message }}</span>
+                            <a data-delete href="{{ path('delete_reponse', {'id': reponse.id}) }}" class="delete"><i class="fa-regular fa-trash-can"></i></a>
+                        </li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/laragon/www/ProjetF1/src/Controller/AdminController.php'|file_link(0) }}">src/Controller/AdminController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/laragon/www/ProjetF1/templates/admin/index.html.twig'|file_link(0) }}">templates/admin/index.html.twig</a></code></li>
-    </ul>
-</div>
+</main>
+{% endblock %}
+{% block javascripts %}
+        <script src="{{ asset('javascript/admin.js') }}"></script>
 {% endblock %}

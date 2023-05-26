@@ -258,7 +258,7 @@ section{
 }
 
 
-#loginMain, #registerMain, #requestMain, #checkMailMain, #resetMain{
+#loginMain, #registerMain, #requestMain, #checkMailMain, #resetMain, #adminMain{
     width: 100vw;
     height: 100vh;
     display: flex;
@@ -385,6 +385,150 @@ footer span{
     box-shadow: 0px 10px 17px 0px rgba(0,0,0,0.2);
 }
 
+/* -----------------------------------------------------ADMIN------------------------------------------------------ */
+#adminMain{
+    align-items: flex-start;
+    padding-top: 100px;
+    height: 100vh;
+}
+
+#adminMain #utilisateurs{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: start;
+    width: 80%;
+    height: 50%;
+    gap: 5%;
+}
+#adminMain #listeUtilisateurs{
+    height: 100%;
+    width: 40%;
+    overflow-y: auto;
+}
+
+#adminMain #listeUtilisateurs ul{
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#adminMain #listeUtilisateurs::-webkit-scrollbar{
+    width: 5px;
+}
+
+#adminMain #listeUtilisateurs::-webkit-scrollbar-track{
+    /* background-color: #ffffff7d; */
+    background-color: #d0d8e6;
+    border-radius: 10px;
+}
+
+#adminMain #listeUtilisateurs::-webkit-scrollbar-thumb{
+    /* background-color: #ffffff; */
+    background-color: #a3b3ce;
+    border-radius: 10px;
+}
+
+
+#adminMain .user{
+    position: relative;
+    display: flex;
+    background-color: #f1f1f1;
+    padding: 10px;
+    justify-content: start;
+    align-items: center;
+    border-radius: 3px;
+ }
+
+ #adminMain .userData{
+    display: flex;
+    flex-direction: column;
+    margin-left: 10px;
+ }
+
+ #adminMain .bannir{
+    position: absolute;
+    top: 15px;
+    right: 35px;
+ }
+
+ #adminMain .banToggle {
+    position: absolute;
+    bottom: 25px;
+    right: 30px;
+    width: 60px;
+    height: 28px;
+    border-radius: 2px;
+    background-color: #d6dee7;
+    display: flex;
+    /* justify-content: start; */
+    align-items: center;
+    padding: 3px;
+    text-decoration: none;
+} 
+
+#adminMain .toggle{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #71829e;
+    width: 22px;
+    height: 19px;
+    border-radius: 2px;
+    font-size: .6rem;
+    color: #f1f1f1;
+    position: absolute;
+    left: 5px;
+    transition: .3s;
+  }
+
+  #adminMain .activeToggle{
+    left: 33px;
+    background-color: rgb(156, 22, 22);
+  }
+
+
+
+
+
+ #adminMain #listeMessages{
+    width: 60%;
+    height: 100%;
+    overflow-y: auto;
+ }
+
+ #adminMain #listeMessages::-webkit-scrollbar{
+    width: 5px;
+}
+
+#adminMain #listeMessages::-webkit-scrollbar-track{
+    /* background-color: #ffffff7d; */
+    background-color: #d0d8e6;
+    border-radius: 10px;
+}
+
+#adminMain #listeMessages::-webkit-scrollbar-thumb{
+    /* background-color: #ffffff; */
+    background-color: #a3b3ce;
+    border-radius: 10px;
+}
+
+ #adminMain #listeMessages li{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    background-color: #f1f1f1;
+    padding: 10px;
+    justify-content: start;
+    align-items: start;
+    border-radius: 3px;
+}
+
+#adminMain #listeMessages li .delete{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
 /* -----------------------------------------------------HOME------------------------------------------------------ */
     /* -----------------------------------------------------HEADER------------------------------------------------------ */
 
@@ -965,7 +1109,7 @@ footer span{
             gap: 10px;
         }
 
-        #listeMessages .userImg{
+        .userImg{
             height: 60px;
             width: 60px;
             border: solid white 2px;
@@ -978,7 +1122,7 @@ footer span{
             box-shadow: 0 1px 1px rgb(0 0 0 / 15%);
         }
 
-        #listeMessages .userImg img{
+        .userImg img{
             width: 60px;
             height: 60px;
             object-fit: cover;
@@ -1000,7 +1144,7 @@ footer span{
             align-items: center;
             flex-wrap: wrap;
             border-bottom: solid 1px #9f9f9f;
-            height: 37px;
+            height: 55px;
             width: 100%;
             padding: 10px;
             gap: 10px;
@@ -1055,6 +1199,14 @@ footer span{
         #listeMessages .delete i:hover{
             color: #a51717
         }
+
+        #listeMessages .btnBan{
+            background-color: #a51717;
+            border-radius: 3px;
+            padding:  0 5px;
+            color: #f1f1f1;
+            text-decoration: none;
+        }
         
         #listeMessages .message{
             min-height:60px ;
@@ -1083,6 +1235,12 @@ footer span{
             width: 50px;
             height: 50px;
             object-fit: cover;
+        }
+
+        #commentaires .msgBan{
+            display: block;
+            width: 100%;
+            text-align: center;
         }
 
 /* -----------------------------------------------------SAISONS------------------------------------------------------ */
