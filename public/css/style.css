@@ -440,10 +440,34 @@ footer span{
     border-radius: 3px;
  }
 
+ #adminMain .activeUser{
+    background-color: #058eff;
+ }
+
+ #adminMain .activeUser .userData a{
+    color: #f1f1f1;
+ }
+
+ #adminMain .activeUser .userData span {
+    color: #b9b9b9;
+ }
+
  #adminMain .userData{
     display: flex;
     flex-direction: column;
     margin-left: 10px;
+ }
+
+ #adminMain .userData a{
+    text-decoration: none;
+    color: #303c4b;
+    font-weight: 600;
+ }
+
+ #adminMain .userData span{
+    font-size: .85rem;
+    color: #5c5c5c;
+    font-weight: 300;
  }
 
  #adminMain .bannir{
@@ -454,7 +478,7 @@ footer span{
 
  #adminMain .banToggle {
     position: absolute;
-    bottom: 25px;
+    bottom: 16px;
     right: 30px;
     width: 60px;
     height: 28px;

@@ -32,6 +32,26 @@ class AdminController extends AbstractController
         
     }
 
+    #[Route('/admin/{id}', name: 'app_admin_messages')]
+    public function messages(Security $security, ManagerRegistry $doctrine, $id): Response
+    {
+        if ($security->isGranted('ROLE_ADMIN')) {
+            $users = $doctrine->getRepository(User::class)->findAll();
+            $posts = $doctrine->getRepository(Post::class)->findAll();
+            $reponses = $doctrine->getRepository(Reponse::class)->findAll();
+            
+            return $this->render('admin/messages.html.twig', [
+                'users' => $users,
+                'posts' => $posts,
+                'reponses' => $reponses,
+                'id' => $id,
+            ]);
+        } else {
+            return $this->redirectToRoute('app_home');
+        }
+        
+    }
+
     #[Route('/user/{id}/ban', name: 'ban_user')]
     public function banUser(ManagerRegistry $doctrine, User $user, Security $security)
     { 

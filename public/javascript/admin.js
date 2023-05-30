@@ -1,23 +1,3 @@
-// -------------------------------------------------LISTE UTILISATEURS---------------------------------------------
-// let selectedUser = selectedUser
-// on selectionne tous les utilisateurs
-let messages = document.querySelector('#listeMessages')
-document.querySelectorAll('.user').forEach(element => {
-    element.addEventListener('click', () => {
-        console.log(element.dataset.user);
-        console.log(messages);
-        // selectedUser = element.
-    })
-})
-
-
-
-
-
-
-
-
-
 // -------------------------------------------------BOUTON BANNIR---------------------------------------------
 // on selectione tous les boutons
 document.querySelectorAll('[data-ban]').forEach(element => {
