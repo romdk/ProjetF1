@@ -29,23 +29,23 @@
             {% endfor %}
         </table> 
     {% endif %}
-   <div class="form">
-    <h2>Editer le profil</h2>
-    {{ form_start(formEditUser) }}
-    <div class="formRow">
-        {{ form_row(formEditUser.pseudonyme) }}
-    </div>
-    <div class="formRow">
-        {{ form_row(formEditUser.image) }}
-    </div>
-    <div>
-        <a href="/reset-password">Changer le mot de passe</a>
-        <a href="{{ path('profil_delete', {'id': app.user.id}) }}">Supprimer le compte</a>
-    </div>
-    <div>
-        {{ form_row(formEditUser.valider) }}
-    </div>
-    {{ form_end(formEditUser) }}
-</div> 
+    <div class="form">
+        <h2>Editer le profil</h2>
+            {{ form_start(formEditUser) }}
+        <div class="formRow">
+            {{ form_row(formEditUser.pseudonyme) }}
+        </div>
+        <div class="formRow">
+            {{ form_row(formEditUser.image) }}
+        </div>
+        <div>
+            <a href="/reset-password">Changer le mot de passe</a>
+            <a href="{{ path('profil_delete', {'id': app.user.id}) }}">Supprimer le compte</a>
+        </div>
+        <div>
+            {{ form_row(formEditUser.valider) }}
+        </div>
+        {{ form_end(formEditUser) }}
+    </div> 
 </section>
 {% endblock %}

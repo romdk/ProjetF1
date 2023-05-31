@@ -34,28 +34,64 @@
             </ul>
         </div>
         <div id="listeMessages">
-            {# <ul>
-                {% set selectedUser = id %}
-                {% for post in posts %}
-                    {% if post.user.id == selectedUser and post.statut == 0  %}    
-                        <li>
-                            <span>{{ post.dateCreation|date("d/m/Y H:i:s") }}</span>
-                            <span>{{ post.message }}</span>
-                            <a data-delete href="{{ path('delete_post', {'id': post.id}) }}" class="delete"><i class="fa-regular fa-trash-can"></i></a>
-                        </li>
-                    {% endif %}
-                {% endfor %}
-                {% for reponse in reponses %}
-                    {% if reponse.user.id == selectedUser %}
-                        <li>
-                            <span>{{ reponse.dateCreation|date("d/m/Y H:i:s") }}</span>
-                            <span>{{ reponse.message }}</span>
-                            <a data-delete href="{{ path('delete_reponse', {'id': reponse.id}) }}" class="delete"><i class="fa-regular fa-trash-can"></i></a>
-                        </li>
-                    {% endif %}
-                {% endfor %}
-            </ul> #}
         </div>
+    </div>
+    <div id="uploadForm">
+        <div class="form">
+            <h2>Uploader une image</h2>
+                {{ form_start(formImageUpload) }}
+            <div class="formRow formCategorie">
+                {{ form_row(formImageUpload.categorie) }}
+            </div>
+            <div class="imageCircuit">
+                <div class="formRow">
+                    {{ form_row(formImageUpload.circuitName) }}
+                </div>
+                <div class="formRow">
+                    {{ form_row(formImageUpload.imageCircuitType) }}
+                </div>
+            </div>
+            <div class="imageEcurie">
+                <div class="formRow">
+                    {{ form_row(formImageUpload.ecurieName) }}
+                </div>
+                <div class="formRow">
+                    {{ form_row(formImageUpload.ecurieImageType) }}
+                </div>
+            </div>
+            <div class="imageGrandprix">
+                <div class="formRow yearRoundRow">
+                    {{ form_row(formImageUpload.grandprixYear) }}
+                    {{ form_row(formImageUpload.grandprixRound) }}
+                </div>
+                <div class="formRow">
+                    {{ form_row(formImageUpload.grandprixImageType) }}
+                </div>
+            </div>
+            <div class="imagePilote">
+                <div class="formRow">
+                    {{ form_row(formImageUpload.driverName) }}
+                </div>
+                <div class="formRow">
+                    {{ form_row(formImageUpload.driverImageType) }}
+                </div>
+                <div class="formRow numeroPiloteInput">
+                    {{ form_row(formImageUpload.driverNumber) }}
+                </div>
+            </div>
+            <div class="imageVoiture">
+                <div class="formRow">
+                    {{ form_row(formImageUpload.teamName) }}
+                </div>
+            </div>
+            <div>
+                {{ form_row(formImageUpload.image) }}
+            </div>
+            <div>
+                {{ form_row(formImageUpload.valider) }}
+            </div>
+            {{ form_end(formImageUpload) }}
+        </div> 
     </div>
 
 </main>

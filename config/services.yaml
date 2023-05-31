@@ -6,6 +6,12 @@
 parameters:
     secret_key: '%env(SECRET_KEY)%'
     user_directory: '%kernel.project_dir%/public/assets/user'
+    circuits_directory: '%kernel.project_dir%/public/assets/circuits'
+    ecuries_directory: '%kernel.project_dir%/public/assets/ecuries'
+    grandprix_directory: '%kernel.project_dir%/public/assets/grandprix'
+    pilotes_directory: '%kernel.project_dir%/public/assets/pilotes'
+    voitures_directory: '%kernel.project_dir%/public/assets/voitures'
+
 services:
     # default configuration for services in *this* file
     _defaults:
