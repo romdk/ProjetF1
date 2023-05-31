@@ -39,40 +39,40 @@ class ProfilController extends AbstractController
         }
 
         $form = $this->createForm(UserType::class, $user);
-            $form->handleRequest($request);
+        $form->handleRequest($request);
 
-            $file = $form->get('image')->getData();
+        $file = $form->get('image')->getData();
 
-            if ($file) {
-                // recupere le nom du fichier original
-                $originalFileName = pathinfo($file->getClientOriginalName(), flags:PATHINFO_FILENAME);
-                // trasforme le nom du fichier en une string qui contient que des caracteres ASCII
-                $safeFileName = $slugger->slug($originalFileName);
-                // ajout un id unique au fichier pour eviter les doublons
-                $newFileName = $safeFileName.'-'.uniqid().'.'.$file->guessExtension();
+        if ($file) {
+            // recupere le nom du fichier original
+            $originalFileName = pathinfo($file->getClientOriginalName(), flags:PATHINFO_FILENAME);
+            // trasforme le nom du fichier en une string qui contient que des caracteres ASCII
+            $safeFileName = $slugger->slug($originalFileName);
+            // ajout un id unique au fichier pour eviter les doublons
+            $newFileName = $safeFileName.'-'.uniqid().'.'.$file->guessExtension();
 
-                // deplace le fichier uploader dans le bon dossier
-                try{
-                    $file->move(
-                        $this->getParameter(name:'user_directory'),
-                        $newFileName
-                    );
-                } catch (FileExeption $e) {
+            // deplace le fichier uploader dans le bon dossier
+            try{
+                $file->move(
+                    $this->getParameter(name:'user_directory'),
+                    $newFileName
+                );
+            } catch (FileExeption $e) {
 
-                }
-
-                $user->setImage($newFileName);
             }
 
-            if($form->isSubmitted() && $form->isValid())
-            {
-                $user = $form->getData();
-                $entityManager = $doctrine->getManager();
-                $entityManager->persist($user);
-                $entityManager->flush();
+            $user->setImage($newFileName);
+        }
 
-                return $this->redirectToRoute('app_profil', ['id' => $user->getId()]);
-            }
+        if($form->isSubmitted() && $form->isValid())
+        {
+            $user = $form->getData();
+            $entityManager = $doctrine->getManager();
+            $entityManager->persist($user);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('app_profil', ['id' => $user->getId()]);
+        }
 
         return $this->render('profil/index.html.twig', [
             'reservations' => $reservations,
