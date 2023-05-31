@@ -390,6 +390,7 @@ footer span{
     align-items: flex-start;
     padding-top: 100px;
     height: 100vh;
+    flex-wrap: wrap;
 }
 
 #adminMain #utilisateurs{
@@ -400,6 +401,7 @@ footer span{
     height: 50%;
     gap: 5%;
 }
+
 #adminMain #listeUtilisateurs{
     height: 100%;
     width: 40%;
@@ -411,6 +413,10 @@ footer span{
     display: flex;
     flex-direction: column;
     gap: 10px;
+}
+
+#adminMain #listeUtilisateurs li{
+    margin-right: 5px;
 }
 
 #adminMain #listeUtilisateurs::-webkit-scrollbar{
@@ -511,10 +517,6 @@ footer span{
     background-color: rgb(156, 22, 22);
   }
 
-
-
-
-
  #adminMain #listeMessages{
     width: 60%;
     height: 100%;
@@ -537,6 +539,10 @@ footer span{
     border-radius: 10px;
 }
 
+#adminMain #listeMessages ul{
+    margin-right: 5px;
+}
+
  #adminMain #listeMessages li{
     position: relative;
     display: flex;
@@ -552,6 +558,39 @@ footer span{
     position: absolute;
     top: 10px;
     right: 10px;
+}
+
+#adminMain #uploadForm{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+#adminMain .form{
+    background-color: #f1f1f1;
+    padding: 20px;
+    border-radius: 3px;
+}
+
+#adminMain .form form{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.imagePilote, .imageGrandprix, .imageEcurie, .imageCircuit{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#adminMain #uploadForm .yearRoundRow{
+    display: flex;
+    gap: 10px;
+}
+
+#adminMain #uploadForm .imageCircuit, #adminMain #uploadForm .imageEcurie, #adminMain #uploadForm .imageGrandprix, #adminMain #uploadForm .imagePilote, #adminMain #uploadForm .imagePilote .numeroPiloteInput, #adminMain #uploadForm .imageVoiture {
+    display: none;
 }
 /* -----------------------------------------------------HOME------------------------------------------------------ */
     /* -----------------------------------------------------HEADER------------------------------------------------------ */
