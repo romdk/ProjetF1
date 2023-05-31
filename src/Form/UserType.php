@@ -26,7 +26,7 @@ class UserType extends AbstractType
             ])
             ->add('image', FileType::class, [
                 'label' => 'Image de profil',
-                'attr' => ['class' => 'formInput', 'placeholder' => "Saisir un nom d'utilisateur"],
+                'attr' => ['class' => 'formInput'],
                 'mapped' => false,
                 'required' => false,
                 'constraints' => [
