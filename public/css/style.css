@@ -387,10 +387,13 @@ footer span{
 
 /* -----------------------------------------------------ADMIN------------------------------------------------------ */
 #adminMain{
-    align-items: flex-start;
+    align-items: center;
+    justify-content: flex-start;
     padding-top: 100px;
     height: 100vh;
     flex-wrap: wrap;
+    flex-direction: column;
+    gap: 50px;
 }
 
 #adminMain #utilisateurs{
@@ -398,7 +401,7 @@ footer span{
     justify-content: space-evenly;
     align-items: start;
     width: 80%;
-    height: 50%;
+    height: 80%;
     gap: 5%;
 }
 
@@ -561,8 +564,8 @@ footer span{
 }
 
 #adminMain #uploadForm{
-    width: 100%;
-    display: flex;
+    width: 95%;
+    display: none;
     justify-content: center;
 }
 
@@ -2296,7 +2299,7 @@ object-fit: cover;
     border-radius: 10px;
 }
 
-#actu .select{
+.select{
     width: 100%;
     display: flex;
     justify-content: center;
@@ -2304,7 +2307,7 @@ object-fit: cover;
     gap: 20px;
 }
 
-#actu .select span{
+.select span{
     display: flex;
     justify-content: center;
     align-items: center;    
@@ -2316,13 +2319,13 @@ object-fit: cover;
     cursor: pointer;
 }
 
-#actu .select span:not(.active){
+.select span:not(.active){
     background-color: #f5f9ff;
     color: #0f0f0f;
     transition: .3s;
 }
 
-#actu .select span:not(.active):hover{
+.select span:not(.active):hover{
     background-color:#e0edff;
 }
 
@@ -2729,6 +2732,15 @@ object-fit: cover;
         FLEX-DIRECTION: column;
         gap: 0px;
         font-size: .8rem;
+    }
+
+    #adminMain #utilisateurs {
+        flex-direction: column;
+        width: 95%;
+    }
+
+    #adminMain #listeUtilisateurs, #adminMain #listeMessages{
+        width: 100%;
     }
 }
 
