@@ -51,23 +51,28 @@ class GrandprixController extends AbstractController
     #[Route('/grandprix/{id}/reservation', name: 'app_reservation')]
     public function reservation(Request $request, F1HttpClient $f1, EmplacementRepository $er, $id): Response
     {
-        $round = substr($id,5,7);
-        $year = substr($id,0,4);
-        $grandprix = $f1->getDetailsGrandprix($year, $round);
-        $circuit = json_decode($grandprix,true)["MRData"]["RaceTable"]["Races"]["0"]["Circuit"]["circuitId"];
-        $emplacements = $er->getEmplacementsByCircuit($circuit);
-        $dateGrandprix =  json_decode($grandprix,true)["MRData"]["RaceTable"]["Races"]["0"]["date"];
-        $currDate = date('Y-m-d');
+        if($this->getUser()){
 
-        if ($dateGrandprix > $currDate){
-            return $this->render('reservation/index.html.twig', [
-                'controller_name' => 'ReservationController',
-                'route_param' => $id,
-                'emplacements' => $emplacements,
-                'circuit' => $circuit,
-            ]);
+            $round = substr($id,5,7);
+            $year = substr($id,0,4);
+            $grandprix = $f1->getDetailsGrandprix($year, $round);
+            $circuit = json_decode($grandprix,true)["MRData"]["RaceTable"]["Races"]["0"]["Circuit"]["circuitId"];
+            $emplacements = $er->getEmplacementsByCircuit($circuit);
+            $dateGrandprix =  json_decode($grandprix,true)["MRData"]["RaceTable"]["Races"]["0"]["date"];
+            $currDate = date('Y-m-d');
+
+            if ($dateGrandprix > $currDate){
+                return $this->render('reservation/index.html.twig', [
+                    'controller_name' => 'ReservationController',
+                    'route_param' => $id,
+                    'emplacements' => $emplacements,
+                    'circuit' => $circuit,
+                ]);
+            }else{
+                return $this->redirectToRoute('app_grandprix', ['id' => $id]);            
+            }
         }else{
-            return $this->redirectToRoute('app_grandprix', ['id' => $id]);            
+            return $this->redirectToRoute('app_login');
         }
     }
 }
