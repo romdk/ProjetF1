@@ -1,3 +1,25 @@
+// -------------------------------------------------SELECT AFFICHAGE---------------------------------------------
+
+let btnUtilisateurs = document.getElementById('btnUtilisateurs');
+let btnUpload = document.getElementById('btnUpload');
+
+let utilisateurs = document.getElementById("utilisateurs");
+let uploadForm = document.getElementById("uploadForm");
+
+btnUtilisateurs.addEventListener('click', () => {
+    utilisateurs.style.display = 'flex'
+    uploadForm.style.display = 'none'
+    btnUtilisateurs.classList.add("active")
+    btnUpload.classList.remove("active")
+})  
+
+btnUpload.addEventListener('click', () => {
+    utilisateurs.style.display = 'none'
+    uploadForm.style.display = 'flex'
+    btnUtilisateurs.classList.remove("active")
+    btnUpload.classList.add("active")
+})  
+
 // -------------------------------------------------BOUTON BANNIR---------------------------------------------
 // on selectione tous les boutons
 document.querySelectorAll('[data-ban]').forEach(element => {
