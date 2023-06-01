@@ -1265,14 +1265,6 @@ footer span{
         #listeMessages .delete i:hover{
             color: #a51717
         }
-
-        #listeMessages .btnBan{
-            background-color: #a51717;
-            border-radius: 3px;
-            padding:  0 5px;
-            color: #f1f1f1;
-            text-decoration: none;
-        }
         
         #listeMessages .message{
             min-height:60px ;
