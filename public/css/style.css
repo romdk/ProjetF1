@@ -2514,6 +2514,11 @@ object-fit: cover;
         width: 100%;
     }
 
+    #saison #standingsSelector{
+
+        margin-top: 60px;
+    }
+
     .classement li span:nth-child(1) {
         left: 0px;
     }
@@ -2691,7 +2696,7 @@ object-fit: cover;
     }
 
     #reservation {
-        padding: 80px 10px 50px 10px;
+        padding: 80px 10px 0px 10px;
     }
 
     #reservation form {
