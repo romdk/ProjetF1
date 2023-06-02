@@ -67,9 +67,9 @@
                             {% else %} 
                                 <div class="userImg">
                                     {% if post.user == null %}
-                                        <img src="{{ asset('assets/user/default.png') }}" alt=""> 
+                                        <img src="{{ asset('assets/user/default.png') }}" alt="Image de profil de l'utilisateur"> 
                                     {% else %}
-                                        <img src="{{ asset('assets/user/' ~ post.user.image) }}" alt=""> 
+                                        <img src="{{ asset('assets/user/' ~ post.user.image) }}" alt="Image de profil de l'utilisateur {{ post.user.pseudonyme }}"> 
                                     {% endif %}
                                 </div>
                                 <div class="postCard">
@@ -107,9 +107,9 @@
                                     <li><div class="post">
                                             <div class="userImgReponse">
                                                 {% if reponse.user == null %}
-                                                    <img src="{{ asset('assets/user/default.png') }}" alt="">
+                                                    <img src="{{ asset('assets/user/default.png') }}" alt="Image de profil de l'utilisateur">
                                                 {% else %}    
-                                                    <img src="{{ asset('assets/user/' ~ reponse.user.image) }}" alt="">
+                                                    <img src="{{ asset('assets/user/' ~ reponse.user.image) }}" alt="Image de profil de l'utilisateur {{ reponse.user.pseudonyme }}">
                                                 {% endif %}
                                             </div>
                                             <div class="postCard">

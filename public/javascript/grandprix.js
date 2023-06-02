@@ -24,6 +24,7 @@ function loadPage() {
         const rep = await response.json()
         
         let dataGp = rep.MRData.RaceTable.Races[0]
+        console.log(dataGp.Circuit);
             
         const nomGp = document.getElementById('nomGp')
         nomGp.innerHTML = dataGp.raceName
@@ -33,6 +34,7 @@ function loadPage() {
 
         const drapeau = document.getElementById('drapeau')
         drapeau.src = "../assets/drapeaux/" + dataGp.Circuit.Location.country + ".png"
+        drapeau.alt = dataGp.Circuit.Location.country + " flag"
 
         const pays = document.getElementById('pays')
         pays.innerHTML = dataGp.Circuit.Location.country
@@ -41,6 +43,7 @@ function loadPage() {
         const trackLayout = document.createElement('img')
         circuit.appendChild(trackLayout)
         trackLayout.src = "../assets/circuits/" + dataGp.Circuit.circuitId + "_layout.png"
+        trackLayout.alt = "Map du " + dataGp.Circuit.circuitName
 
         let timeFp1 = dataGp.FirstPractice.time
         let timeFp2 = dataGp.SecondPractice.time

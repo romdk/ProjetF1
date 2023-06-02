@@ -7,16 +7,15 @@
     {% for driver in constructorDrivers %}
     <a href="/pilote/{{ driver.driverId }}" class="driverCard">
             <span class="driverName">{{ driver.givenName ~ ' ' ~ driver.familyName }}</span>
-            <span class="driverFlag"><img src="" alt=""></span>
-            <span class="driverLogo"><img src="{{ asset('assets/pilotes/' ~ driver.driverId ~ driver.permanentNumber ~ '.png') }}" alt=""></span>
-            <span class="driverPortrait"><img src="{{ asset('assets/pilotes/' ~ driver.driverId ~ '_portrait' ~ '.png') }}" alt=""></span>
+            <span class="driverLogo"><img src="{{ asset('assets/pilotes/' ~ driver.driverId ~ driver.permanentNumber ~ '.png') }}" alt="Numéro de {{ driver.givenName ~ ' ' ~ driver.familyName }}"></span>
+            <span class="driverPortrait"><img src="{{ asset('assets/pilotes/' ~ driver.driverId ~ '_portrait' ~ '.png') }}" alt="Portrait de {{ driver.givenName ~ ' ' ~ driver.familyName }}"></span>
     </a>        
     {% endfor %}
     <div class="infosCard">
         {% if app.user %} 
             <a data-fav href="{{ path('fav_ecurie', {'id': ecurie.id}) }}" class="favoris {% if (app.user in ecurie.users) %} fav{% endif %}"><i class="fa-solid fa-star"></i></a>
         {% endif %}
-            <div class="constructorLogo"><img src="{{ asset('assets/ecuries/Logo_ecurie_' ~ id ~ '.png') }}" alt=""></div>
+            <div class="constructorLogo"><img src="{{ asset('assets/ecuries/Logo_ecurie_' ~ id ~ '.png') }}" alt="Logo de l'écurie {{ ecurie.idApi }}  "></div>
             <div class="constructorData">
                 <span>Date de creation: {{ ecurie.dateCreation|date("Y")}}</span>
                 <span>Localisation: {{ ecurie.localisation }}</span>
@@ -31,7 +30,7 @@
             </div>
     </div>
     <div class="carCard">
-            <img src="{{ asset('assets/voitures/' ~ id ~ '_voiture.png') }}" alt="">
+            <img src="{{ asset('assets/voitures/' ~ id ~ '_voiture.png') }}" alt="Monoplace {{ ecurie.nomVoiture }}">
             <aside>
                 <h4>{{ ecurie.nomVoiture }}</h4>
                 <span>Puissance: {{ ecurie.puissanceVoiture }}</span>

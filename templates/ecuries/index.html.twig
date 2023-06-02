@@ -6,7 +6,7 @@
 <section id="ecuries">
     <div id="accordeonConstructors">
         {% for constructor in constructors %}
-        <a class="constructorCard" href="/ecurie/{{ constructor.constructorId }}"><img src="{{ asset('assets/ecuries/' ~ constructor.constructorId ~ '.png') }}" alt=""></a>            
+        <a class="constructorCard" href="/ecurie/{{ constructor.constructorId }}"><img src="{{ asset('assets/ecuries/' ~ constructor.constructorId ~ '.png') }}" alt="Logo de l'ecurie {{ constructor.constructorId }}"></a>            
         {% endfor %}
     </div>
 

@@ -15,7 +15,7 @@
                 <li>
                     <div class="user {% if (user.id == id) %} activeUser {% endif %}" data-user = "{{ user.id }}">
                         <a href="{{ path('app_admin_messages', {'id': user.id}) }}" class="userImg">  
-                            <img src="{{ asset('assets/user/' ~ user.image) }}" alt="">
+                            <img src="{{ asset('assets/user/' ~ user.image) }}" alt="Image de profil de l'utilisateur {{ user.pseudonyme }}">
                         </a>
                             <div class="userData">
                             <a href="{{ path('app_admin_messages', {'id': user.id}) }}">{{ user.pseudonyme }}</a>

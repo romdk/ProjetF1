@@ -6,7 +6,7 @@
 <section id="pilote">
     <div class="container">
         <div class="portrait">
-            <img src="{{ asset('assets/pilotes/' ~ id ~ '.png') }}" alt="">
+            <img src="{{ asset('assets/pilotes/' ~ id ~ '_portrait' ~ '.png') }}" alt="Portrait de {{  driverInformations.givenName ~ ' ' ~ driverInformations.familyName }}">
         </div>
         <div class="informations">
             {% if app.user %} 
@@ -24,7 +24,7 @@
             <span>Victoires: {{ nbVictoires }}</span>
             <span>Titres de champion: {{ nbTitres }}</span>
             <p>{{ driver.description }}</p>
-            <div class="casque"><img src="{{ asset('assets/pilotes/' ~ id ~ '_casque.png') }}" alt=""></div>
+            <div class="casque"><img src="{{ asset('assets/pilotes/' ~ id ~ '_casque.png') }}" alt="Casque de {{  driverInformations.givenName ~ ' ' ~ driverInformations.familyName }}"></div>
         </div>
     </div>
 </section>

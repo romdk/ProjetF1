@@ -99,6 +99,7 @@ function loadPage() {
                         const imgGp = document.createElement('img')
                         lien.appendChild(imgGp)
                         imgGp.src = "../assets/grandprix/" + race.season + "_" + race.round + ".png"
+                        imgGp.alt = race.raceName + " poster"
 
                         const dateGp = document.createElement('span')
                         lien.appendChild(dateGp)

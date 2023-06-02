@@ -67,6 +67,7 @@ function loadPage() {
                         imgGp.classList.add("imgGp")
                         lien.appendChild(imgGp)
                         imgGp.src = "../assets/grandprix/" + race.season + "_" + race.round + ".png"
+                        imgGp.alt = race.raceName + " poster"
 
                         let now = new Date().getTime() 
                         if (new Date(race.date + ' ' + race.time).getTime() < now){
@@ -92,7 +93,6 @@ function loadPage() {
                         body: '.json'
                 })
                 .then(async (response) => {
-                    // chargement.setAttribute('hidden', '')
                     chargement.style.transform = 'translateY(-100vh)'
                     container.removeAttribute('hidden')
                     const rep = await response.json()
@@ -102,6 +102,7 @@ function loadPage() {
                     const headerImg = document.createElement("img")
                     lastRaceResultsHeader.appendChild(headerImg)
                     headerImg.src = "../assets/grandprix/" + rep.MRData.RaceTable.season + "_" + rep.MRData.RaceTable.round + "_header.png"
+                    headerImg.alt = rep.MRData.RaceTable.Races[0].raceName + " header" 
                     const headerTitle = document.createElement("span")
                     lastRaceResultsHeader.appendChild(headerTitle)
                     headerTitle.innerHTML = rep.MRData.RaceTable.Races[0].raceName
