@@ -53,13 +53,13 @@
             <span>SELECTIONNEZ UN EMPLACEMENT</span>
             <div id="emplacementSelect">
                 {% for emplacement in emplacements %}
-                <label class="emplacement_option">
-                    <input type="radio" name="emplacement" class="radio" value="{{ emplacement.id }}">
-                    <div class="option_inner">
-                        <span>{{emplacement.nom}}</span>
-                        <span name="prix" data-prix="{{emplacement.prix}}">--€</span>    
-                    </div>
-                </label>
+                    <label class="emplacement_option">
+                        <input type="radio" name="emplacement" class="radio" value="{{ emplacement.id }}">
+                        <div class="option_inner">
+                            <span>{{emplacement.nom}}</span>
+                            <span name="prix" data-prix="{{emplacement.prix}}">--€</span>    
+                        </div>
+                    </label>
                 {% endfor %}
             </div>
             <span class="nbPersonnes">Nombre de personnes: <input name="nbPersonnes" type="number" value="1" min="1"></span>
