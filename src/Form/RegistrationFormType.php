@@ -48,7 +48,8 @@ class RegistrationFormType extends AbstractType
                     'label' => false,
                     'attr' => ['autocomplete' => 'new-password','class' => 'formInput', 'placeholder' => 'Saisir un mot de passe'],
                     'constraints' => [  
-                        new Regex('/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{12,}$/', 'Le mot de passe doit contenir au minimum 12 caractères, une majuscule, une minuscule, un chiffre, un caractère spécial')
+                        new Regex('/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[(){}&#-`\^@°+=€¨$£*µ%<>,?;.:!§]).{12,}$/', 
+                        'Le mot de passe doit contenir au minimum 12 caractères, une majuscule, une minuscule, un chiffre, un caractère spécial')
                     ],
                 ],
                 'second_options' => [
