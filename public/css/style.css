@@ -1266,7 +1266,7 @@ footer span{
             object-fit: cover;
         }
 
-        #commentaires .msgBan{
+        #commentaires .msg{
             display: block;
             width: 100%;
             text-align: center;
