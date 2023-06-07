@@ -166,18 +166,20 @@
                     <div id="formReponse">
                         <span id="btnFermer"><i class="fa-solid fa-xmark"></i></span>
                         {{ form_start(formAddReponse) }}
-                        <div class="addMessage">
-                            {{ form_row(formAddReponse.message) }}
-                        </div>
-                        <div class="ajouter">
-                            {{ form_row(formAddReponse.ajouter) }}
-                        </div>
+                            <div class="addMessage">
+                                {{ form_row(formAddReponse.message) }}
+                            </div>
+                            <div class="ajouter">
+                                {{ form_row(formAddReponse.ajouter) }}
+                            </div>
                         {{ form_end(formAddReponse) }}
                     </div>
                 </div>
-                {% elseif app.user and app.user.statut == 1 %}
-                    <p class="msgBan">Vous avez été banni, vous ne pouvez plus rédiger de commentaires</p>
-                {% endif %}
+            {% elseif app.user and app.user.statut == 1 %}
+                    <p class="msg">Vous avez été banni, vous ne pouvez plus rédiger de commentaires</p>
+            {% else %}
+                    <p class="msg">Vous devez être <a href="{{ path('app_login') }}">connecté</a> pour commenter.</p>
+            {% endif %}
     </section>
     <section id="footer">
         <footer>
