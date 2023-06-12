@@ -19,13 +19,13 @@
             {% set page = app.request.get('_route') %}
             <a class="{% if ('home' in page) %} active{% endif %}" href="{{ path('app_home') }}"><span>Accueil</span></a>            
             <a class="{% if ('actu' in page) %} active{% endif %}" href="{{ path('app_actu') }}"><span>Actus</span></a>
-            <a class="{% if ('saison' in page) %} active{% endif %}" href="{{ path('app_saison') }}"><span>Saisons</span></a>
-            <a class="{% if ('ecuries' in page) %} active{% endif %}" href="{{ path('app_ecuries') }}"><span>Ecuries</span></a>
+            <a class="{% if ('saison' in page) or ('grandprix' in page) or ('reservation' in page) %} active{% endif %}" href="{{ path('app_saison') }}"><span>Grandprix</span></a>
+            <a class="{% if ('ecuries' in page) or ('ecurie' in page) or ('pilote' in page) %} active{% endif %}" href="{{ path('app_ecuries') }}"><span>Ecuries</span></a>
         </div>
         <i class="fa-regular fa-user"></i>
         <div id="user">
             {% if app.user %}
-            <a href="{{ path('app_profil', {'id': app.user.id}) }}">Profil</a>
+            <a class="{% if ('profil' in page) %} active{% endif %}" href="{{ path('app_profil', {'id': app.user.id}) }}">Profil</a>
             <a href="{{ path('app_logout') }}">Deconnexion</a>
             {% else %}
             <a href="{{ path('app_login')}}">Connexion</a>
@@ -34,7 +34,21 @@
         </div>
     </nav>
     <body>
-        {% block body %}{% endblock %}
+        {% block body %}
+        {% endblock %}
+        <section id="footer">
+            <footer>
+                <div class="liens">
+                    <a href="{{ path('app_home') }}">Accueil</a>
+                    <a href="{{ path('app_confidentialite') }}">Politique de confidentialité</a>
+                    <a href="{{ path('app_cgu')}}">Conditions générales d'utilisation</a>
+                    <a href="{{ path('app_cgv')}}">Conditions générales de vente</a>
+                    <a href="mailto:contact@f1ndout.com">Nous contacter</a>
+                    <a href="https://github.com/romdk"><i class="fa-brands fa-github"></i></a>
+                </div>
+                <span>F1ndout © 2023</span>
+            </footer>
+        </section>
     </body>
     {% block javascripts %}
     {% endblock %}
