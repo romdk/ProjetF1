@@ -86,4 +86,19 @@ class HomeController extends AbstractController
     public function displayLastResults(F1HttpClient $f1, Request $request) {
         return new Response($f1->getLastRaceResults());
     }
+
+    #[Route('/confidentialite', name: 'app_confidentialite')]
+    public function displayConfidentialite(){
+        return $this->render('politique/confidentialite.html.twig');
+    }
+
+    #[Route('/cgu', name: 'app_cgu')]
+    public function displayCgu(){
+        return $this->render('politique/cgu.html.twig');
+    }
+
+    #[Route('/cgv', name: 'app_cgv')]
+    public function displayCgv(){
+        return $this->render('politique/cgv.html.twig');
+    }
 }
