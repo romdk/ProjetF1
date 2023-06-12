@@ -256,6 +256,24 @@ function loadPage() {
 }
 loadPage()
 
+// ---------------------------------------------SCROLL FOOTER-----------------------------------
+
+let container = document.getElementById('saison')
+let previousScrollPosition = container.scrollTop;   
+
+container.addEventListener('scroll', () => {
+    const currentScrollPosition = container.scrollTop;
+
+    if (currentScrollPosition < previousScrollPosition) {
+        // L'utilisateur fait défiler vers le haut
+        if (window.scrollY == 200 ){
+            window.scroll(0, 0)
+        }
+        console.log(window.scrollY);
+      }
+      previousScrollPosition = currentScrollPosition;
+})
+
 
 
 
