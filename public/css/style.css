@@ -98,6 +98,7 @@ section{
         font-weight: 200;
         height: fit-content;
     }
+    
     #menuBtn{
         position: absolute;
         right: 100px;
@@ -116,14 +117,13 @@ section{
         flex-direction: column;
         top: 65px;
         right: 30px;
-        background-color: rgba(0, 0, 0, 0.607);
-        backdrop-filter: blur(46px);
+        background-color: #000000d4;
         color: #f1f1f100;
         text-transform: uppercase;
         border-radius: 5px;
         overflow: hidden;
         transition: .3s;
-        transition-delay: 0.20s;
+        transition-delay: .20s;
     }
 
     #menuBtn:hover{
@@ -132,13 +132,12 @@ section{
 
     #menuBtn:hover + #menu {
         height: 170px;
-        color: #f1f1f1;
     }
     
     #menu:hover {
         height: 170px;
-        color: #f1f1f1;
         cursor: pointer;
+        backdrop-filter: blur(10px);
     }
     
     #menu a{
@@ -177,7 +176,7 @@ section{
         height: 0;
         top: 65px;
         right: 30px;
-        background-color: rgba(0, 0, 0, 0);
+        background-color: #000000d4;
         backdrop-filter: blur(3px);
         color: #f1f1f100;
         text-transform: uppercase;
@@ -191,7 +190,13 @@ section{
         padding: 10px 25px 10px 20px;
         transition: .3s;
         text-decoration: none;
-        color: #8d8d8d;
+        color: #f1f1f1;
+    }
+
+    #user a:not(.active){
+        padding: 10px 50px 10px 20px;
+        color: #bebebe;
+        transition: .3s;
     }
 
     .fa-user:hover{
@@ -201,13 +206,11 @@ section{
     .fa-user:hover + #user {
         height: 90px;
         background-color: rgba(24, 24, 24, 0.564);
-        color: #8d8d8d;
     }
 
     #user:hover{
         height: 90px;
         background-color: rgba(24, 24, 24, 0.564);
-        color: #8d8d8d;
         cursor: pointer;
     }
 
@@ -2342,6 +2345,7 @@ object-fit: cover;
     border-radius: 5px;
     padding: 20px;
     border-collapse: collapse;
+    overflow: hidden;
 }
 
 #profil table th{
@@ -2385,6 +2389,38 @@ object-fit: cover;
 #profil form div:nth-child(4){
     display: flex;
     justify-content: center;
+}
+/* ------------------------------------------------CONFIDENTIALITE/CGU/CGV------------------------------------------------------------ */
+#politiqueMain{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #d6dee7; 
+}
+
+#politiqueMain div{
+    background-color: #f1f1f1;
+    width: 70%;
+    padding: 20px;
+    border-radius: 3px;
+    max-height: 80%;
+    overflow-y: auto;
+}
+
+#politiqueMain div::-webkit-scrollbar{
+    width: 5px;
+}
+
+#politiqueMain div::-webkit-scrollbar-track{
+    background-color: #d0d8e6;
+    border-radius: 10px;
+}
+
+#politiqueMain div::-webkit-scrollbar-thumb{
+    background-color: #000000;
+    border-radius: 10px;
 }
 /* ------------------------------------------------RESPONSIVE------------------------------------------------------------ */
 @media screen and (max-width: 770px){
