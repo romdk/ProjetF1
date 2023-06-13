@@ -205,12 +205,10 @@ section{
 
     .fa-user:hover + #user {
         height: 90px;
-        background-color: rgba(24, 24, 24, 0.564);
     }
 
     #user:hover{
         height: 90px;
-        background-color: rgba(24, 24, 24, 0.564);
         cursor: pointer;
     }
 
@@ -966,6 +964,11 @@ footer span{
             position: absolute;
             color: #dc0606;
             right: 15px;
+            transition: .2s;
+        }
+
+        #lastRaceResults li a:hover{
+            color: #820000;
         }
 
         #lastRaceResultsHeader{
@@ -1128,6 +1131,11 @@ footer span{
             background-color: rgb(0, 149, 255);
             color: #f1f1f1;
             cursor: pointer;
+            transition: .2s;
+        }
+
+        .btnAjouter:hover{
+            background-color: #005ca8;
         }
 
         #listeMessages{
@@ -1759,6 +1767,11 @@ footer span{
     cursor: pointer;
     text-align: center;
     text-decoration: none;
+    transition: .2s;
+}
+
+#programme a:hover{
+    background-color: #005ca8;
 }
 /* -----------------------------------------------------RESERVATION------------------------------------------------------ */
 #reservation{
@@ -1814,6 +1827,11 @@ footer span{
     background-color: #303c4b;
     width: 100%;
     height: 100%;
+    transition: .2s;
+}
+
+#session .option_inner:hover{
+    background-color: #445263;
 }
 
 #session .session_option .radio:checked ~ .option_inner {
@@ -1892,6 +1910,11 @@ footer span{
     padding: 20px;
     background-color: #303c4b;
     color: #f1f1f1;
+    transition: .2s
+}
+
+#emplacementSelect .option_inner:hover{
+    background-color: #445263 ;
 }
 
 #emplacementSelect span:nth-child(2){
@@ -1934,6 +1957,12 @@ footer span{
     height: 50px;
     font-size: 1rem;
     border: none;
+    transition: .2s;
+}
+
+#emplacement .btnReserver:hover{
+    background-color: rgb(4, 125, 0);
+    cursor: pointer;
 }
 
 /* -----------------------------------------------------ECURIES------------------------------------------------------ */
@@ -2769,6 +2798,4 @@ object-fit: cover;
         font-size: .6rem;
         text-align: center;
     }
-
-
 }
