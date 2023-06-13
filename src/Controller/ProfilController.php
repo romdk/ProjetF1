@@ -21,7 +21,6 @@ class ProfilController extends AbstractController
         $currUserId = $this->getUser()->getId();
         if($currUserId != $id){
             return $this->redirectToRoute('app_profil', ['id' => $currUserId]);
-            // dd($this->getUser()->getId());
         }
         // on récupère les reservations de l'utilisateur connecté
         $reservations = $this->getUser()->getReservations();
@@ -82,33 +81,43 @@ class ProfilController extends AbstractController
     }
 
     #[Route('/profil/{id}/delete', name: 'profil_delete')]
-    public function delete(ManagerRegistry $doctrine){   
+    public function delete(ManagerRegistry $doctrine, $id){
+
         $user = $this->getUser(); 
-        $entityManager = $doctrine->getManager();
+        if ($user) {        
+            $entityManager = $doctrine->getManager();
+            $currUserId = $user->getId();
+            if($currUserId != $id){
+                return $this->redirectToRoute('app_profil', ['id' => $currUserId]);
+            }else{      
 
-        // Détacher les posts de l'utilisateur
-        foreach ($user->getPosts() as $post) {
-            $post->setUser(null);
-            $entityManager->persist($post);
+                // Détacher les posts de l'utilisateur
+                foreach ($user->getPosts() as $post) {
+                    $post->setUser(null);
+                    $entityManager->persist($post);
+                }
+
+                // Détacher les réponses de l'utilisateur
+                foreach ($user->getReponses() as $reponse) {
+                    $reponse->setUser(null);
+                    $entityManager->persist($reponse);
+                }
+
+                // Détacher les réservations de l'utilisateur
+                foreach ($user->getReservations() as $reservation) {
+                    $reservation->setUser(null);
+                    $entityManager->persist($reservation);
+                }
+
+                $entityManager->remove($user);
+                $entityManager->flush();
+                $this->container->get('security.token_storage')->setToken(null);
+
+
+                return $this->redirectToRoute('app_home');
+            }
+        }else {
+            return $this->redirectToRoute('app_home');   
         }
-
-        // Détacher les réponses de l'utilisateur
-        foreach ($user->getReponses() as $reponse) {
-            $reponse->setUser(null);
-            $entityManager->persist($reponse);
-        }
-
-        // Détacher les réservations de l'utilisateur
-        foreach ($user->getReservations() as $reservation) {
-            $reservation->setUser(null);
-            $entityManager->persist($reservation);
-        }
-
-        $entityManager->remove($user);
-        $entityManager->flush();
-        $this->container->get('security.token_storage')->setToken(null);
-
-
-        return $this->redirectToRoute('app_home');
     }
 }   
