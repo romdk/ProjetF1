@@ -160,6 +160,25 @@ function loadPage() {
 }
 loadPage()
 
+// ---------------------------------------------SCROLL FOOTER-----------------------------------
+
+let previousScrollPositionContainer = container.scrollTop;
+
+container.addEventListener('scroll', () => {
+    let currentScrollPosition = container.scrollTop;
+    console.log(window.scrollY);
+    
+    // Si l'utilisateur fait défiler vers le haut et que le footer est visible
+    if (currentScrollPosition < previousScrollPositionContainer && window.scrollY == 200)  {
+        window.scroll(0,0)
+        console.log('scroll haut');
+    }
+    previousScrollPositionContainer = currentScrollPosition;
+})
+
+
+
+
         
 
     

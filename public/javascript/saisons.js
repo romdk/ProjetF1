@@ -259,19 +259,18 @@ loadPage()
 // ---------------------------------------------SCROLL FOOTER-----------------------------------
 
 let container = document.getElementById('saison')
-let previousScrollPosition = container.scrollTop;   
+let previousScrollPositionContainer = container.scrollTop;
 
 container.addEventListener('scroll', () => {
-    const currentScrollPosition = container.scrollTop;
-
-    if (currentScrollPosition < previousScrollPosition) {
-        // L'utilisateur fait défiler vers le haut
-        if (window.scrollY == 200 ){
-            window.scroll(0, 0)
-        }
-        console.log(window.scrollY);
-      }
-      previousScrollPosition = currentScrollPosition;
+    let currentScrollPosition = container.scrollTop;
+    console.log(window.scrollY);
+    
+    // Si l'utilisateur fait défiler vers le haut et que le footer est visible
+    if (currentScrollPosition < previousScrollPositionContainer && window.scrollY == 200)  {
+        window.scroll(0,0)
+        console.log('scroll haut');
+    }
+    previousScrollPositionContainer = currentScrollPosition;
 })
 
 
