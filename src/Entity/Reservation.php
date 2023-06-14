@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\ReservationRepository;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ReservationRepository::class)]
@@ -32,7 +33,15 @@ class Reservation
     private ?string $session = null;
 
     #[ORM\Column(length: 50)]
-    private ?string $statut = 'processing';
+    private ?string $statut = 'pending';
+
+    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    private ?\DateTimeInterface $dateCreation = null;
+
+    public function __construct()
+    {
+        $this->dateCreation = new DateTime();
+    }
 
     public function getId(): ?int
     {
@@ -107,6 +116,18 @@ class Reservation
     public function setStatut(string $statut): self
     {
         $this->statut = $statut;
+
+        return $this;
+    }
+
+    public function getDateCreation(): ?\DateTimeInterface
+    {
+        return $this->dateCreation;
+    }
+
+    public function setDateCreation(\DateTimeInterface $dateCreation): self
+    {
+        $this->dateCreation = $dateCreation;
 
         return $this;
     }

@@ -391,9 +391,9 @@ footer span{
     display: flex;
     justify-content: space-evenly;
     align-items: start;
-    width: 80%;
-    height: 80%;
-    gap: 5%;
+    width: 90%;
+    height: 85%;
+    gap: 2%;
 }
 
 #adminMain #listeUtilisateurs{
@@ -508,31 +508,63 @@ footer span{
     background-color: rgb(156, 22, 22);
   }
 
- #adminMain #listeMessages{
-    width: 60%;
+  #elementsUtilisateur{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 75%;
+  }
+
+  #messagesUtilisateur, #reservations{
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    border-radius: 3px;
+    gap: 5px;
+}
+
+#messagesUtilisateur{
+    height: 60%;
+}
+
+#reservations{
+    height: 40%;
+}
+
+#elementsUtilisateur h2{
+    width: calc(100% - 10px);
+    background-color: #f1f1f1;
+    padding: 5px;
+    border-radius: 3PX;
+}
+
+ #adminMain #listeMessages, #adminMain #listeReservations{
+    width: 100%;
     height: 100%;
     overflow-y: auto;
  }
 
- #adminMain #listeMessages::-webkit-scrollbar{
+ #adminMain #listeMessages::-webkit-scrollbar, #adminMain #listeReservations::-webkit-scrollbar{
     width: 5px;
 }
 
-#adminMain #listeMessages::-webkit-scrollbar-track{
+#adminMain #listeMessages::-webkit-scrollbar-track, #adminMain #listeReservations::-webkit-scrollbar-track{
     background-color: #d0d8e6;
     border-radius: 10px;
 }
 
-#adminMain #listeMessages::-webkit-scrollbar-thumb{
+#adminMain #listeMessages::-webkit-scrollbar-thumb, #adminMain #listeReservations::-webkit-scrollbar-thumb{
     background-color: #a3b3ce;
     border-radius: 10px;
 }
 
-#adminMain #listeMessages ul{
+#adminMain #elementsUtilisateur ul{
     margin-right: 5px;
 }
 
- #adminMain #listeMessages li{
+ #adminMain #elementsUtilisateur li{
     position: relative;
     display: flex;
     flex-direction: column;
@@ -541,6 +573,27 @@ footer span{
     justify-content: start;
     align-items: start;
     border-radius: 3px;
+}
+
+#adminMain #listeReservations li{
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+#adminMain #listeReservations div{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+#adminMain #listeReservations .detailsReservation{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 0px;
 }
 
 #adminMain #listeMessages li .delete{
@@ -2452,6 +2505,30 @@ object-fit: cover;
     border-radius: 10px;
 }
 /* ------------------------------------------------RESPONSIVE------------------------------------------------------------ */
+@media screen and (max-width: 960px){
+    #adminMain{
+        gap: 15px;
+    }
+
+    #adminMain #utilisateurs{
+        justify-content: flex-start;
+        flex-direction: column;
+        width: 95%;
+        height: 90%;
+    }
+
+    #adminMain #listeUtilisateurs {
+        height: 31%;
+        width: 100%;
+    }
+
+    #elementsUtilisateur {
+        height: 65%;
+        width: 100%;
+    }
+
+}
+
 @media screen and (max-width: 770px){
 
     nav{

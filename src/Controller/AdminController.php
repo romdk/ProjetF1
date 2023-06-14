@@ -5,7 +5,9 @@ namespace App\Controller;
 use App\Entity\Post;
 use App\Entity\User;
 use App\Entity\Reponse;
+use App\Entity\Reservation;
 use App\Form\ImageUploadType;
+use App\HttpClient\F1HttpClient;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Security;
@@ -125,7 +127,7 @@ class AdminController extends AbstractController
                 'users' => $users,
                 'posts' => $posts,
                 'reponses' => $reponses,
-                'formImageUpload' => $form->createView()
+                'formImageUpload' => $form->createView(),
             ]);
         } else {
             return $this->redirectToRoute('app_home');
@@ -134,12 +136,27 @@ class AdminController extends AbstractController
     }
 
     #[Route('/admin/{id}', name: 'app_admin_messages')]
-    public function messages(Security $security, ManagerRegistry $doctrine, Request $request, $id): Response
+    public function messages(Security $security, ManagerRegistry $doctrine, Request $request, F1HttpClient $f1, $id): Response
     {
         if ($security->isGranted('ROLE_ADMIN')) {
             $users = $doctrine->getRepository(User::class)->findAll();
             $posts = $doctrine->getRepository(Post::class)->findAll();
             $reponses = $doctrine->getRepository(Reponse::class)->findAll();
+
+            $reservations = $doctrine->getRepository(Reservation::class)->findAll();
+
+             // on créer un tableau associatif
+            $grandprix = array();
+            // pour chaque réservation
+            foreach($reservations as $reservation){
+                // on récupère la saison et le round du grandprix de la réservation
+                $year = $reservation->getGrandprix()->getSeason();
+                $round = $reservation->getGrandprix()->getRound();
+                // puis on récupère les données du grandprix depuis l'api
+                $data = $f1->getDetailsGrandprix($year, $round);
+                // on remplis le tableau associatif avec comme clé l'id de la réservation et comme valeur le nom du grandprix
+                $grandprix[$reservation->getId()] = ["raceName" => json_decode($data,true)["MRData"]["RaceTable"]["Races"]["0"]["raceName"], "date" =>json_decode($data,true)["MRData"]["RaceTable"]["Races"]["0"]["date"]];
+            }
 
             $form = $this->createForm(ImageUploadType::class);
             $form->handleRequest($request);
@@ -245,6 +262,8 @@ class AdminController extends AbstractController
                 'reponses' => $reponses,
                 'formImageUpload' => $form->createView(),
                 'id' => $id,
+                'reservations' => $reservations,
+                'grandprix' => $grandprix,
             ]);
         } else {
             return $this->redirectToRoute('app_home');

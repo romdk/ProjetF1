@@ -37,28 +37,61 @@
                 {% endfor %}
             </ul>
         </div>
-        <div id="listeMessages">
-            <ul>
-                {% set selectedUser = id %}
-                {% for post in posts %}
-                    {% if post.user.id == selectedUser and post.statut == 0  %}    
-                        <li>
-                            <span>{{ post.dateCreation|date("d/m/Y H:i:s") }}</span>
-                            <span>{{ post.message }}</span>
-                            <a data-delete href="{{ path('delete_post', {'id': post.id}) }}" class="delete"><i class="fa-regular fa-trash-can"></i></a>
-                        </li>
-                    {% endif %}
-                {% endfor %}
-                {% for reponse in reponses %}
-                    {% if reponse.user.id == selectedUser %}
-                        <li>
-                            <span>{{ reponse.dateCreation|date("d/m/Y H:i:s") }}</span>
-                            <span>{{ reponse.message }}</span>
-                            <a data-delete href="{{ path('delete_reponse', {'id': reponse.id}) }}" class="delete"><i class="fa-regular fa-trash-can"></i></a>
-                        </li>
-                    {% endif %}
-                {% endfor %}
-            </ul>
+        <div id="elementsUtilisateur">
+            <div id="messagesUtilisateur">
+                <h2>Messages</h2>
+                <div id="listeMessages">
+                    <ul>
+                        {% set selectedUser = id %}
+                        {% for post in posts %}
+                            {% if post.user.id == selectedUser and post.statut == 0  %}    
+                                <li>
+                                    <span>{{ post.dateCreation|date("d/m/Y H:i:s") }}</span>
+                                    <span>{{ post.message }}</span>
+                                    <a data-delete href="{{ path('delete_post', {'id': post.id}) }}" class="delete"><i class="fa-regular fa-trash-can"></i></a>
+                                </li>
+                            {% endif %}
+                        {% endfor %}
+                        {% for reponse in reponses %}
+                            {% if reponse.user.id == selectedUser %}
+                                <li>
+                                    <span>{{ reponse.dateCreation|date("d/m/Y H:i:s") }}</span>
+                                    <span>{{ reponse.message }}</span>
+                                    <a data-delete href="{{ path('delete_reponse', {'id': reponse.id}) }}" class="delete"><i class="fa-regular fa-trash-can"></i></a>
+                                </li>
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            <div id="reservations">
+                <h2>Reservations</h2>
+                <div id="listeReservations">
+                    <ul>
+                        {% set selectedUser = id %}
+                        {% for reservation in reservations %}
+                            {% if reservation.user.id == selectedUser %}    
+                                <li>
+                                    <div class="infosGp">
+                                        <span>{{ grandprix[reservation.id]["raceName"] }}</span>
+                                        <span>-</span>
+                                        <span>{{ grandprix[reservation.id]["date"]|replace({'-': "/"}) }}</span>
+                                    </div>
+                                    <div class="infosReservation">
+                                        <span>Date de réservation: {{ reservation.dateCreation|date("d/m/Y H:i:s") }}</span>
+                                        <span>Statut: {{ reservation.statut }}</span>
+                                    </div>
+                                    <div class="detailsReservation">
+                                        <span>Emplacement: {{ reservation.emplacement.nom }}</span>
+                                        <span>Session: {{ reservation.session }}</span>
+                                        <span>{{ reservation.nbPersonnes }} personnes</span>
+                                    </div>
+                                </li>
+                            {% endif %}                
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
         </div>
     </div>
     <div id="uploadForm">
