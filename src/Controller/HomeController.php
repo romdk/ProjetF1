@@ -37,16 +37,24 @@ class HomeController extends AbstractController
             $reponses = $post->getReponses();
         };
 
-        if($postForm->isSubmitted() && $postForm->isValid()) {  
+        // Si le formulaire est envoyé et valide
+        if($postForm->isSubmitted() && $postForm->isValid()) { 
+            // on récupère les données du formulaire 
             $post = $postForm->getData();
+            // on appelle le manager
             $entityManager = $doctrine->getManager();
+            // on met en place la date de création du post
             $post->setDateCreation(new \DateTime());
+            // on associe l'utilisateur au post
             $post->setUser($this->getUser());
+            // on associe le grandprix au post
             $post->setGrandprix($grandprix);
+            // on fait persister l'entité
             $entityManager->persist($post);
+            // on push l'entité vers la BDD
             $entityManager->flush();
-
-            return $this->redirect($this->generateUrl('app_home').'#commentaires'); 
+            // on redirige l'utilisateur vers la page d'accueil
+            return $this->redirectToRoute('app_home');
         }
 
         if($reponseForm->isSubmitted() && $reponseForm->isValid()) {
@@ -64,7 +72,7 @@ class HomeController extends AbstractController
             $entityManager->persist($reponse);
             $entityManager->flush();
 
-            return $this->redirect($this->generateUrl('app_home').'#commentaires');
+            return $this->redirectToRoute('app_home');
         }
 
         return $this->render('home/index.html.twig', [
@@ -82,6 +90,7 @@ class HomeController extends AbstractController
         return new Response($f1->getGrandsprix($year));  
     }
 
+    // route qui appelle la fonction getLastRaceResults du F1HttpClient
     #[Route('/lastResults', name: 'app_lastResults', methods: ['POST'])]
     public function displayLastResults(F1HttpClient $f1, Request $request) {
         return new Response($f1->getLastRaceResults());
