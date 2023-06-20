@@ -4,7 +4,7 @@
 
 {% block body %}
 <section id="reservation">
-    {# <form action="{{ path('creer_reservation', {'id': route_param}) }}" method="post"> #}
+    {# Formulaire qui déclenche la route vers stripe #}
     <form action="{{ path('create_checkout_session', {'id': route_param}) }}" method="post">
         <div id="session">
             <div>

@@ -51,19 +51,31 @@ class GrandprixController extends AbstractController
     #[Route('/grandprix/{id}/reservation', name: 'app_reservation')]
     public function reservation(Request $request, F1HttpClient $f1, EmplacementRepository $er, $id): Response
     {
+        // si l'utilisateur est connecté
         if($this->getUser()){
 
+            // on récupère le round et l'année depuis l'id de la route
             $round = substr($id,5,7);
             $year = substr($id,0,4);
+
+            // puis avec ces informations on récupère les données du grandprix depuis l'api
             $grandprix = $f1->getDetailsGrandprix($year, $round);
+
+            // on récupère ensuite l'id du circuit
             $circuit = json_decode($grandprix,true)["MRData"]["RaceTable"]["Races"]["0"]["Circuit"]["circuitId"];
+
+            // l'id du circuit permet de récuperer la liste des emplacements
             $emplacements = $er->getEmplacementsByCircuit($circuit);
+
+            // on récupère également la date du grandprix
             $dateGrandprix =  json_decode($grandprix,true)["MRData"]["RaceTable"]["Races"]["0"]["date"];
+
+            // puis on récupère la date du jour
             $currDate = date('Y-m-d');
 
+            // on compare nos 2 dates pour faire une conditions
             if ($dateGrandprix > $currDate){
                 return $this->render('reservation/index.html.twig', [
-                    'controller_name' => 'ReservationController',
                     'route_param' => $id,
                     'emplacements' => $emplacements,
                     'circuit' => $circuit,
