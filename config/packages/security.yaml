@@ -22,6 +22,11 @@ security:
                 # where to redirect after logout
                 # target: app_any_route
 
+            # configurer le nombre de tentatives de connexion
+            login_throttling:
+                max_attempts: 3         #nombre d'essais par minute
+                interval: '15 minutes'  #délai d'attente si trop de tentatives de connexion
+
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#the-firewall
 
