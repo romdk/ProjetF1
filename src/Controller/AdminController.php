@@ -20,7 +20,7 @@ class AdminController extends AbstractController
     #[Route('/admin', name: 'app_admin')]
     public function index(Security $security, ManagerRegistry $doctrine, Request $request): Response
     {
-        if ($security->isGranted('ROLE_ADMIN')) {
+        // if ($security->isGranted('ROLE_ADMIN')) {
             $users = $doctrine->getRepository(User::class)->findAll();
             $posts = $doctrine->getRepository(Post::class)->findAll();
             $reponses = $doctrine->getRepository(Reponse::class)->findAll();
@@ -129,9 +129,9 @@ class AdminController extends AbstractController
                 'reponses' => $reponses,
                 'formImageUpload' => $form->createView(),
             ]);
-        } else {
-            return $this->redirectToRoute('app_home');
-        }
+        // } else {
+        //     return $this->redirectToRoute('app_home');
+        // }
         
     }
 
@@ -139,132 +139,137 @@ class AdminController extends AbstractController
     public function messages(Security $security, ManagerRegistry $doctrine, Request $request, F1HttpClient $f1, $id): Response
     {
         if ($security->isGranted('ROLE_ADMIN')) {
-            $users = $doctrine->getRepository(User::class)->findAll();
-            $posts = $doctrine->getRepository(Post::class)->findAll();
-            $reponses = $doctrine->getRepository(Reponse::class)->findAll();
+            $user = $doctrine->getRepository(User::class)->findOneBy(['id' => $id],[]);
+            if ($user){
+                $users = $doctrine->getRepository(User::class)->findAll();
+                $posts = $doctrine->getRepository(Post::class)->findAll();
+                $reponses = $doctrine->getRepository(Reponse::class)->findAll();
 
-            $reservations = $doctrine->getRepository(Reservation::class)->findAll();
+                $reservations = $doctrine->getRepository(Reservation::class)->findAll();
 
-             // on créer un tableau associatif
-            $grandprix = array();
-            // pour chaque réservation
-            foreach($reservations as $reservation){
-                // on récupère la saison et le round du grandprix de la réservation
-                $year = $reservation->getGrandprix()->getSeason();
-                $round = $reservation->getGrandprix()->getRound();
-                // puis on récupère les données du grandprix depuis l'api
-                $data = $f1->getDetailsGrandprix($year, $round);
-                // on remplis le tableau associatif avec comme clé l'id de la réservation et comme valeur le nom du grandprix
-                $grandprix[$reservation->getId()] = ["raceName" => json_decode($data,true)["MRData"]["RaceTable"]["Races"]["0"]["raceName"], "date" =>json_decode($data,true)["MRData"]["RaceTable"]["Races"]["0"]["date"]];
-            }
-
-            $form = $this->createForm(ImageUploadType::class);
-            $form->handleRequest($request);
-
-            $file = $form->get('image')->getData();
-            $target = $form->get('categorie')->getData();
-
-            $circuitName = $form->get('circuitName')->getData();
-            $imageCircuitType = $form->get('imageCircuitType')->getData();
-
-            $ecurieName = $form->get('ecurieName')->getData();
-            $ecurieImageType = $form->get('ecurieImageType')->getData();
-
-            $grandprixYear = $form->get('grandprixYear')->getData();
-            $grandprixRound = $form->get('grandprixRound')->getData();
-            $grandprixImageType = $form->get('grandprixImageType')->getData();
-
-            $driverName = $form->get('driverName')->getData();
-            $driverImageType = $form->get('driverImageType')->getData();
-            $driverNumber = $form->get('driverNumber')->getData();
-
-            $teamName = $form->get('teamName')->getData();
-
-            if ($file && $target && $circuitName && $imageCircuitType) {
-                // donne un nouveau nom au fichier
-                $newFileName = $circuitName.'_'.$imageCircuitType.'.png';
-
-                // deplace le fichier uploader dans le bon dossier
-                try{
-                    $file->move(
-                        $this->getParameter(name:$target.'_directory'),
-                        $newFileName
-                    );
-                } catch (FileException $e) {
-
+                // on créer un tableau associatif
+                $grandprix = array();
+                // pour chaque réservation
+                foreach($reservations as $reservation){
+                    // on récupère la saison et le round du grandprix de la réservation
+                    $year = $reservation->getGrandprix()->getSeason();
+                    $round = $reservation->getGrandprix()->getRound();
+                    // puis on récupère les données du grandprix depuis l'api
+                    $data = $f1->getDetailsGrandprix($year, $round);
+                    // on remplis le tableau associatif avec comme clé l'id de la réservation et comme valeur le nom du grandprix
+                    $grandprix[$reservation->getId()] = ["raceName" => json_decode($data,true)["MRData"]["RaceTable"]["Races"]["0"]["raceName"], "date" =>json_decode($data,true)["MRData"]["RaceTable"]["Races"]["0"]["date"]];
                 }
-            }
-            elseif ($file && $target && $ecurieName && $ecurieImageType) {
-                // donne un nouveau nom au fichier
-                $newFileName = $ecurieImageType.$ecurieName.'.png';
 
-                // deplace le fichier uploader dans le bon dossier
-                try{
-                    $file->move(
-                        $this->getParameter(name:$target.'_directory'),
-                        $newFileName
-                    );
-                } catch (FileException $e) {
+                $form = $this->createForm(ImageUploadType::class);
+                $form->handleRequest($request);
 
-                }
-            }
-            elseif ($file && $target && $grandprixYear && $grandprixRound && $grandprixImageType) {
-                // donne un nouveau nom au fichier
-                $newFileName = $grandprixYear.'_'.$grandprixRound.$grandprixImageType.'.png';
+                $file = $form->get('image')->getData();
+                $target = $form->get('categorie')->getData();
 
-                // deplace le fichier uploader dans le bon dossier
-                try{
-                    $file->move(
-                        $this->getParameter(name:$target.'_directory'),
-                        $newFileName
-                    );
-                } catch (FileException $e) {
+                $circuitName = $form->get('circuitName')->getData();
+                $imageCircuitType = $form->get('imageCircuitType')->getData();
 
-                }
-            }
-            elseif ($file && $target && $driverName && $driverImageType) {
-                if ($driverNumber) {
+                $ecurieName = $form->get('ecurieName')->getData();
+                $ecurieImageType = $form->get('ecurieImageType')->getData();
+
+                $grandprixYear = $form->get('grandprixYear')->getData();
+                $grandprixRound = $form->get('grandprixRound')->getData();
+                $grandprixImageType = $form->get('grandprixImageType')->getData();
+
+                $driverName = $form->get('driverName')->getData();
+                $driverImageType = $form->get('driverImageType')->getData();
+                $driverNumber = $form->get('driverNumber')->getData();
+
+                $teamName = $form->get('teamName')->getData();
+
+                if ($file && $target && $circuitName && $imageCircuitType) {
                     // donne un nouveau nom au fichier
-                    $newFileName = $driverName.$driverNumber.'.png';
-                }else {
+                    $newFileName = $circuitName.'_'.$imageCircuitType.'.png';
+
+                    // deplace le fichier uploader dans le bon dossier
+                    try{
+                        $file->move(
+                            $this->getParameter(name:$target.'_directory'),
+                            $newFileName
+                        );
+                    } catch (FileException $e) {
+
+                    }
+                }
+                elseif ($file && $target && $ecurieName && $ecurieImageType) {
                     // donne un nouveau nom au fichier
-                    $newFileName = $driverName.$driverImageType.'.png';
-                }
+                    $newFileName = $ecurieImageType.$ecurieName.'.png';
 
-                // deplace le fichier uploader dans le bon dossier
-                try{
-                    $file->move(
-                        $this->getParameter(name:$target.'_directory'),
-                        $newFileName
-                    );
-                } catch (FileException $e) {
+                    // deplace le fichier uploader dans le bon dossier
+                    try{
+                        $file->move(
+                            $this->getParameter(name:$target.'_directory'),
+                            $newFileName
+                        );
+                    } catch (FileException $e) {
 
+                    }
                 }
+                elseif ($file && $target && $grandprixYear && $grandprixRound && $grandprixImageType) {
+                    // donne un nouveau nom au fichier
+                    $newFileName = $grandprixYear.'_'.$grandprixRound.$grandprixImageType.'.png';
+
+                    // deplace le fichier uploader dans le bon dossier
+                    try{
+                        $file->move(
+                            $this->getParameter(name:$target.'_directory'),
+                            $newFileName
+                        );
+                    } catch (FileException $e) {
+
+                    }
+                }
+                elseif ($file && $target && $driverName && $driverImageType) {
+                    if ($driverNumber) {
+                        // donne un nouveau nom au fichier
+                        $newFileName = $driverName.$driverNumber.'.png';
+                    }else {
+                        // donne un nouveau nom au fichier
+                        $newFileName = $driverName.$driverImageType.'.png';
+                    }
+
+                    // deplace le fichier uploader dans le bon dossier
+                    try{
+                        $file->move(
+                            $this->getParameter(name:$target.'_directory'),
+                            $newFileName
+                        );
+                    } catch (FileException $e) {
+
+                    }
+                }
+                elseif ($file && $target && $teamName) {
+                    // donne un nouveau nom au fichier
+                    $newFileName = $teamName.'_voiture.png';
+
+                    // deplace le fichier uploader dans le bon dossier
+                    try{
+                        $file->move(
+                            $this->getParameter(name:$target.'_directory'),
+                            $newFileName
+                        );
+                    } catch (FileException $e) {
+
+                    }
+                }
+                
+                return $this->render('admin/messages.html.twig', [
+                    'users' => $users,
+                    'posts' => $posts,
+                    'reponses' => $reponses,
+                    'formImageUpload' => $form->createView(),
+                    'id' => $id,
+                    'reservations' => $reservations,
+                    'grandprix' => $grandprix,
+                ]);
+            }else {
+                return $this->redirectToRoute('app_admin');
             }
-            elseif ($file && $target && $teamName) {
-                // donne un nouveau nom au fichier
-                $newFileName = $teamName.'_voiture.png';
-
-                // deplace le fichier uploader dans le bon dossier
-                try{
-                    $file->move(
-                        $this->getParameter(name:$target.'_directory'),
-                        $newFileName
-                    );
-                } catch (FileException $e) {
-
-                }
-            }
-            
-            return $this->render('admin/messages.html.twig', [
-                'users' => $users,
-                'posts' => $posts,
-                'reponses' => $reponses,
-                'formImageUpload' => $form->createView(),
-                'id' => $id,
-                'reservations' => $reservations,
-                'grandprix' => $grandprix,
-            ]);
         } else {
             return $this->redirectToRoute('app_home');
         }
