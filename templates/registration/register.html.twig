@@ -16,7 +16,9 @@
         {{ form_row(registrationForm.email) }}
         {{ form_row(registrationForm.plainPassword.first) }}
         {{ form_row(registrationForm.plainPassword.second) }}        
-        {{ form_row(registrationForm.agreeTerms) }}
+        {{ form_row(registrationForm.agreeTerms,{
+            label: "Accepter les <a href='/cgu'>Termes et Conditions</a> "
+        }) }}
 
         <a href="{{ path('app_login')}}">Déjà inscrit ?</a>
         <button type="submit" class="formBtn">S'inscrire</button>
