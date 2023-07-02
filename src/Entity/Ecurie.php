@@ -176,7 +176,7 @@ class Ecurie
     {
         if (!$this->users->contains($user)) {
             $this->users->add($user);
-            $user->addEcury($this);
+            $user->addEcurie($this);
         }
 
         return $this;
@@ -185,7 +185,7 @@ class Ecurie
     public function removeUser(User $user): self
     {
         if ($this->users->removeElement($user)) {
-            $user->removeEcury($this);
+            $user->removeEcurie($this);
         }
 
         return $this;
