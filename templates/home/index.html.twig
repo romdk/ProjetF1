@@ -134,9 +134,6 @@
                                                         {% if app.user == reponse.user or is_granted('ROLE_ADMIN') %}
                                                             <a data-delete href="{{ path('delete_reponse', {'id': reponse.id}) }}" class="delete"><i class="fa-regular fa-trash-can"></i></a>
                                                         {% endif %}
-                                                        {% if is_granted('ROLE_ADMIN') %}
-                                                            <a class="btnBan" href="{{ path('ban_user', {'id': post.user.id})}}">Bannir</a>
-                                                        {% endif %}
                                                     </div>
                                                 </div>
                                                 <span class="message">{{ reponse.message }}</span>
