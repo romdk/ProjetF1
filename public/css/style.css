@@ -634,6 +634,11 @@ footer span{
 #adminMain #uploadForm .imageCircuit, #adminMain #uploadForm .imageEcurie, #adminMain #uploadForm .imageGrandprix, #adminMain #uploadForm .imagePilote, #adminMain #uploadForm .imagePilote .numeroPiloteInput, #adminMain #uploadForm .imageVoiture {
     display: none;
 }
+
+#adminMain #uploadForm .valider{
+    display: flex;
+    justify-content: center;
+}
 /* -----------------------------------------------------HOME------------------------------------------------------ */
     /* -----------------------------------------------------HEADER------------------------------------------------------ */
 
